@@ -1,0 +1,77 @@
+{
+  "name": "blueprint-expo-shell",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "expo start",
+    "web": "expo start --web",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src app.config.ts",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run lint && npm run format:check && node scripts/verify-blueprint.mjs && node scripts/verify-boundaries.mjs && npm run assets:check && npm test",
+    "build:web": "node scripts/clean-web.mjs && expo export --platform web && node scripts/verify-web.mjs",
+    "export:native": "expo export --platform ios --platform android --output-dir dist-native",
+    "test:e2e": "playwright test",
+    "doctor": "expo-doctor",
+    "release:check": "node scripts/release.mjs check",
+    "update:preview": "node scripts/release.mjs update preview",
+    "update:production": "node scripts/release.mjs update production",
+    "assets": "node scripts/brand-assets.mjs",
+    "assets:check": "node scripts/brand-assets.mjs --check",
+    "postinstall": "node scripts/patch-dependencies.mjs",
+    "format": "prettier --write src scripts app.config.ts",
+    "format:check": "prettier --check src scripts app.config.ts",
+    "test:native": "node scripts/native-smoke.mjs",
+    "build:preview:android": "node scripts/release.mjs build preview android",
+    "build:preview:ios": "node scripts/release.mjs build preview ios",
+    "build:production:android": "node scripts/release.mjs build production android",
+    "build:production:ios": "node scripts/release.mjs build production ios"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~57.0.20",
+    "expo-constants": "~57.0.17",
+    "expo-crypto": "~57.0.2",
+    "expo-dev-client": "~57.0.18",
+    "expo-font": "~57.0.3",
+    "expo-linking": "~57.0.9",
+    "expo-router": "~57.0.19",
+    "expo-splash-screen": "~57.0.8",
+    "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.3",
+    "expo-updates": "~57.0.21",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "0.10.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/react": "^19.2.18",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "^57.0.2",
+    "expo-doctor": "^1.20.4",
+    "prettier": "^3.9.6",
+    "sharp": "^0.35.4",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
+  },
+  "overrides": {
+    "xcode": {
+      "uuid": "11.1.1"
+    },
+    "decode-uri-component": "0.5.0"
+  }
+}

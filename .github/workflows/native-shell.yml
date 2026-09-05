@@ -1,0 +1,84 @@
+name: Native shell compilation and smoke
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/runnable-expo-shell, main]
+    paths:
+      - starters/expo/package-lock.json
+      - starters/expo/app.config.ts
+      - .github/workflows/native-shell.yml
+permissions:
+  contents: read
+concurrency:
+  group: native-shell-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: starters/expo
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: starters/expo/package-lock.json
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: npm ci
+      - run: npx expo prebuild --platform android --no-install
+      - run: ./gradlew :app:assembleRelease --no-daemon
+        working-directory: starters/expo/android
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: android-shell-local-signing-only
+          path: starters/expo/android/app/build/outputs/apk/release/*.apk
+          retention-days: 7
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 50
+    defaults:
+      run:
+        working-directory: starters/expo
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: starters/expo/package-lock.json
+      - run: npm ci
+      - run: npx expo prebuild --platform ios --no-install
+      - run: pod install --project-directory=ios
+      - name: Compile simulator release
+        run: xcodebuild -workspace ios/Gather.xcworkspace -scheme Gather -configuration Release -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build/simulator CODE_SIGNING_ALLOWED=NO build > build-ios.log 2>&1
+      - name: Boot and launch
+        run: |
+          xcrun simctl list devices available --json > devices.json
+          device=$(node -e "const d=require('./devices.json'); console.log(Object.values(d.devices).flat().find(v=>v.name.startsWith('iPhone')).udid)")
+          xcrun simctl boot "$device"
+          xcrun simctl bootstatus "$device" -b
+          xcrun simctl install "$device" build/simulator/Build/Products/Release-iphonesimulator/Gather.app
+          xcrun simctl launch "$device" com.example.gather
+          xcrun simctl io "$device" screenshot simulator-launch.png
+      - name: Install pinned Maestro
+        run: |
+          curl -fsSL https://github.com/mobile-dev-inc/Maestro/releases/download/cli-2.10.0/maestro.zip -o maestro.zip
+          curl -fsSL https://github.com/mobile-dev-inc/Maestro/releases/download/cli-2.10.0/checksums_sha256.txt -o checksums_sha256.txt
+          shasum -a 256 -c checksums_sha256.txt
+          unzip -q maestro.zip -d build/maestro
+      - name: Native workflow smoke
+        run: build/maestro/maestro/bin/maestro test -e APP_ID=com.example.gather e2e/native/smoke.yaml
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: ios-native-evidence
+          path: |
+            starters/expo/build-ios.log
+            starters/expo/simulator-launch.png
+          retention-days: 7

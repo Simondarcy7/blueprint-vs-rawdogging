@@ -90,6 +90,10 @@ Create or recommend:
 - For sensitive or regulated domains, treat privacy, audit trails, consent, retention, and export/deletion as first-class requirements.
 - Avoid collecting data that is not needed for the first useful workflow.
 
+## Runnable starting shell
+
+For an empty new project adopting this repository, prefer the versioned `starters/expo` shell using `scripts/create-app.mjs --target <new-directory> --name <kebab-name>`. It includes application code, tests and CI; customize brand.json, fonts and product modules instead of rebuilding the shell. The destination must not already exist. Do not create inside an existing app or overwrite one. Use install.sh for instruction-only adoption. Follow the generated README and record actual validation; external identity/signing/OTA readiness are still project-specific.
+
 ## Blueprint Reference
 
 For deeper guidance, read `references/index.md` first and then load only the specific referenced

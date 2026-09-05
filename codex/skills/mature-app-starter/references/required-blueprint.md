@@ -34,7 +34,7 @@ The release gate requires an update-enabled installed binary, compatible runtime
 6. Before handoff, run `node scripts/verify-blueprint.mjs`, typecheck, lint and the relevant behavioral tests. Include required manual accessibility/device checks when affected. Wire the structural check into the app's normal check command and CI once those exist. Do not claim completion with missing or failed required checks.
 7. Report what changed, checks and results, unresolved gaps and approved exceptions. Preserve unrelated user work; keep searches targeted and use no subagents unless the user explicitly asks.
 
-The installer supplies instructions, planning templates and a structural verifier. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
+From the toolkit checkout, choose the runnable shell for a brand-new app: `node scripts/create-app.mjs --target ../my-app --name my-app`. It copies the versioned Expo starter, installs the selected agent instructions and dependencies, and includes working UI, an example workflow and CI. Customize branding, fonts and product modules; reverify the resulting app. The separate `install.sh` remains instruction-only for existing apps and does not migrate or overwrite their application. Its structural verifier should fail until an app foundation exists. Neither path provisions accounts, signing credentials, external services or a verified native release.
 
 ## Exceptions and existing projects
 

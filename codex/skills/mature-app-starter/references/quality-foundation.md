@@ -5,7 +5,7 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 ## Use at kickoff
 
 1. Read BLUEPRINT.md and keep the required Expo/Router/modules architecture. Choose the surfaces: public website, private web app, native app, or a combination. State which pages should be discoverable in search.
-2. Complete the installed `docs/project-index.md` and `docs/app-quality-contract.md`. The installer seeds both even with `--no-docs`; copying the toolkit alone does not complete them.
+2. For a brand-new project, use the runnable Expo starter through `scripts/create-app.mjs`; for an existing app, install instructions only and preserve its work. Complete the installed `docs/project-index.md` and `docs/app-quality-contract.md`. The installer seeds both even with `--no-docs`; copying the toolkit alone does not complete them.
 3. Record the first workflow, core shell checks, chosen budgets, and verification commands. Add capability checks only for selected product scope. Mark irrelevant checks N/A with a reason; leave unimplemented checks visibly pending.
 4. Build one complete workflow, including its recovery and accessibility states. Wire relevant automated checks into CI before beta.
 5. Check the deployed artifact, then capture any new reusable lesson with its evidence and limits.
@@ -68,7 +68,7 @@ When applicable, use the integration-inventory template to track real service re
 
 ## Readiness map: use the blueprint without relying on memory
 
-Start here after BLUEPRINT.md. Work through the applicable stages, loading the linked guide when needed. Record actual commands, owner and evidence in the app's project index/quality contract; this map is an index, not a second status tracker. The toolkit supplies guidance and checks, not a prebuilt running application. Native/store/backend rows apply to selected surfaces and services.
+Start here after BLUEPRINT.md. Work through the applicable stages, loading the linked guide when needed. Record actual commands, owner and evidence in the app's project index/quality contract; this map is an index, not a second status tracker. The toolkit supplies a runnable Expo starter for new apps and an instruction-only installer for existing apps. Native/store/backend rows apply to selected surfaces and services.
 
 | Stage | What should exist in the new project | Guide / completion evidence |
 | --- | --- | --- |

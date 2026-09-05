@@ -1,0 +1,19 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+- assertVisible: "Your space"
+- tapOn: "Capture a thought"
+- tapOn:
+    id: "note-title"
+- inputText: "Native smoke note"
+- tapOn:
+    id: "note-body"
+- inputText: "A saved native workflow."
+- hideKeyboard
+- tapOn: "Save note"
+- assertVisible: "Native smoke note"
+- stopApp
+- launchApp
+- tapOn: "Notes"
+- assertVisible: "Native smoke note"

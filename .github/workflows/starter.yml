@@ -1,0 +1,34 @@
+name: Blueprint and runnable starter
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+concurrency:
+  group: starter-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  toolkit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - run: node --test tests/*.test.mjs
+  generated-app:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: starters/expo/package-lock.json
+      - run: node scripts/create-app.mjs --target ../generated-app --name quality-example --agent both
+      - run: npm run check && npm run doctor && npm run build:web
+        working-directory: ../generated-app
+      - run: npx playwright install --with-deps chromium
+        working-directory: ../generated-app
+      - run: npm run test:e2e && npm run export:native
+        working-directory: ../generated-app

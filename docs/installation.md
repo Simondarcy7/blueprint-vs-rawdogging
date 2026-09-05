@@ -1,3 +1,11 @@
+## Runnable app or instructions only
+
+For a new app, clone the toolkit and run `node scripts/create-app.mjs --target ../my-app --name my-app --agent both`. It creates a new destination exclusively, copies `starters/expo`, records its revision, installs agent guidance and runs `npm ci`. Run `npm run web` or `npm start` in the generated app. `--skip-install` copies without downloading dependencies. Node 22.13+ and Bash are required; use Git Bash on Windows.
+
+Edit the generated `brand.json`, `src/config/fonts.ts` and app-owned `src/modules`. Follow its README for validation and native delivery. Review upgrades as code changes, not by rerunning creation over existing work.
+
+For an existing project, use the instruction-only installation below. It does not generate an app or replace business logic.
+
 # Installation
 
 Use the installer to copy the toolkit into a project.

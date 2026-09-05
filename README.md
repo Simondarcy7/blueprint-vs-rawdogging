@@ -3,14 +3,13 @@
 A practical startup app foundation toolkit for product thinking, UX/UI, architecture, testing,
 AI-agent setup, and token-efficient software engineering.
 
-This is not a template app. It is a playbook and installable toolkit you can use before building
-any serious app, whether you are a founder, designer, product operator, or developer.
+A versioned, runnable Expo shell plus the standards and agent instructions that keep it consistent. Start a new app with working navigation, appearance, shared UI and a complete example workflow; use the instruction-only installer for an existing app.
 
 ## Consistent quality, product-owned features
 
 Use this blueprint for a consistent Expo app shell: folder structure, shared UI and theme tokens, navigation, accessible states, configuration, image/performance budgets and verification. Each new product supplies its own workflows and capabilities. Optional reference guides must never become an automatic feature checklist.
 
-The toolkit currently supplies instructions and checks; the runnable shell is implemented in each new project.
+The runnable shell lives in [starters/expo](starters/expo). Change `brand.json`, register your fonts, and replace the example product modules. External accounts, app/store identity and device release verification remain specific to each app.
 
 ## Carry your learnings into the next build
 
@@ -21,7 +20,7 @@ Start with the [quality foundation](docs/quality-foundation.md) and copy the [ap
 - [Images and performance](docs/images-and-performance.md): WebP variants, loading, asset rights and measurable budgets.
 - [Release checks](docs/release-quality-gates.md): architecture, recovery, privacy and deployed evidence.
 
-These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Framework-specific code and checks still need implementation in each new app.
+These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. The shell implements the baseline; extend and reverify it as the product changes.
 
 ## Start from the readiness map
 
@@ -60,6 +59,22 @@ Run `node scripts/verify-blueprint.mjs` from the new app after foundation setup.
 - Codex and Claude-compatible skills.
 - Copyable `AGENTS.md` and `CLAUDE.md` templates.
 - Optional custom agents for planning, UX, architecture, and review.
+
+## Create a runnable app
+
+```sh
+git clone https://github.com/Simondarcy7/blueprint-vs-rawdogging
+cd blueprint-vs-rawdogging
+node scripts/create-app.mjs --target ../my-new-app --name my-new-app --agent both
+cd ../my-new-app
+npm run web
+```
+
+Or run `npm start` for native development. The destination must not exist; existing work is never overwritten. Node 22.13+ and Bash are required for creation (Git Bash on Windows). Dependencies are installed from the committed lockfile. Use `--skip-install` for offline copying, then run `npm ci` in the new app.
+
+The starter includes safe-area/keyboard layout, tabs and deep-linkable screens, light/dark/system theme, font registration, shared controls, usable failure states, local persistence, discard/delete confirmation, architecture guards, unit/browser tests, web budgets and native build/update profiles. See the [customization map](starters/expo/README.md#make-it-yours) and [release setup](starters/expo/docs/release.md).
+
+The sample notes workflow is replaceable. Camera, location, push, authentication, analytics and cloud sync remain optional recipes. The starter creates no remote resources and publishes no release.
 
 ## One-Command Install
 
