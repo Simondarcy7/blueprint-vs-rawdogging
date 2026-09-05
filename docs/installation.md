@@ -71,3 +71,9 @@ Shared project docs:
 
 The installer skips existing files by default. Use `--force` only when you intentionally want to
 replace existing project files.
+
+## Quality defaults and future updates
+
+New installs include the quality guides under `docs/foundation/`, the copyable `app-quality-contract.md` under `docs/foundation-templates/`, and focused references inside each agent's mature-app-starter skill. Kickoff creates the app-owned `docs/app-quality-contract.md`; installing does not implement app code or verification commands.
+
+With `--no-docs`, skill references still work: create the quality contract using the bundled quality-foundation guide. Reinstalling without `--force` skips existing skill/doc directories. To update an existing customized app, install into a disposable directory and review/merge the relevant changes; `--force` replaces customized files/directories. User-level assets are unchanged unless explicitly installed.

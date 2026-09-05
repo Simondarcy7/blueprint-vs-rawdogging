@@ -107,3 +107,7 @@ docs/
 4. Add service boundary stubs.
 5. Add first focused domain test.
 6. Add basic observability/error-handling decision.
+
+## Quality contract
+
+Read `quality-foundation.md` and create `docs/app-quality-contract.md` with route/indexing policy, accessibility acceptance checks, image and bundle budgets, telemetry/privacy decisions, and actual release-verification commands. Record applicability and pending evidence. Implement relevant checks with the first workflow.

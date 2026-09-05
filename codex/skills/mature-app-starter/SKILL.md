@@ -101,3 +101,7 @@ For a new app plan, return:
 8. Next 3 to 5 implementation tasks.
 
 If implementation begins, keep changes small and create the foundation before feature breadth.
+
+## Reusable quality baseline
+
+At kickoff, read `references/quality-foundation.md`. Create an app-owned quality contract with platform applicability, public/private route policy, accessibility acceptance checks, image and bundle budgets, privacy decisions, actual verification commands, and pending evidence. Load the linked specialist guides only when implementing or deciding that area. Copy defaults, not Golf-specific code or budgets. Keep subagents opt-in: use them only when the user asks.

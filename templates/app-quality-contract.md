@@ -1,0 +1,49 @@
+# App quality contract
+
+Complete at kickoff; update when decisions or release evidence change. `Pending` means not implemented or not verified. N/A needs a reason. Replace example commands with commands that actually exist.
+
+## Product and surfaces
+
+- Product / target users:
+- First valuable workflow / success signal:
+- Explicit non-goals:
+- Platforms and representative devices/browsers:
+- Public route allowlist / rendering approach:
+- Private routes / access boundary:
+- Production origin / preview indexing policy:
+- Data collected / storage / retention / export-delete needs:
+
+## Acceptance and verification
+
+| Concern | App decision or numeric limit | Real command / manual procedure | Status / evidence |
+| --- | --- | --- | --- |
+| First workflow and recovery states | | | Pending |
+| Typecheck, lint and domain tests | | | Pending |
+| Feature/service/config boundaries | | | Pending |
+| Keyboard, screen reader, focus and hidden screens | | | Pending |
+| Contrast, enlarged text and reduced motion | | | Pending |
+| Public metadata, sitemap, robots and status codes | | | Pending |
+| Thumbnail / card / hero dimensions and bytes | | | Pending |
+| Initial JavaScript bytes (state compression method) | | | Pending |
+| Fonts / unused exported assets | | | Pending |
+| Target device/network performance measurement | | | Pending |
+| Image provenance and visual review | | | Pending |
+| Upload byte/dimension/pixel limits, if applicable | | | Pending |
+| Analytics consent and sanitized diagnostics | | | Pending |
+| Deployment identity, deep links and asset URLs | | | Pending |
+| Native/store/backend verification, if applicable | | | Pending |
+
+## Release record
+
+- Commit/build and environment:
+- CI results and manual evidence:
+- Outstanding gaps, owner and next action:
+- Rollback procedure:
+- Accepted exceptions, reason and revisit trigger:
+
+## Learning to carry forward
+
+- Repeated problem and source evidence (committed / work in progress):
+- General rule and applicability to another app:
+- Smallest check or template change that prevents recurrence:
+- Toolkit location to update:

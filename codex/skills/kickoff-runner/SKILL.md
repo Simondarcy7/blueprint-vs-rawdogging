@@ -13,7 +13,8 @@ Use this skill to guide a new app from idea to first implementation slice.
 2. Use `references/app-startup-blueprint.md` and `references/kickoff-checklist.md`; fall back to `docs/foundation/` copies when installed.
 3. Identify: problem, target user, first valuable workflow, platform, risk profile, non-goals, and first beta success signal.
 4. Recommend default technical choices: TypeScript, React for web, Expo React Native for mobile/cross-platform, typed service boundaries, centralized config, and focused tests unless a better choice is justified.
-5. Produce a setup checklist: repo structure, instruction files, ADRs, verification commands, and first tasks.
+5. Read `../mature-app-starter/references/quality-foundation.md` (the installer includes both skills). Record platform-specific SEO, accessibility, image budgets, privacy and release checks in `docs/app-quality-contract.md`.
+6. Produce a setup checklist: repo structure, instruction files, ADRs, verification commands, and first tasks.
 
 ## Output
 

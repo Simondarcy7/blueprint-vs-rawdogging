@@ -22,3 +22,8 @@ Load only the file needed for the user's request.
 | Codex versus Claude support | `agent-compatibility.md` from installed `docs/foundation/` when present |
 | GitHub, Notion, Sentry, analytics, or deployment integrations | `optional-integrations.md` from installed `docs/foundation/` when present |
 | Capturing reusable toolkit lessons | `continuous-learning-loop.md` |
+| Quality contract and reusable app defaults | `quality-foundation.md` |
+| Public-web SEO, crawl policy or migration checks | `seo-and-discoverability.md` |
+| Accessibility implementation and verification | `accessibility-baseline.md` |
+| WebP, image variants, loading and asset budgets | `images-and-performance.md` |
+| CI, privacy, recovery and deployed verification | `release-quality-gates.md` |

@@ -79,3 +79,7 @@ docs/
 4. Add service boundary stubs.
 5. Add first focused domain test.
 6. Add basic observability/error-handling decision.
+
+## Quality contract
+
+Use `quality-foundation.md` to record public/private route policy, accessibility acceptance checks, image and bundle budgets, data/telemetry decisions, and release verification in `docs/app-quality-contract.md`. Implement relevant checks with the first workflow. Choose platform-specific defaults; mark inapplicable requirements N/A with a reason.

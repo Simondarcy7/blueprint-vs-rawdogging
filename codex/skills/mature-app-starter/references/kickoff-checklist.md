@@ -56,3 +56,13 @@ Use this before or during the first repo setup.
 - Commands run:
 - Known gaps:
 - Next task:
+
+## Quality contract
+
+- Create `docs/app-quality-contract.md` from the installed template, or record equivalent decisions using the mature-app-starter quality-foundation reference.
+- Classify public/private web routes and choose rendering/indexing behavior.
+- Name the first keyboard/screen-reader workflow and required recovery states.
+- Set image-variant, JavaScript and font budgets for the actual platform and device/network target.
+- Decide data collection, telemetry sanitation and consent behavior.
+- Map applicable checks to real commands/manual steps; mark pending and N/A honestly.
+- Carry these checks into the first workflow and CI; recheck after framework/hosting migrations.

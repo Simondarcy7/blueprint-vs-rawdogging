@@ -6,6 +6,17 @@ AI-agent setup, and token-efficient software engineering.
 This is not a template app. It is a playbook and installable toolkit you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 
+## Carry your learnings into the next build
+
+Start with the [quality foundation](docs/quality-foundation.md) and copy the [app quality contract](templates/app-quality-contract.md). The toolkit now carries explicit defaults for:
+
+- [SEO](docs/seo-and-discoverability.md): public/private routes, metadata, sitemap and migration checks.
+- [Accessibility](docs/accessibility-baseline.md): semantics, keyboard and screen-reader workflows, focus and reduced motion.
+- [Images and performance](docs/images-and-performance.md): WebP variants, loading, asset rights and measurable budgets.
+- [Release checks](docs/release-quality-gates.md): architecture, recovery, privacy and deployed evidence.
+
+These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. They capture approaches from the [Golf App extraction](docs/learnings/golf-app-2026-09.md), including the limits of work-in-progress examples. Framework-specific code and checks still need implementation in each new app.
+
 ## Who This Is For
 
 - Founders who want a better starting point than a blank repo.

@@ -42,6 +42,15 @@
 - Add error reporting behind a wrapper before beta, external testers, or production usage.
 - Treat privacy, consent, retention, deletion/export, and audit needs as first-class when data is sensitive.
 
+## Quality defaults
+
+- At kickoff, create `docs/app-quality-contract.md` with applicable checks, numeric budgets, actual verification commands, and pending evidence. Use the installed mature-app-starter `references/quality-foundation.md`; the copyable template is under `docs/foundation-templates/` when docs are installed.
+- Classify public/private web routes; verify public content, metadata, canonical URLs, sitemap, robots policy and status codes in the built/deployed output. Recheck after framework or host migrations.
+- Build accessible primitives: semantic names/roles/states, visible focus, hidden-screen isolation, scalable text, reduced motion, and manual keyboard/screen-reader checks.
+- Use appropriately sized image variants, WebP where suitable, stable layout, and explicit image/JavaScript/font budgets. Do not lazy-load the likely LCP image. Track asset rights.
+- Keep product rules and branding app-owned; extract shared packages only when a second app proves the contract.
+- Static checks supplement manual and deployed verification. Never report an unrun check as passed.
+
 ## Verification
 
 - Use the lightest verification that proves the change.
@@ -62,10 +71,10 @@
 - Before implementation, briefly estimate context cost and the lower-token plan.
 - Prefer targeted reads and `rg` over broad scans.
 - Summarize findings instead of pasting large files.
-- Do not spawn subagents unless explicitly asked or the task has clean independent tracks.
+- Do not spawn subagents unless the user explicitly asks.
 
 ## Subagent policy
 
 - Do not use subagents for normal small implementation tasks.
-- Consider subagents only when the user explicitly asks or when a task has clearly independent parallel tracks.
+- Use subagents only when the user explicitly asks; independent tracks alone do not authorize delegation.
 - Avoid subagents when token cost, coordination, or merge conflicts would outweigh speed.
