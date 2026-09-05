@@ -37,3 +37,4 @@ Load only the file needed for the user's request.
 | Data semantics, pure logic, async ordering and side-effect failures | `code-correctness.md` |
 | Review findings, test coverage, device reproduction and evidence freshness | `verification-and-review.md` |
 | Build timing, artifact selection, updates and release completion | `build-and-release-workflow.md` |
+| Explicitly requested formal product review or owner assurance handoff | `product-review-brief.md` |

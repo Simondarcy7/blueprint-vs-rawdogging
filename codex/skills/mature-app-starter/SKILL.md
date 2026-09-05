@@ -125,3 +125,7 @@ When planning or documenting an Expo Router app, read `references/expo-project-s
 ## Correctness and evidence references
 
 For data/state work, read `references/code-correctness.md`; for reviews or disputed verification, read `references/verification-and-review.md`; for builds/releases, read `references/build-and-release-workflow.md`. Apply only the relevant patterns. Keep detailed history, source-product references and private provenance out of public toolkit guidance.
+
+## Optional formal product review
+
+Only when a formal product review is requested, read `references/product-review-brief.md` and complete its Inputs from the user's scope. Keep the review separate from implementation, preserve full-versus-sampled coverage, and report evidence and limits. The review does not authorize feature creation, fixes, external publication or subagents. Ordinary tasks continue to use focused verification.

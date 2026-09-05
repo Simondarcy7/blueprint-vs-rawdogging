@@ -167,3 +167,7 @@ For an Expo Router app, start with the [intentional Expo project structure](docs
 The [code correctness guide](docs/code-correctness.md) covers trustworthy data, stable identity, units/dates, shared validation, async ordering and recoverable side effects. The [verification and review guide](docs/verification-and-review.md) helps reconcile findings and prove the right behavior on the right build/device. The [build and release workflow](docs/build-and-release-workflow.md) covers pipeline timing, update compatibility and accurate artifact/completion reporting.
 
 Optional worksheets: [integration inventory](templates/integration-inventory.md) and [review findings](templates/review-findings.md). Load these when applicable; the blueprint's required stack and module boundaries remain unchanged.
+
+## Optional product assurance review
+
+Use the [product review brief](templates/product-review-brief.md) before a beta, major release or owner handoff when you want a formal review. The blueprint establishes the quality shell; the brief checks the implemented product using pinned evidence, selected areas and actionable findings. It is not a mandatory full audit for every change and does not add features or apply fixes. See [verification and review](docs/verification-and-review.md#optional-product-assurance-review).

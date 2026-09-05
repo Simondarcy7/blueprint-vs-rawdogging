@@ -29,3 +29,11 @@ For Expo web, inspect the exported app and its browser console for startup/hydra
 Record the revision/build and environment for meaningful verification. If concurrent work changes relevant files, validate the combined state before release; use isolated output directories for experiments so one build cannot overwrite another's evidence. Separate a newly introduced failure from a pre-existing one, but do not describe a release as passing while a required gate fails.
 
 Screenshots establish appearance, exports establish bundle generation, compiled binaries establish a different milestone, and real device journeys establish behavior. Report only the milestone actually reached. A configured cache or proposed optimization is not a measured speed improvement.
+
+## Optional product assurance review
+
+Use a formal product review when requested before beta, a major release or owner handoff. The quality shell defines the standard; this review checks an identified product against that standard and its own promises. It produces evidence and prioritized recommendations, not feature additions or automatic fixes. Ordinary changes still use focused verification.
+
+The product-review-brief template provides a pinned-source/artifact intake, explicit full-or-sampled scope, coverage ledger, selected review areas, stable finding IDs, verified strengths and audience-specific handoff reports. With docs installed, copy `docs/foundation-templates/product-review-brief.md`; the installed skill also includes a self-contained `references/product-review-brief.md` for `--no-docs` use. Complete its Inputs before running it. Reviews are opt-in, local-output by default and do not authorize subagents.
+
+Feed findings into the existing tracker after review. Promote only shell-quality lessons back to the blueprint; product fixes and feature requirements stay with the reviewed product.

@@ -101,3 +101,7 @@ Existing installations preserve their files by default and may retain older, con
 ## Additional focused guides
 
 Code correctness, verification/review and build/release references are bundled with mature-app-starter, including `--no-docs` installs. With docs enabled, `docs/foundation-templates/` also contains integration-inventory and review-findings worksheets. These are used only when relevant; installing them does not activate vendors, run builds or create a second task tracker.
+
+## Optional formal review brief
+
+With docs enabled, `docs/foundation-templates/product-review-brief.md` is a copyable commissioning brief. Every mature-app-starter skill install also includes `references/product-review-brief.md`, including `--no-docs`. Installing this material does not run an audit; use it only when a product review is requested. Existing installs need a reviewed update as described above.
