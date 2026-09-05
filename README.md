@@ -171,3 +171,7 @@ Optional worksheets: [integration inventory](templates/integration-inventory.md)
 ## Optional product assurance review
 
 Use the [product review brief](templates/product-review-brief.md) before a beta, major release or owner handoff when you want a formal review. The blueprint establishes the quality shell; the brief checks the implemented product using pinned evidence, selected areas and actionable findings. It is not a mandatory full audit for every change and does not add features or apply fixes. See [verification and review](docs/verification-and-review.md#optional-product-assurance-review).
+
+## Expo tooling, web and optional analytics
+
+The [Expo development and web guide](docs/expo-development-and-web.md) covers repeatable commands, Metro defaults, production web verification and optional Expo/Metro MCP tools. The [analytics guide](docs/product-analytics-setup.md) documents a vendor-neutral contract with PostHog as an optional native/web adapter. Both install with the skill references, including `--no-docs`; they do not install servers, create accounts or activate collection.

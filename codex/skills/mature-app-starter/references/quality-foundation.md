@@ -44,6 +44,10 @@ Keep public toolkit material generic: describe the problem, reusable rule, appli
 
 Use the installed `docs/foundation-templates/screen-behavior.md` for the first workflow. With `--no-docs`, record equivalent decisions from the guides. Keep experiments optional; use the experiment-brief template to choose evidence appropriate to traffic and risk.
 
+## Development setup
+
+Use [Expo development and web setup](expo-development-and-web.md) for repeatable local commands, minimal Metro configuration, exported-web checks and optional MCP debugging. When product analytics is selected, use [analytics setup](product-analytics-setup.md) for platform adapters, explicit collection policy and delivery evidence. Neither guide authorizes adding an unused service.
+
 ## Platform architecture
 
 For Expo Router, use the [Expo folder and file architecture](expo-project-structure.md) before choosing the initial tree. It distinguishes routing requirements from feature-ownership conventions and documents why code belongs in each location. Keep one feature/module naming convention per app.

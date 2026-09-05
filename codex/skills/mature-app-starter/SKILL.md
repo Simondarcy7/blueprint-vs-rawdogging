@@ -129,3 +129,7 @@ For data/state work, read `references/code-correctness.md`; for reviews or dispu
 ## Optional formal product review
 
 Only when a formal product review is requested, read `references/product-review-brief.md` and complete its Inputs from the user's scope. Keep the review separate from implementation, preserve full-versus-sampled coverage, and report evidence and limits. The review does not authorize feature creation, fixes, external publication or subagents. Ordinary tasks continue to use focused verification.
+
+## Expo toolchain and optional analytics
+
+For local Expo/Metro setup, web export or MCP debugging, read `references/expo-development-and-web.md`. For analytics already selected by the product brief, read `references/product-analytics-setup.md`. Keep MCP development-only and analytics vendor-optional; verify real connections without installing tools or enabling collection merely because the guides exist.

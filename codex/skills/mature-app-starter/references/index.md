@@ -38,3 +38,5 @@ Load only the file needed for the user's request.
 | Review findings, test coverage, device reproduction and evidence freshness | `verification-and-review.md` |
 | Build timing, artifact selection, updates and release completion | `build-and-release-workflow.md` |
 | Explicitly requested formal product review or owner assurance handoff | `product-review-brief.md` |
+| Expo local development, Metro, web export and optional MCP debugging | `expo-development-and-web.md` |
+| Selected product analytics and optional PostHog native/web adapters | `product-analytics-setup.md` |
