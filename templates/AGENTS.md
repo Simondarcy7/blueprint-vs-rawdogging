@@ -59,6 +59,13 @@
 - Measure runtime bottlenecks on representative workloads before adding caches, memoization or virtualization. Clean up background work and scope caches by identity.
 - Use the screen-behavior worksheet for important screens; keep feature scaffolding and experiments optional.
 
+## Correctness and evidence
+
+- Preserve unknown versus observed values, stable IDs, explicit units/time semantics and deliberate defaults. Reuse authoritative parsing/config contracts across storage, imports and services.
+- Define ordering and failure behavior for overlapping async actions. Optional provider failures must not break unrelated core workflows; reflect rollback/reconciliation uncertainty honestly.
+- Include shared domain code in verification. Reconcile requested review findings and reproduce reported device behavior before claiming fixes.
+- Report integration readiness and build/deployment milestones precisely; configured or queued does not mean verified or released.
+
 ## Verification
 
 - Run `node scripts/verify-blueprint.mjs` before implementation handoff and include it in app checks/CI. Also run the lightest relevant behavioral verification. The structural check alone does not establish full conformance.

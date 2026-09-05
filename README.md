@@ -155,3 +155,9 @@ Maintainer checks: `node --test tests/*.test.mjs` verifies the optional generato
 ## Expo folder and file architecture
 
 For an Expo Router app, start with the [intentional Expo project structure](docs/expo-project-structure.md). It includes a full folder tree, ownership rules, module anatomy, thin route/public API examples, state and service placement, platform adapters, and the reasons behind each boundary. Use the [module instruction template](templates/src-modules-AGENTS.md) when choosing `src/modules/`. This is the required starting architecture. Other stacks require explicit user direction and a documented exception.
+
+## Correctness and reliable delivery
+
+The [code correctness guide](docs/code-correctness.md) covers trustworthy data, stable identity, units/dates, shared validation, async ordering and recoverable side effects. The [verification and review guide](docs/verification-and-review.md) helps reconcile findings and prove the right behavior on the right build/device. The [build and release workflow](docs/build-and-release-workflow.md) covers pipeline timing, update compatibility and accurate artifact/completion reporting.
+
+Optional worksheets: [integration inventory](templates/integration-inventory.md) and [review findings](templates/review-findings.md). Load these when applicable; the blueprint's required stack and module boundaries remain unchanged.

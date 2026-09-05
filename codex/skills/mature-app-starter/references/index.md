@@ -34,3 +34,6 @@ Load only the file needed for the user's request.
 | Optional feature/module scaffold command | `feature-scaffolding.md` |
 | Expo Router folder/file structure, module ownership and platform adapters | `expo-project-structure.md` |
 | Required stack, adoption rules, exceptions and verification gates | `required-blueprint.md` |
+| Data semantics, pure logic, async ordering and side-effect failures | `code-correctness.md` |
+| Review findings, test coverage, device reproduction and evidence freshness | `verification-and-review.md` |
+| Build timing, artifact selection, updates and release completion | `build-and-release-workflow.md` |

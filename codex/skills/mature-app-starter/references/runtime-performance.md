@@ -29,3 +29,7 @@ For native, additionally inspect startup/resume, scroll responsiveness, memory g
 5. Add a budget/regression check only where it can reliably detect recurrence.
 
 Reference: [web.dev INP optimization](https://web.dev/articles/optimize-inp?hl=en). Pair runtime measurements with built image, font and JavaScript budgets.
+
+## Keep optimizations correct
+
+Split broad subscriptions and remove unnecessary serialization or repeated initialization only after tracing their cost and ownership. Dependency-level lazy loading can be a smaller change than experimental route-level splitting; verify the exported startup and hydration behavior on every supported surface before promotion. Distinguish repository cleanup from reducing shipped bytes, and distinguish compressed transfer size from unpacked binary size. Preserve visuals and functionality while measuring comparable builds.

@@ -26,6 +26,11 @@ Complete at kickoff; update when decisions or release evidence change. `Pending`
 | Offline, retries, permission denial/revocation, if applicable | | | Pending |
 | Cache freshness/isolation and background-work cleanup | | | Pending |
 | Typecheck, lint and domain tests | | | Pending |
+| Unknown values, stable IDs, units/time and shared parsing, if applicable | | | Pending |
+| Async ordering, truthful side effects and optional-service isolation | | | Pending |
+| Shared-package coverage and device-specific reproduction | | | Pending |
+| Integration readiness and resolved release/config identity | | | Pending |
+| Correct artifact, terminal build status and update compatibility | | | Pending |
 | Feature/service/config boundaries | | | Pending |
 | Keyboard, screen reader, focus and hidden screens | | | Pending |
 | Contrast, enlarged text and reduced motion | | | Pending |

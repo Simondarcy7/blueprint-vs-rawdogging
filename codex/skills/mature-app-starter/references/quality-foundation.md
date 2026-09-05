@@ -51,3 +51,11 @@ Use the installed `docs/foundation-templates/screen-behavior.md` for the first w
 ## Platform architecture
 
 For Expo Router, use the [Expo folder and file architecture](expo-project-structure.md) before choosing the initial tree. It distinguishes routing requirements from feature-ownership conventions and documents why code belongs in each location. Keep one feature/module naming convention per app.
+
+## Correctness and delivery details
+
+- [Code correctness](code-correctness.md): unknown versus zero, IDs, units, time, shared parsing, async ordering and truthful side effects.
+- [Verification and review](verification-and-review.md): assess findings, cover shared packages, reproduce device behavior and keep evidence current.
+- [Build and release workflow](build-and-release-workflow.md): select the right artifact, measure pipeline delays and verify actual remote completion.
+
+When applicable, use the integration-inventory template to track real service readiness and the review-findings template to reconcile a review without duplicating an existing tracker. Keep detailed patterns conditional on the work; they do not justify adding unused services or subsystems.

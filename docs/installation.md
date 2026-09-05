@@ -97,3 +97,7 @@ With docs enabled, `docs/foundation-templates/` also contains `screen-behavior.m
 New installs directly use src/app routes and src/modules product ownership instructions. The installer does not create src/features, restructure existing apps, or generate an Expo project. An instruction-only install is expected to fail `node scripts/verify-blueprint.mjs` until the foundation exists. Read BLUEPRINT.md and complete setup before claiming adoption.
 
 Existing installations preserve their files by default and may retain older, conflicting instructions. Install into a disposable directory and review/merge the baseline, root and nested instructions, skills, and verification command. Resolve an existing src/features or alternative-stack conflict through the user-approved adoption/exception process. Do not use --force on customized files without intending to replace them.
+
+## Additional focused guides
+
+Code correctness, verification/review and build/release references are bundled with mature-app-starter, including `--no-docs` installs. With docs enabled, `docs/foundation-templates/` also contains integration-inventory and review-findings worksheets. These are used only when relevant; installing them does not activate vendors, run builds or create a second task tracker.

@@ -51,3 +51,11 @@ Add tests for:
 - Missing paired credentials.
 - Required production/staging URLs.
 - Malformed URLs.
+
+## Prevent identity and default drift
+
+Give product defaults and release identity an authoritative owner. Derive public/support URLs, app identifiers and generated platform values from validated configuration where tooling allows; avoid manually repeating values across app config, native extensions, tests and store metadata. Inspect resolved/generated config as well as source files.
+
+Use stable configured IDs for initial selections rather than relying on array/catalog ordering. Preserve explicit user choices when locale or product defaults change. Keep theme preferences and feature flags consistent with supported behavior; an unused setting is misleading UI, not future-proofing.
+
+Use the integration-inventory template when multiple services exist. Distinguish configured, authorized, instrumented and verified states; choose integrations for a real workflow and keep unused providers disabled. Run an environment-specific smoke check before claiming a connection works.

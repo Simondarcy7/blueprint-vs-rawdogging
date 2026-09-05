@@ -38,3 +38,7 @@ Use the lightest proof:
 - Component state: component test or manual check.
 - Route journey: smoke test or manual walkthrough.
 - Visual layout: screenshot or screen recording.
+
+## Coverage and evidence gaps
+
+Read `verification-and-review.md` from the mature-app-starter references or installed foundation docs when assessing review findings, platform bugs or release claims. Ensure shared domain code and public exports are included in typechecking/test discovery. Test data meaning and async ordering using `code-correctness.md` where applicable. Record unverified device/deployment behavior separately from passing source checks.

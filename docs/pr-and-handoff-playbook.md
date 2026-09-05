@@ -104,3 +104,7 @@ Every task should define:
 - Applies to future projects:
 - Suggested toolkit update:
 ```
+
+## Reviews and delivery claims
+
+For a multi-finding review, reconcile all requested findings as fixed, still applicable, superseded, deferred or blocked; do not silently narrow scope. Use the existing tracker, or the review-findings template if none exists. Report the exact tested revision/environment and distinguish local changes, committed code, remote build completion, deployment and device verification. Link the real artifact and terminal status when delivering a release.
