@@ -61,3 +61,19 @@ real or the component is part of the app shell/design system.
 - Dialog: accessible name, focus containment/return and intentional dismissal.
 
 Keep these primitives token-driven and test critical states in a small workbench. Choose a framework-appropriate component library before rebuilding complex accessible controls. Document behavior once and keep feature screens focused on their task.
+
+## Adoption prevents design drift
+
+A tokens file and a component folder do not establish a design system until real screens use them. Build the first workflow with the shared text, button, field and shell contracts. During review, check representative screen imports and rendered states for bypasses, duplicate variants and undefined tokens. Keep genuine feature layouts local; avoid turning every unique element into a global primitive.
+
+Name typography by purpose, such as screen title, section title, body, helper and metric. Use tabular numerals when changing values must align; do not make every label monospaced or uppercase. Pick a content locale and vocabulary, and make action labels describe the behavior actually implemented. Preserve control semantics when polishing visuals.
+
+When following a design reference, inspect the actual reference when available and record its hierarchy, spacing, typography and state decisions. Identify unavailable evidence instead of inventing a fidelity claim. Compare the implemented first workflow at representative sizes before multiplying screens. Fix drift through shared tokens or variants where appropriate, with focused changes rather than accumulating screen-specific overrides.
+
+## Appearance is a persisted behavior
+
+Decide supported appearance modes at kickoff. If System / Light / Dark are offered, store the preference separately from the resolved palette. Only System follows later OS changes; an explicit selection must survive restart and remain authoritative. Normalize missing or invalid persisted preferences through one contract.
+
+Apply semantic tokens to charts, overlays, fields, selected/disabled states and navigation as well as the main background. Coordinate supported native system bars and web browser chrome with the resolved appearance. Plan initial preference hydration so startup does not briefly show an unreadable or inconsistent surface; a failed preference read still needs a usable fallback.
+
+Verify explicit modes after reload/relaunch, an OS change while in System mode, an OS change while an explicit mode is selected, and contrast/text scaling in each supported palette. Check the installed Expo SDK's native configuration and test on the relevant build; a web-only check does not establish native behavior. See [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/).

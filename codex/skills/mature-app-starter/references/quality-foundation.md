@@ -41,7 +41,8 @@ Keep public toolkit material generic: describe the problem, reusable rule, appli
 ## Everyday behavior to decide at kickoff
 
 - [App shell and navigation](app-shell-and-navigation.md): sticky surfaces where useful, safe areas, Back/deep links, focus and scroll restoration.
-- [UI states and forms](ui-states-and-forms.md): initial load versus refresh, useful empty states, input preservation, errors and duplicate submissions.
+- [UI states and forms](ui-states-and-forms.md): first use, resume, initial load versus refresh, useful empty states, input preservation, errors and duplicate submissions.
+- [Design system primitives](design-system-primitives.md): actual screen adoption, typography, persisted appearance and system-theme changes.
 - [Data resilience and capabilities](data-resilience-and-capabilities.md): applicable persistence, recovery, offline, permission and historical-record decisions.
 - [Runtime performance](runtime-performance.md): representative workloads, profiling, freshness, cancellation and background work.
 - [Feature scaffolding](feature-scaffolding.md): optional TypeScript feature generator for repeated setup.

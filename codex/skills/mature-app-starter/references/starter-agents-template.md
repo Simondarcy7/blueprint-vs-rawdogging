@@ -34,7 +34,8 @@ Use with the required BLUEPRINT.md contract.
 
 ## Product UX
 
-- Build the real primary workflow before marketing or decorative pages.
+- Build the real primary workflow before marketing or decorative pages. Verify first use with an empty dataset; keep sample data separate and make interrupted work resumable when applicable.
+- Use the shared design primitives in real screens. Decide supported appearance modes and verify persisted preferences, startup and system changes across the target platforms.
 - Include empty, loading, error, success, permission-denied, and offline/degraded states early.
 - Prefer clear hierarchy, predictable navigation, accessible contrast, scalable text, and obvious recovery paths.
 - Use animation to clarify state, continuity, feedback, and progress; avoid motion that hides latency or distracts from the task.
@@ -67,6 +68,7 @@ Use with the required BLUEPRINT.md contract.
 ## Correctness and evidence
 
 - Preserve unknown versus observed values, stable IDs, explicit units/time semantics and deliberate defaults. Reuse authoritative parsing/config contracts across storage, imports and services.
+- Keep uncertain machine-extracted values in a reviewable draft before committing them. Invalidate stale undo/selection/cache state after a successful dataset replacement.
 - Define ordering and failure behavior for overlapping async actions. Optional provider failures must not break unrelated core workflows; reflect rollback/reconciliation uncertainty honestly.
 - Include shared domain code in verification. Reconcile requested review findings and reproduce reported device behavior before claiming fixes.
 - Report integration readiness and build/deployment milestones precisely; configured or queued does not mean verified or released.

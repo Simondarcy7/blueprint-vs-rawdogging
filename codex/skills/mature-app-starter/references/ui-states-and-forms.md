@@ -37,3 +37,11 @@ Match the eventual layout with a few stable shapes. Avoid skeletons that flash f
 Test long names, large counts, missing images, user text, localized dates/numbers, and an empty dataset. Keep user-visible strings easy to locate; add full localization infrastructure only when needed. Show time zones when ambiguity matters. Make sample/demo data visibly distinct from real records.
 
 Use deterministic fixtures for slow, partial, empty, failed and offline states in a UI workbench or focused tests. A polished happy-path screenshot does not verify these transitions.
+
+## First use and interrupted work
+
+Make the first useful action reachable from the initial product screen. Add onboarding only for a demonstrated prerequisite or comprehension gap; prefer contextual, dismissible guidance when it is sufficient. Separate the native launch splash used during initialization from product onboarding. Do not add a branding timer or wait on optional remote services before showing usable content. Verify native splash behavior in a release build, following [Expo splash-screen guidance](https://docs.expo.dev/versions/latest/sdk/splash-screen/).
+
+Use an empty-install fixture as well as a returning-user fixture. Demonstrations must be clearly labeled, kept out of personal aggregates, and unable to overwrite real work. Avoid realistic placeholder metrics that look like the user's results. Make skipped guidance discoverable again where useful.
+
+For an ongoing workflow, expose an obvious resume destination and preserve its meaningful position. Show the same truthful save state in every editing surface. Warn on exit only when transient unsaved work would be lost; an untouched draft or successfully persisted edit should not trigger an unnecessary confirmation. Test leaving, returning and restarting with both saved and pending work.

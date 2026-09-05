@@ -18,11 +18,15 @@ Complete at kickoff; update when decisions or release evidence change. `Pending`
 | Concern | App decision or numeric limit | Real command / manual procedure | Status / evidence |
 | --- | --- | --- | --- |
 | First workflow and recovery states | | | Pending |
+| Empty-install onboarding, sample-data isolation and resume behavior | | | Pending |
+| Shared primitive adoption, typography and truthful action copy | | | Pending |
+| Appearance preference, startup and system changes on supported platforms | | | Pending |
 | Shell, sticky surfaces, safe areas and keyboard-open layout | | | Pending |
 | Deep links, Back, filters, focus and scroll restoration | | | Pending |
 | Loading/refresh, first-use/no-results and partial states | | | Pending |
 | Forms, retained drafts, duplicate submissions and stale responses | | | Pending |
 | Persistence upgrades, import/export and historical snapshots, if applicable | | | Pending |
+| Assisted-import review/correction and replacement invalidation, if applicable | | | Pending |
 | Offline, retries, permission denial/revocation, if applicable | | | Pending |
 | Cache freshness/isolation and background-work cleanup | | | Pending |
 | Typecheck, lint and domain tests | | | Pending |

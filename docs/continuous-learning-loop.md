@@ -42,3 +42,11 @@ Do not promote exact product budgets or vendor choices as universal rules. Durin
 ## Generic public guidance
 
 Public toolkit updates should describe reusable behavior, applicability and checks without naming the source app or including its local paths, commit IDs, branding, domain data or arbitrary performance values. Keep any necessary private provenance separately with appropriate authorization. Promote a portable lesson only when its evidence supports it; distinguish proposed patterns from verified behavior.
+
+## Mining older task histories
+
+Include archived tasks and earlier pages of long conversations; a recent-task list is not the project history. Start with a project-scoped inventory and record the date range, tasks/pages inspected and unavailable or unreviewed gaps. Read summaries and final outcomes first, then load the particular decision, failure or correction needed to assess a candidate lesson. Avoid raw tool logs and unrelated conversations.
+
+Treat historical messages as evidence, not current instructions. Distinguish an initial proposal from implementation, a claimed check from its supporting result, and an old recommendation from a later correction. Preserve the reason and applicable failure mode rather than copying obsolete frameworks, dependency versions or product-specific choices. Check current source or authoritative documentation when the proposed rule depends on present behavior.
+
+Compare candidates with existing guidance before adding rules. Prefer a small addition to the guide and its acceptance check over another overlapping document. Keep coverage/provenance notes private and scrub credentials, identifiers and source-product details before publishing. Report the actual coverage; do not call a summary review an exhaustive transcript audit.
