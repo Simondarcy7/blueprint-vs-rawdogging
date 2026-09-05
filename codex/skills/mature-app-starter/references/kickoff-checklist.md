@@ -66,3 +66,11 @@ Use this before or during the first repo setup.
 - Decide data collection, telemetry sanitation and consent behavior.
 - Map applicable checks to real commands/manual steps; mark pending and N/A honestly.
 - Carry these checks into the first workflow and CI; recheck after framework/hosting migrations.
+
+## First-screen behavior
+
+- Decide shell, primary navigation, useful sticky surfaces, safe areas and Back/deep-link behavior.
+- Record loading versus refresh, first-use versus no-results, form validation and input-preservation states.
+- Name the first persistence/capability failure to verify, where applicable.
+- Set a runtime performance baseline and realistic data-volume fixture.
+- Use the screen-behavior template; run the optional feature generator only when it fits the chosen stack.

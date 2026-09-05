@@ -15,7 +15,7 @@ Start with the [quality foundation](docs/quality-foundation.md) and copy the [ap
 - [Images and performance](docs/images-and-performance.md): WebP variants, loading, asset rights and measurable budgets.
 - [Release checks](docs/release-quality-gates.md): architecture, recovery, privacy and deployed evidence.
 
-These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. They capture approaches from the [Golf App extraction](docs/learnings/golf-app-2026-09.md), including the limits of work-in-progress examples. Framework-specific code and checks still need implementation in each new app.
+These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Framework-specific code and checks still need implementation in each new app.
 
 ## Who This Is For
 
@@ -134,3 +134,11 @@ See `docs/optional-integrations.md`.
 ## License
 
 MIT.
+
+## Everyday app behavior
+
+Use the [app shell and navigation guide](docs/app-shell-and-navigation.md) for sticky headers, safe areas, deep links, Back behavior and scroll restoration. Use [UI states and forms](docs/ui-states-and-forms.md) for loading shells, empty/partial/offline states, validation and duplicate-submit handling. Add [data resilience and capability patterns](docs/data-resilience-and-capabilities.md) when the app saves work or requests device access, and [runtime performance checks](docs/runtime-performance.md) for measured tuning.
+
+Copy the [screen behavior worksheet](templates/screen-behavior.md) for important screens and the [experiment brief](templates/experiment-brief.md) when evaluating a change. The optional [feature scaffold](docs/feature-scaffolding.md) creates a TypeScript feature boundary without adding dependencies. These are adaptable conventions, not mandatory infrastructure for every app.
+
+Maintainer checks: `node --test tests/create-feature.test.mjs` verifies the optional generator. The installer includes its script with the mature-app-starter skill.

@@ -17,7 +17,7 @@ Turn repeatable mistakes into focused checks. Record actual commands in the app 
 
 Keep brand, product, navigation, environment and data-policy config separate from feature implementation. Features expose small public APIs. Put storage, identity, analytics, errors and notifications behind typed contracts with explicit platform adapters. Shared foundation contracts must not import an app's business rules.
 
-Copy conventions first. Extract a shared package only after two apps need substantially the same contract; keep branding, navigation, monetization and domain data app-owned. Do not copy Golf App-specific module paths or exact route restrictions into a different framework.
+Copy conventions first. Extract a shared package only after two apps need substantially the same contract; keep branding, navigation, monetization and domain data app-owned. Adapt module paths and route conventions to the chosen framework.
 
 ## Privacy and recovery
 

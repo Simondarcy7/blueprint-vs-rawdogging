@@ -38,3 +38,7 @@ For each promoted lesson, record source path and revision/date, whether it is co
 Update the human guide and its corresponding installed skill reference together. Change kickoff/instruction templates when the lesson must influence future builds. Smoke-test installation into a disposable project for supported agents; also check `--no-docs` if skill references change. Existing installs skip existing directories by default, so review/merge updates rather than assuming a reinstall refreshed them.
 
 Do not promote exact product budgets or vendor choices as universal rules. During framework/client migrations, inventory and revalidate earlier SEO, accessibility and performance checks. Prune stale or redundant rules before starting the next app.
+
+## Generic public guidance
+
+Public toolkit updates should describe reusable behavior, applicability and checks without naming the source app or including its local paths, commit IDs, branding, domain data or arbitrary performance values. Keep any necessary private provenance separately with appropriate authorization. Promote a portable lesson only when its evidence supports it; distinguish proposed patterns from verified behavior.

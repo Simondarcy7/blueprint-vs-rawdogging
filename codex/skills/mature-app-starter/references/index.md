@@ -27,3 +27,8 @@ Load only the file needed for the user's request.
 | Accessibility implementation and verification | `accessibility-baseline.md` |
 | WebP, image variants, loading and asset budgets | `images-and-performance.md` |
 | CI, privacy, recovery and deployed verification | `release-quality-gates.md` |
+| Shell, sticky headers, navigation and scroll restoration | `app-shell-and-navigation.md` |
+| Loading shells, empty states, forms and action feedback | `ui-states-and-forms.md` |
+| Persistence, recovery, offline and device permissions | `data-resilience-and-capabilities.md` |
+| Runtime profiling, responsiveness, caching and background work | `runtime-performance.md` |
+| Optional feature/module scaffold command | `feature-scaffolding.md` |

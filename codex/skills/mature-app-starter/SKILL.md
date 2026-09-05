@@ -104,4 +104,8 @@ If implementation begins, keep changes small and create the foundation before fe
 
 ## Reusable quality baseline
 
-At kickoff, read `references/quality-foundation.md`. Create an app-owned quality contract with platform applicability, public/private route policy, accessibility acceptance checks, image and bundle budgets, privacy decisions, actual verification commands, and pending evidence. Load the linked specialist guides only when implementing or deciding that area. Copy defaults, not Golf-specific code or budgets. Keep subagents opt-in: use them only when the user asks.
+At kickoff, read `references/quality-foundation.md`. Create an app-owned quality contract with platform applicability, public/private route policy, accessibility acceptance checks, image and bundle budgets, privacy decisions, actual verification commands, and pending evidence. Load the linked specialist guides only when implementing or deciding that area. Use generic, platform-appropriate defaults and set project-specific budgets. Keep subagents opt-in: use them only when the user asks.
+
+## First workflow behavior
+
+At kickoff, record shell/navigation and applicable screen-state behavior in the quality contract. When implementing screens, read `references/app-shell-and-navigation.md` and `references/ui-states-and-forms.md`; choose sticky surfaces by task rather than imposing them universally. For persistence/device work read `references/data-resilience-and-capabilities.md`; for tuning read `references/runtime-performance.md`. `references/feature-scaffolding.md` describes the optional dependency-free `scripts/create-feature.mjs` generator. Keep source-product names and examples out of public toolkit output.

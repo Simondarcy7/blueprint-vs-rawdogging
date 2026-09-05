@@ -50,3 +50,7 @@ Only add real persistence or migrations when:
 3. The service boundary is clear.
 4. The app has a verification path for schema-dependent code.
 5. Retention, deletion/export, and audit needs are understood when data is sensitive.
+
+## Capability and mutation behavior
+
+Distinguish unsupported, unconfigured, permission-denied, cancelled and failed outcomes where they imply different user actions. Define cancellation/stale-response handling for reads and retry/idempotency behavior for consequential mutations. A disabled button does not replace a server-side duplicate-operation policy. Keep optional capabilities from blocking unrelated core workflows.

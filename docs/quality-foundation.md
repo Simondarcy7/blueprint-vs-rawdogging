@@ -36,4 +36,14 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 
 After a milestone, capture: problem → evidence → reusable rule → check that prevents recurrence → exceptions. Update the relevant guide, its installed skill reference, and any instruction template that must change agent behavior. Measure whether this saves setup time or avoids repeated defects on the next app; do not grow the toolkit just to grow it.
 
-The first extraction is recorded in `docs/learnings/golf-app-2026-09.md` in the toolkit repository (installed under `docs/foundation/learnings/`). This is a reusable approach, not a claim that every Golf App release has passed every check.
+Keep public toolkit material generic: describe the problem, reusable rule, applicability and verification without naming source products or copying their paths, budgets, assets or identifiers. Record private provenance separately only when needed and authorized.
+
+## Everyday behavior to decide at kickoff
+
+- [App shell and navigation](app-shell-and-navigation.md): sticky surfaces where useful, safe areas, Back/deep links, focus and scroll restoration.
+- [UI states and forms](ui-states-and-forms.md): initial load versus refresh, useful empty states, input preservation, errors and duplicate submissions.
+- [Data resilience and capabilities](data-resilience-and-capabilities.md): applicable persistence, recovery, offline, permission and historical-record decisions.
+- [Runtime performance](runtime-performance.md): representative workloads, profiling, freshness, cancellation and background work.
+- [Feature scaffolding](feature-scaffolding.md): optional TypeScript feature generator for repeated setup.
+
+Use the installed `docs/foundation-templates/screen-behavior.md` for the first workflow. With `--no-docs`, record equivalent decisions from the guides. Keep experiments optional; use the experiment-brief template to choose evidence appropriate to traffic and risk.

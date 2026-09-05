@@ -51,6 +51,14 @@
 - Keep product rules and branding app-owned; extract shared packages only when a second app proves the contract.
 - Static checks supplement manual and deployed verification. Never report an unrun check as passed.
 
+## Screen and runtime behavior
+
+- Keep shell/navigation predictable: safe areas, useful sticky controls, usable Back/deep links, restored list state and unobscured focus.
+- Distinguish first load, refresh, first-use empty, no results, partial, offline, saving and failure. Preserve useful content and input during recoverable failures.
+- Define duplicate-submit, stale-response and retry behavior for affected operations. Add persistence/recovery and permission states when the feature requires them.
+- Measure runtime bottlenecks on representative workloads before adding caches, memoization or virtualization. Clean up background work and scope caches by identity.
+- Use the screen-behavior worksheet for important screens; keep feature scaffolding and experiments optional.
+
 ## Verification
 
 - Use the lightest verification that proves the change.

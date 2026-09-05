@@ -27,3 +27,5 @@ Use this skill to guide a new app from idea to first implementation slice.
 - Verification plan.
 
 Do not implement unless the user asks.
+
+Include first-screen shell/navigation behavior, loading/empty/refresh/error states, input preservation, applicable recovery and a representative performance fixture in the setup checklist. Load the corresponding mature-app-starter references only when needed.
