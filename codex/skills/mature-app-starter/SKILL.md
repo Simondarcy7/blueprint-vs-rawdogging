@@ -109,3 +109,7 @@ At kickoff, read `references/quality-foundation.md`. Create an app-owned quality
 ## First workflow behavior
 
 At kickoff, record shell/navigation and applicable screen-state behavior in the quality contract. When implementing screens, read `references/app-shell-and-navigation.md` and `references/ui-states-and-forms.md`; choose sticky surfaces by task rather than imposing them universally. For persistence/device work read `references/data-resilience-and-capabilities.md`; for tuning read `references/runtime-performance.md`. `references/feature-scaffolding.md` describes the optional dependency-free `scripts/create-feature.mjs` generator. Keep source-product names and examples out of public toolkit output.
+
+## Expo architecture profile
+
+When planning or documenting an Expo Router app, read `references/expo-project-structure.md` before proposing its folder tree. Use `src/app` for routing and choose one product ownership root (`src/modules` for this profile, or an established `src/features`). Explain folder responsibilities and dependency direction, not just names. Separate Expo requirements from toolkit conventions; avoid copying an App.tsx entry assumption into a Router app. Preserve established architecture unless the user requests a migration.

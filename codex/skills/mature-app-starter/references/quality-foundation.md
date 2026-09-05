@@ -47,3 +47,7 @@ Keep public toolkit material generic: describe the problem, reusable rule, appli
 - [Feature scaffolding](feature-scaffolding.md): optional TypeScript feature generator for repeated setup.
 
 Use the installed `docs/foundation-templates/screen-behavior.md` for the first workflow. With `--no-docs`, record equivalent decisions from the guides. Keep experiments optional; use the experiment-brief template to choose evidence appropriate to traffic and risk.
+
+## Platform architecture
+
+For Expo Router, use the [Expo folder and file architecture](expo-project-structure.md) before choosing the initial tree. It distinguishes routing requirements from feature-ownership conventions and documents why code belongs in each location. Keep one feature/module naming convention per app.

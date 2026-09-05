@@ -15,3 +15,7 @@ The default destination is `src/features/saved-items`. Pass `--layout modules` f
 The starter state is deliberately minimal. Add only states the workflow needs, describe them with the screen-behavior template, and write tests for real transitions or validation. Create components/hooks/services folders only as work requires them. The generated public API exports types initially; explicitly export supported feature entrypoints as they are implemented.
 
 Use this for TypeScript apps with feature/module ownership. Other stacks can copy the convention without running the generator.
+
+## Expo profile
+
+For Expo Router, use `--layout modules` when following the [Expo project structure](expo-project-structure.md). The guide explains the route tree, public APIs and how to place module instructions. The generator intentionally does not add framework screens, route registration or empty subfolders.

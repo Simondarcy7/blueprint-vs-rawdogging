@@ -111,3 +111,7 @@ docs/
 ## Quality contract
 
 Read `quality-foundation.md` and create `docs/app-quality-contract.md` with route/indexing policy, accessibility acceptance checks, image and bundle budgets, telemetry/privacy decisions, and actual release-verification commands. Record applicability and pending evidence. Implement relevant checks with the first workflow.
+
+## Expo Router profile
+
+For Expo Router, read `expo-project-structure.md` from the mature-app-starter references (or installed `docs/foundation/`) before applying the generic tree. Prefer `src/app/` plus `src/modules/` for a new project using that profile, preserve an established `src/features/` convention, and document responsibilities, public APIs and dependency direction. Do not create both product hierarchies.

@@ -24,8 +24,8 @@ Adapt this template to the app. Keep platform-specific checks applicable and evi
 - Prefer TypeScript for app code unless the project has a clear reason not to.
 - Prefer React for web apps and Expo React Native for mobile/cross-platform apps unless a better-suited stack is chosen and documented.
 - Use newer or more suitable platform choices when they materially improve the project; record meaningful deviations in an ADR.
-- Keep route, page, and screen files thin.
-- Put product capability code under `src/features/`.
+- Keep routes/pages focused on routing and screens focused on UI orchestration; move business rules and integration details into feature modules. For Expo Router, read the installed mature-app-starter `references/expo-project-structure.md` before choosing the folder tree.
+- Put product capability code under one chosen root: `src/features/` generally, or `src/modules/` for the Expo architecture profile. Preserve an established convention.
 - Put shared UI under `src/components/` only after reuse is clear.
 - Put external integrations behind typed modules in `src/services/`.
 - Put framework-agnostic helpers in `src/lib/`.

@@ -32,3 +32,4 @@ Load only the file needed for the user's request.
 | Persistence, recovery, offline and device permissions | `data-resilience-and-capabilities.md` |
 | Runtime profiling, responsiveness, caching and background work | `runtime-performance.md` |
 | Optional feature/module scaffold command | `feature-scaffolding.md` |
+| Expo Router folder/file structure, module ownership and platform adapters | `expo-project-structure.md` |

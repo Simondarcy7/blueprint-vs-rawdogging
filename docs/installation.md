@@ -83,3 +83,7 @@ With `--no-docs`, skill references still work: create the quality contract using
 The mature-app-starter skill includes `scripts/create-feature.mjs`; Node.js is required only to run this optional command. See the bundled `references/feature-scaffolding.md`. Normal installation adds no app dependencies or generated features.
 
 With docs enabled, `docs/foundation-templates/` also contains `screen-behavior.md` and `experiment-brief.md`. Existing installs need reviewed updates: the installer skips existing directories by default, so stale documentation may remain until deliberately removed or replaced.
+
+## Expo architecture profile
+
+The Expo folder guide is available in shared docs and in the mature-app-starter references, including `--no-docs` installs. With docs enabled, `docs/foundation-templates/src-modules-AGENTS.md` can be adapted into `src/modules/AGENTS.md`. The installer still creates generic `src/features/` instructions for Codex; choosing the Expo profile requires reconciling those instructions with the selected module root. Installation does not restructure an existing app or generate an Expo project.

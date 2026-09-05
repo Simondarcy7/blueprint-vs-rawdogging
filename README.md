@@ -142,3 +142,7 @@ Use the [app shell and navigation guide](docs/app-shell-and-navigation.md) for s
 Copy the [screen behavior worksheet](templates/screen-behavior.md) for important screens and the [experiment brief](templates/experiment-brief.md) when evaluating a change. The optional [feature scaffold](docs/feature-scaffolding.md) creates a TypeScript feature boundary without adding dependencies. These are adaptable conventions, not mandatory infrastructure for every app.
 
 Maintainer checks: `node --test tests/create-feature.test.mjs` verifies the optional generator. The installer includes its script with the mature-app-starter skill.
+
+## Expo folder and file architecture
+
+For an Expo Router app, start with the [intentional Expo project structure](docs/expo-project-structure.md). It includes a full folder tree, ownership rules, module anatomy, thin route/public API examples, state and service placement, platform adapters, and the reasons behind each boundary. Use the [module instruction template](templates/src-modules-AGENTS.md) when choosing `src/modules/`. This is an optional platform profile; the generic toolkit still supports other architectures.

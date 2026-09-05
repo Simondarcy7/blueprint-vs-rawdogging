@@ -29,3 +29,5 @@ Use this skill to guide a new app from idea to first implementation slice.
 Do not implement unless the user asks.
 
 Include first-screen shell/navigation behavior, loading/empty/refresh/error states, input preservation, applicable recovery and a representative performance fixture in the setup checklist. Load the corresponding mature-app-starter references only when needed.
+
+For Expo Router projects, read `../mature-app-starter/references/expo-project-structure.md` before choosing the tree. Record route root, feature/module convention, public APIs, state/service ownership and supported platform adapters; adapt root and nested instructions consistently.
