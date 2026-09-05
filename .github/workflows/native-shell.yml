@@ -6,6 +6,8 @@ on:
     paths:
       - starters/expo/package-lock.json
       - starters/expo/app.config.ts
+      - starters/expo/src/**
+      - starters/expo/e2e/native/**
       - .github/workflows/native-shell.yml
 permissions:
   contents: read

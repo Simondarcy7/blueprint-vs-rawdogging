@@ -49,3 +49,8 @@ test('keyboard appearance selection and loaded-page offline saving', async ({ pa
   await page.goto('/settings'); const system = page.getByRole('radio', { name: 'System', exact: true }); await system.focus(); await page.keyboard.press('ArrowRight'); await expect(page.getByRole('radio', { name: 'Light', exact: true })).toBeChecked();
   await page.goto('/note/new'); await page.getByRole('textbox', { name: 'Title', exact: true }).fill('Offline idea'); await context.setOffline(true); await page.getByRole('button', { name: 'Save note', exact: true }).click(); await expect(page.getByRole('link', { name: 'Open note: Offline idea' })).toBeVisible();
 });
+
+test('tab labels fit inside the bar at narrow widths', async ({ page }) => {
+  await page.goto('/');
+  expect(await page.getByRole('tab').evaluateAll(tabs => tabs.every(tab => [...tab.querySelectorAll('*')].filter(element => element.children.length === 0 && element.textContent?.trim() && !element.closest('[aria-hidden="true"]')).every(label => label.getBoundingClientRect().bottom <= tab.getBoundingClientRect().bottom + 1)))).toBe(true);
+});

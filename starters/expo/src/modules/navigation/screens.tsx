@@ -1,3 +1,5 @@
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useWindowDimensions } from 'react-native';
 import { Stack, Tabs } from 'expo-router';
 import {
   DarkTheme,
@@ -45,6 +47,8 @@ export function RootNavigation() {
 }
 export function TabNavigation() {
   const { colors } = useTheme();
+  const insets = useSafeAreaInsets();
+  const { fontScale } = useWindowDimensions();
   return (
     <Tabs
       screenOptions={{
@@ -55,7 +59,13 @@ export function TabNavigation() {
         headerShadowVisible: false,
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.muted,
-        tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
+        tabBarStyle: {
+          height: Math.max(72, 72 * fontScale) + insets.bottom,
+          paddingTop: 8,
+          paddingBottom: Math.max(8, insets.bottom),
+          backgroundColor: colors.surface,
+          borderTopColor: colors.border,
+        },
         tabBarLabelStyle: { fontSize: 12 },
         sceneStyle: { backgroundColor: colors.background },
       }}
