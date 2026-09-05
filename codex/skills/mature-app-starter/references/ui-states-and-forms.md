@@ -40,6 +40,8 @@ Use deterministic fixtures for slow, partial, empty, failed and offline states i
 
 ## First use and interrupted work
 
+Onboarding, demonstrations and resumable workflows are product choices. The checks below apply only when those behaviors exist; they do not require adding them to the shell.
+
 Make the first useful action reachable from the initial product screen. Add onboarding only for a demonstrated prerequisite or comprehension gap; prefer contextual, dismissible guidance when it is sufficient. Separate the native launch splash used during initialization from product onboarding. Do not add a branding timer or wait on optional remote services before showing usable content. Verify native splash behavior in a release build, following [Expo splash-screen guidance](https://docs.expo.dev/versions/latest/sdk/splash-screen/).
 
 Use an empty-install fixture as well as a returning-user fixture. Demonstrations must be clearly labeled, kept out of personal aggregates, and unable to overwrite real work. Avoid realistic placeholder metrics that look like the user's results. Make skipped guidance discoverable again where useful.

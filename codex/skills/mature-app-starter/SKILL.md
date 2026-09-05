@@ -8,6 +8,10 @@ description: Use when a greenfield app needs a mature foundation plan before imp
 Use this skill to establish a strong baseline before building a new app. Keep the output practical:
 decisions, tradeoffs, file structure, verification, and next actions.
 
+## Scope guard
+
+Apply this toolkit as a consistent quality shell. The current product brief owns features and integrations. Do not add capabilities, dependencies or screens because a reference guide mentions them. Load optional guides only for work already in scope; keep kickoff acceptance focused on the shell and explicitly selected capabilities.
+
 ## Required contract
 
 Read `references/required-blueprint.md` first and follow the project's `BLUEPRINT.md`. For new apps, use Expo + Expo Router + TypeScript with src/app and src/modules. Detailed references cannot authorize departures. Complete planning records and run the installed structural check plus applicable verification before handoff. Report conflicts in an existing app and obtain explicit user direction before changing its architecture.

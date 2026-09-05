@@ -30,10 +30,6 @@ Choose the relevant scenarios: malformed import; interrupted save; failed databa
 
 Keep destructive test fixtures disposable and identified. Unit tests prove logic; signed-device or deployed verification is still needed for platform persistence and lifecycle claims.
 
-## Assisted extraction and replacement boundaries
+## Existing data lifecycle
 
-For OCR or other machine-assisted imports, use a staged flow: capture/select source → extract candidate values → validate → review/correct → commit. Treat extracted values as draft suggestions, not authoritative records. Show relevant source context, flag uncertainty with text or semantics as well as color, allow unknown values, and offer manual entry when extraction fails. Confidence is evidence for review, not proof of correctness.
-
-Require review before promoting uncertain extracted data into canonical records. Preserve corrections while retrying extraction; define whether a re-import creates, merges or replaces data, and show the affected scope. Retain source images or raw extracted content only for a stated need and retention policy; disclose any external processing before sending user content.
-
-After a committed restore, reset or dataset/account replacement, invalidate undo history, selections and derived caches that belong to the previous state. Otherwise Undo can resurrect deleted records or apply an edit to the wrong dataset. Define this boundary centrally, and verify failed validation leaves both current data and its valid editing context intact. Also test repeated imports and missing media where those inputs are supported.
+When a product already supports replacing or resetting data, invalidate selections, caches and any undo history belonging to the previous dataset. Verify that failed validation leaves current data and its valid editing context intact. This is a correctness rule for an existing capability, not a requirement to build import, restore or Undo features.

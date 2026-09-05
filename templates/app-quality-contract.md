@@ -13,41 +13,33 @@ Complete at kickoff; update when decisions or release evidence change. `Pending`
 - Production origin / preview indexing policy:
 - Data collected / storage / retention / export-delete needs:
 
-## Acceptance and verification
+## Core shell acceptance
+
+Verify these for the selected platforms and existing surfaces. A check is not an instruction to create another feature. For example, navigation checks do not require tabs, appearance checks do not require a theme picker, and SEO checks do not require a marketing site.
 
 | Concern | App decision or numeric limit | Real command / manual procedure | Status / evidence |
 | --- | --- | --- | --- |
-| First workflow and recovery states | | | Pending |
-| Empty-install onboarding, sample-data isolation and resume behavior | | | Pending |
-| Shared primitive adoption, typography and truthful action copy | | | Pending |
-| Appearance preference, startup and system changes on supported platforms | | | Pending |
-| Shell, sticky surfaces, safe areas and keyboard-open layout | | | Pending |
-| Deep links, Back, filters, focus and scroll restoration | | | Pending |
-| Loading/refresh, first-use/no-results and partial states | | | Pending |
-| Forms, retained drafts, duplicate submissions and stale responses | | | Pending |
-| Persistence upgrades, import/export and historical snapshots, if applicable | | | Pending |
-| Assisted-import review/correction and replacement invalidation, if applicable | | | Pending |
-| Offline, retries, permission denial/revocation, if applicable | | | Pending |
-| Cache freshness/isolation and background-work cleanup | | | Pending |
-| Typecheck, lint and domain tests | | | Pending |
-| Unknown values, stable IDs, units/time and shared parsing, if applicable | | | Pending |
-| Async ordering, truthful side effects and optional-service isolation | | | Pending |
-| Shared-package coverage and device-specific reproduction | | | Pending |
-| Integration readiness and resolved release/config identity | | | Pending |
-| Correct artifact, terminal build status and update compatibility | | | Pending |
-| Feature/service/config boundaries | | | Pending |
-| Keyboard, screen reader, focus and hidden screens | | | Pending |
-| Contrast, enlarged text and reduced motion | | | Pending |
-| Public metadata, sitemap, robots and status codes | | | Pending |
-| Thumbnail / card / hero dimensions and bytes | | | Pending |
-| Initial JavaScript bytes (state compression method) | | | Pending |
-| Fonts / unused exported assets | | | Pending |
-| Target device/network performance measurement | | | Pending |
-| Image provenance and visual review | | | Pending |
-| Upload byte/dimension/pixel limits, if applicable | | | Pending |
-| Analytics consent and sanitized diagnostics | | | Pending |
-| Deployment identity, deep links and asset URLs | | | Pending |
-| Native/store/backend verification, if applicable | | | Pending |
+| Expo/Router structure, thin routes and module boundaries | | | Pending |
+| Shared primitives, theme tokens, typography and clear copy | | | Pending |
+| Shell layout, safe areas, responsive sizing and keyboard behavior | | | Pending |
+| Navigation, Back/deep links and focus on existing routes | | | Pending |
+| Applicable loading, empty, error and recovery states | | | Pending |
+| Keyboard/screen reader, contrast, enlarged text and reduced motion | | | Pending |
+| First useful workflow and representative initial content | | | Pending |
+| Centralized config, environment separation and secret handling | | | Pending |
+| Public/private route policy; SEO on public web content | | | Pending |
+| Image dimensions, formats, bytes and layout stability | | | Pending |
+| JavaScript/font budgets and measured startup/runtime performance | | | Pending |
+| Typecheck, lint, structural check and relevant behavior tests | | | Pending |
+| Data minimization and sanitized error diagnostics | | | Pending |
+| Release identity and verification on supported surfaces | | | Pending |
+
+## Selected product capabilities
+
+Add rows only for capabilities required by this product brief. Keep detailed criteria in the relevant feature specification and link them here. Leave this table empty until scope is selected; do not generate capabilities from the reference library.
+
+| Selected capability / scope reference | Additional acceptance checks | Real command / manual procedure | Status / evidence |
+| --- | --- | --- | --- |
 
 ## Release record
 

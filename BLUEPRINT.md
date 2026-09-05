@@ -2,6 +2,12 @@
 
 This is the project contract for new apps adopting this toolkit. Read it before planning or implementation. Detailed guides explain how to satisfy it; they do not authorize a different architecture. Explicit user instructions take precedence.
 
+## Scope: a consistent quality shell
+
+The blueprint standardizes how apps are built: architecture, shared UI, navigation, accessible states, configuration, performance and verification. The new product brief defines what the app does.
+
+Do not add product capabilities, screens, dependencies or services merely because this toolkit mentions them or another app used them. Detailed guides are conditional references, not a feature backlog. Implement only the capabilities required by the current product scope. A capability being useful in several apps does not make it part of the shell.
+
 ## Required starting architecture
 
 - Use TypeScript, Expo React Native and Expo Router for the product app, including its web surface. Do not substitute Vite, Next.js or another app framework without explicit user approval. A separately approved public content site may use a different stack.

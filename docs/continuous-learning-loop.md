@@ -24,6 +24,8 @@ Reusable toolkit learning:
 
 ## Promotion Rule
 
+Promote a lesson into the default shell only when it improves implementation quality without inventing a product feature. Reuse across several apps is not enough by itself. Keep capability-specific requirements in the owning product; optional toolkit guidance must stay conditional and must not seed new capabilities into kickoff checklists.
+
 Promote only:
 
 - Rules likely to apply to at least two future projects.

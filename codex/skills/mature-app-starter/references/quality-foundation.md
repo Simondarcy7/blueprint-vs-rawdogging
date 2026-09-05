@@ -6,20 +6,15 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 
 1. Read BLUEPRINT.md and keep the required Expo/Router/modules architecture. Choose the surfaces: public website, private web app, native app, or a combination. State which pages should be discoverable in search.
 2. Complete the installed `docs/project-index.md` and `docs/app-quality-contract.md`. The installer seeds both even with `--no-docs`; copying the toolkit alone does not complete them.
-3. Record the first workflow, applicable quality checks, chosen budgets, and verification commands. Mark irrelevant checks N/A with a reason; leave unimplemented checks visibly pending.
+3. Record the first workflow, core shell checks, chosen budgets, and verification commands. Add capability checks only for selected product scope. Mark irrelevant checks N/A with a reason; leave unimplemented checks visibly pending.
 4. Build one complete workflow, including its recovery and accessibility states. Wire relevant automated checks into CI before beta.
 5. Check the deployed artifact, then capture any new reusable lesson with its evidence and limits.
 
-## Defaults and optional capabilities
+## Shell baseline and product scope
 
-| Apply by default | Add when the product requires it |
-| --- | --- |
-| Thin routes, feature public APIs, typed services, centralized config | Shared packages after two apps prove the same contract |
-| Accessible primitives, visible focus, reduced motion, recovery states | Platform-specific screen-reader and permission adapters |
-| Sized and compressed images, explicit performance budgets | Upload limits, OCR, maps, image CDN, offline media |
-| Public/private route classification | SEO on public web content; app-store discovery for native distribution |
-| Minimal data collection, sanitized diagnostics | Accounts, cloud sync, analytics, payments, notifications |
-| Focused tests and release evidence | Broader test suites when complexity or risk justifies them |
+The shell provides consistent architecture, shared UI/theme conventions, predictable navigation, accessible states, centralized configuration, image/performance budgets and focused verification. Public web surfaces also need the SEO baseline.
+
+The product brief determines which screens, data and integrations exist. Do not add a capability because it appears in a guide. Add capability-specific acceptance checks only after the product requires that capability; detailed resilience, integration and release guides explain how to build selected work safely.
 
 ## Guides to load only when relevant
 
@@ -30,7 +25,7 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 
 ## Starting prompt
 
-> Use the installed mature-app-starter skill and quality-foundation reference to start this app: [idea, users, platforms]. Carry forward the toolkit's SEO, accessibility, image-performance, privacy, and verification defaults where applicable. Create docs/app-quality-contract.md with explicit decisions, budgets, and acceptance checks, then implement the first useful workflow. Keep product rules and branding app-owned. Ask only for information that materially blocks progress. Keep reads targeted and use no subagents unless I ask.
+> Use the installed mature-app-starter skill and quality-foundation reference to start this app: [idea, users, platforms]. Carry forward the toolkit's SEO, accessibility, image-performance, privacy, and verification defaults where applicable. Create docs/app-quality-contract.md with explicit shell decisions, budgets, and acceptance checks, then implement the first useful workflow. Add capabilities only from this product brief; do not turn reference guides into a feature backlog. Keep product rules and branding app-owned. Ask only for information that materially blocks progress. Keep reads targeted and use no subagents unless I ask.
 
 ## How this compounds
 

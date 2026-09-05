@@ -6,6 +6,12 @@ AI-agent setup, and token-efficient software engineering.
 This is not a template app. It is a playbook and installable toolkit you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 
+## Consistent quality, product-owned features
+
+Use this blueprint for a consistent Expo app shell: folder structure, shared UI and theme tokens, navigation, accessible states, configuration, image/performance budgets and verification. Each new product supplies its own workflows and capabilities. Optional reference guides must never become an automatic feature checklist.
+
+The toolkit currently supplies instructions and checks; the runnable shell is implemented in each new project.
+
 ## Carry your learnings into the next build
 
 Start with the [quality foundation](docs/quality-foundation.md) and copy the [app quality contract](templates/app-quality-contract.md). The toolkit now carries explicit defaults for:
@@ -23,7 +29,7 @@ These guides are included in Codex and Claude installs and connected to kickoff 
 
 Paste this into a new project's task:
 
-> Adopt https://github.com/Simondarcy7/blueprint-vs-rawdogging and follow BLUEPRINT.md strictly. Read it before implementation, install the project instructions, complete the project index and quality contract, then build the first useful workflow. Use Expo + Expo Router + TypeScript with src/app and src/modules. Do not change the stack or required architecture without my explicit direction. Add the structural check to app checks/CI and report actual verification. Preserve existing work and report conflicts before migration.
+> Adopt https://github.com/Simondarcy7/blueprint-vs-rawdogging and follow BLUEPRINT.md strictly. Read it before implementation, install the project instructions, complete the project index and quality contract, then build the first useful workflow. Use Expo + Expo Router + TypeScript with src/app and src/modules. Do not change the stack or required architecture without my explicit direction. Add the structural check to app checks/CI and report actual verification. Preserve existing work and report conflicts before migration. Apply the quality shell only; add features and services only when required by this product brief.
 
 Run `node scripts/verify-blueprint.mjs` from the new app after foundation setup. An instruction-only install should fail. Passing this structural gate does not prove behavior, accessibility or full conformance; the contract requires those checks separately. Existing installs skip customized files and need reviewed updates. See [installation](docs/installation.md).
 

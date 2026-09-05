@@ -29,17 +29,18 @@
 
 ## Product UX
 
-- Build the real primary workflow before marketing or decorative pages. Verify first use with an empty dataset; keep sample data separate and make interrupted work resumable when applicable.
-- Use the shared design primitives in real screens. Decide supported appearance modes and verify persisted preferences, startup and system changes across the target platforms.
-- Include empty, loading, error, success, permission-denied, and offline/degraded states early.
+- Apply the blueprint as a quality shell. The product brief owns features, screens and services; reference guides are not a feature backlog.
+- Build the real primary workflow before marketing or decorative pages. Verify first use with representative initial content.
+- Use the shared design primitives in real screens. Decide supported appearance modes and verify startup across the target platforms. Test persisted preferences and system changes when those behaviors are supported.
+- Include applicable empty, loading, error and success states early. Add permission-denied and offline/degraded handling only for capabilities the product uses.
 - Prefer clear hierarchy, predictable navigation, accessible contrast, scalable text, and obvious recovery paths.
 - Use animation to clarify state, continuity, feedback, and progress; avoid motion that hides latency or distracts from the task.
 
 ## Data and integrations
 
 - Do not scatter direct vendor, database, analytics, auth, or storage calls through UI code.
-- Start with typed service boundaries and stubs until contracts are concrete.
-- Use a typed analytics wrapper; do not call analytics vendors directly from screens/components.
+- For integrations the product requires, start with typed service boundaries and stubs until contracts are concrete. Do not scaffold unused services.
+- If analytics is in product scope, use a typed wrapper; do not call vendors directly from screens/components.
 - Add error reporting behind a wrapper before beta, external testers, or production usage.
 - Treat privacy, consent, retention, deletion/export, and audit needs as first-class when data is sensitive.
 
@@ -63,7 +64,6 @@
 ## Correctness and evidence
 
 - Preserve unknown versus observed values, stable IDs, explicit units/time semantics and deliberate defaults. Reuse authoritative parsing/config contracts across storage, imports and services.
-- Keep uncertain machine-extracted values in a reviewable draft before committing them. Invalidate stale undo/selection/cache state after a successful dataset replacement.
 - Define ordering and failure behavior for overlapping async actions. Optional provider failures must not break unrelated core workflows; reflect rollback/reconciliation uncertainty honestly.
 - Include shared domain code in verification. Reconcile requested review findings and reproduce reported device behavior before claiming fixes.
 - Report integration readiness and build/deployment milestones precisely; configured or queued does not mean verified or released.

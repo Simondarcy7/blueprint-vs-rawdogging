@@ -15,7 +15,7 @@ WebP is a useful default for photographic/illustrative app assets, but the reusa
 
 Record numeric budgets in `docs/app-quality-contract.md`: thumbnail/card/hero bytes, initial compressed JavaScript, font bytes, and the target device/network. Measure first, choose an achievable limit, and tighten it as the app matures. Check the built output in CI and measure the deployed page too; a small image cannot compensate for delayed rendering.
 
-For uploads, also bound file bytes, decoded dimensions and pixel count before expensive processing; handle malformed inputs and retain a manual/retry path. Enforce limits on the server too when one receives the upload. Do not reuse an OCR input limit as a website asset budget.
+For uploads, also bound file bytes, decoded dimensions and pixel count before expensive processing; handle malformed inputs and retain a manual/retry path. Enforce limits on the server too when one receives the upload. Keep upload-processing limits separate from delivered-image budgets.
 
 ## Acceptance checks
 
