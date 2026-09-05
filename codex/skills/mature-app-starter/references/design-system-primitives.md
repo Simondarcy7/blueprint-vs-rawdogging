@@ -77,3 +77,9 @@ Decide supported appearance modes at kickoff. If System / Light / Dark are offer
 Apply semantic tokens to charts, overlays, fields, selected/disabled states and navigation as well as the main background. Coordinate supported native system bars and web browser chrome with the resolved appearance. Plan initial preference hydration so startup does not briefly show an unreadable or inconsistent surface; a failed preference read still needs a usable fallback.
 
 Verify explicit modes after reload/relaunch, an OS change while in System mode, an OS change while an explicit mode is selected, and contrast/text scaling in each supported palette. Check the installed Expo SDK's native configuration and test on the relevant build; a web-only check does not establish native behavior. See [Expo color themes](https://docs.expo.dev/develop/user-interface/color-themes/).
+
+## Keep the shared system from splitting
+
+Give each shared control one documented import path and behavior contract. Check new modules for parallel button/input/selection kits before promoting their designs. A platform adapter may implement the same contract differently; a second undocumented component vocabulary increases drift. Avoid ambiguous file/folder entrypoints that resolve to different implementations across tools.
+
+Keep a small gallery or fixture set for the primitives actually used by the first workflow: normal, disabled, pending, error, selected, long-content and enlarged-text states where applicable. Reuse those fixtures for visual review and focused behavior checks. Review changes to the shared control first, then its consumers. Keep one-off product layouts local. A gallery is a development aid; it need not become a public route or require another service.

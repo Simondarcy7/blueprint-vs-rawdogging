@@ -2,6 +2,7 @@
 
 Status: setup pending. Read `BLUEPRINT.md` before implementation. Replace this record with actual decisions and commands; installing the toolkit does not complete setup.
 
+- Adopted toolkit revision / date / reviewed local deviations:
 - Product / users / first useful workflow:
 - Supported platforms and representative devices:
 - Non-goals:
@@ -22,6 +23,7 @@ Status: setup pending. Read `BLUEPRINT.md` before implementation. Replace this r
 - Native delivery: OTA readiness pending for distributed native apps; record provider, runtime policy, channel/environment mapping, device/recovery evidence or approved alternative. Web-only: N/A.
 - CI entrypoint containing the structural check: pending.
 - Quality decisions and evidence: `docs/app-quality-contract.md`.
+- Use the installed quality-foundation readiness map to locate applicable setup guides; record progress here and in the quality contract, not in a duplicate checklist.
 
 ## Starting request
 

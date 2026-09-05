@@ -112,7 +112,7 @@ If implementation begins, keep changes small and create the foundation before fe
 
 ## Reusable quality baseline
 
-At kickoff, read `references/quality-foundation.md`. Create an app-owned quality contract with platform applicability, public/private route policy, accessibility acceptance checks, image and bundle budgets, privacy decisions, actual verification commands, and pending evidence. Load the linked specialist guides only when implementing or deciding that area. Use generic, platform-appropriate defaults and set project-specific budgets. Keep subagents opt-in: use them only when the user asks.
+At kickoff, read `references/quality-foundation.md` and use its readiness map to find applicable setup guidance. Record the adopted toolkit revision in the project index. Create an app-owned quality contract with platform applicability, public/private route policy, accessibility acceptance checks, image and bundle budgets, privacy decisions, actual verification commands, and pending evidence. Load the linked specialist guides only when implementing or deciding that area. Use generic, platform-appropriate defaults and set project-specific budgets. Keep subagents opt-in: use them only when the user asks.
 
 ## First workflow behavior
 

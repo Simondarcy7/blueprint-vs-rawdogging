@@ -1,6 +1,6 @@
 # Quality foundation for the next app
 
-Boilerplate the decisions, conventions, and checks that repeatedly save work. Keep the brand, user journey, business rules, and platform choice specific to the new product.
+Boilerplate the decisions, conventions, and checks that repeatedly save work. Keep the brand, user journey, business rules, and target surfaces specific to the new product.
 
 ## Use at kickoff
 
@@ -63,3 +63,24 @@ For Expo Router, use the [Expo folder and file architecture](expo-project-struct
 - [Build and release workflow](build-and-release-workflow.md): select the right artifact, measure pipeline delays and verify actual remote completion.
 
 When applicable, use the integration-inventory template to track real service readiness and the review-findings template to reconcile a review without duplicating an existing tracker. Keep detailed patterns conditional on the work; they do not justify adding unused services or subsystems.
+
+## Readiness map: use the blueprint without relying on memory
+
+Start here after BLUEPRINT.md. Work through the applicable stages, loading the linked guide when needed. Record actual commands, owner and evidence in the app's project index/quality contract; this map is an index, not a second status tracker. The toolkit supplies guidance and checks, not a prebuilt running application. Native/store/backend rows apply to selected surfaces and services.
+
+| Stage | What should exist in the new project | Guide / completion evidence |
+| --- | --- | --- |
+| Scope and adoption | First workflow, non-goals, surfaces, toolkit revision and approved exceptions | [Kickoff](kickoff-checklist.md); completed project index |
+| Architecture | Thin routes, module public APIs, service boundaries and real ownership | [Expo structure](expo-project-structure.md); structural and applicable import checks |
+| Local development | Reproducible commands, SDK/tool versions and identified dev/test targets | [Expo tooling/web](expo-development-and-web.md); verified commands |
+| UI and navigation | Shared controls/tokens, gallery fixtures, safe areas and predictable Back | [Design primitives](design-system-primitives.md), [shell](app-shell-and-navigation.md); representative rendered and behavior checks |
+| Accessibility and states | Applicable empty/loading/error states, text scaling, focus and assistive navigation | [Accessibility](accessibility-baseline.md), [UI states](ui-states-and-forms.md); manual and focused test evidence |
+| Assets and public web | Owned sources, reproducible derivatives, delivered-size budgets and indexing policy | [Images](images-and-performance.md), [SEO](seo-and-discoverability.md); generated-file and exported/live checks |
+| Configuration and integrations | Validated environment config; only selected services, with readiness evidence | [Config](runtime-config-and-environments.md), [service boundaries](service-boundaries-and-stubs.md); integration inventory if useful |
+| Reliability | Usable startup recovery, truthful state, sanitized diagnostics; data recovery where needed | [Resilience](data-resilience-and-capabilities.md), [correctness](code-correctness.md); targeted failure checks |
+| Verification and CI | Disposable fixtures, reviewed baselines and every required job wired to a real gate | [Verification](verification-and-review.md), [release workflow](build-and-release-workflow.md); passing applicable checks |
+| Native delivery | Update-enabled build, runtime/channel/environment mapping and verified OTA recovery or approved alternative | [OTA setup](build-and-release-workflow.md#ota-delivery-is-part-of-native-setup); installed-device evidence |
+| Distribution | Deployment preflight, shipped dependency record and applicable store metadata/captures/support | [Release workflow](build-and-release-workflow.md); actual artifact and destination checks |
+| Review and maintenance | Prioritized findings, fixed/remaining evidence, updated decisions and toolkit lessons | [Review](verification-and-review.md), [learning loop](continuous-learning-loop.md); current records |
+
+Do not mark a stage complete because its folder or document exists. A configured integration is not verified, an unexecuted test is not passing, and a generated preview is not a device capture. Add new product-specific work to the product brief rather than expanding this map into a feature backlog.

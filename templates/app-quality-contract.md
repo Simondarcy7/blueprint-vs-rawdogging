@@ -28,11 +28,11 @@ Verify these for the selected platforms and existing surfaces. A check is not an
 | First useful workflow and representative initial content | | | Pending |
 | Centralized config, environment separation and secret handling | | | Pending |
 | Public/private route policy; SEO on public web content | | | Pending |
-| Image dimensions, formats, bytes and layout stability | | | Pending |
+| Image dimensions, formats, bytes, generated-output freshness and layout stability | | | Pending |
 | JavaScript/font budgets and measured startup/runtime performance | | | Pending |
-| Typecheck, lint, structural check and relevant behavior tests | | | Pending |
-| Data minimization and sanitized error diagnostics | | | Pending |
-| Release identity and verification on supported surfaces | | | Pending |
+| Typecheck, lint, structural/behavior checks, isolated fixtures and required CI statuses | | | Pending |
+| Startup recovery, data minimization and sanitized error diagnostics | | | Pending |
+| Release preflight/identity, shipped dependency record and verification on supported surfaces | | | Pending |
 | Native OTA: installed binary, runtime/channel/environment, safe apply and recovery (or approved alternative) | | | Pending |
 
 ## Selected product capabilities

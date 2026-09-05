@@ -26,3 +26,11 @@ For uploads, also bound file bytes, decoded dimensions and pixel count before ex
 - Production URLs return real assets after host rewrites/ignore rules; verify a representative image and font over HTTP.
 
 References: [image loading](https://web.dev/articles/browser-level-image-lazy-loading) and [LCP optimization](https://web.dev/articles/optimize-lcp). Byte-budget checks and lab measurements supplement testing on representative devices and real-user measurements when available.
+
+## Generated files have an owner and a check mode
+
+For generated images, icon subsets or asset registries, document the source input, generator command, tool version and owned outputs. Sort inputs and use stable serialization. Record relevant source/output hashes or generator metadata so stale derivatives can be detected. A `--check` mode should fail with the exact regeneration command when expected files are missing or stale, without rewriting them during verification.
+
+Keep the authoritative source separate from generated consumers; do not hand-edit both. Generate into temporary output and publish the set only after generation succeeds where partial writes could leave mismatched files. Prune stale outputs only inside explicitly generator-owned paths. State whether derivatives are committed or built in CI and verify a clean checkout can reproduce the chosen workflow.
+
+For icon/font subsetting, account for names chosen dynamically through an explicit manifest or supported static convention. A source search alone may miss runtime names. Verify actual rendered glyphs against the original and check the shipped bundle for accidental full-font imports. Hash checks prove freshness/integrity, not visual correctness. Keep generator tools isolated and reproducible without imposing their runtime dependencies on the app.

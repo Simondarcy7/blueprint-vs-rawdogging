@@ -23,6 +23,10 @@ Start with the [quality foundation](docs/quality-foundation.md) and copy the [ap
 
 These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Framework-specific code and checks still need implementation in each new app.
 
+## Start from the readiness map
+
+The [readiness map](docs/quality-foundation.md#readiness-map-use-the-blueprint-without-relying-on-memory) connects setup stages to the right guide and completion evidence: architecture, tooling, shared UI, assets, reliability, CI, OTA and distribution. Record the toolkit revision and actual readiness in the new project's index and quality contract. Read applicable guidance progressively instead of loading every document or relying on memory.
+
 ## Give this blueprint to a new project
 
 [BLUEPRINT.md](BLUEPRINT.md) is the required contract: **TypeScript + Expo + Expo Router**, with routes in **src/app** and capabilities in **src/modules**. The installer adds that contract, matching Codex/Claude instructions, planning records and a structural verifier even with `--no-docs`.

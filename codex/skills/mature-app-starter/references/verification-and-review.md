@@ -37,3 +37,11 @@ Use a formal product review when requested before beta, a major release or owner
 The product-review-brief template provides a pinned-source/artifact intake, explicit full-or-sampled scope, coverage ledger, selected review areas, stable finding IDs, verified strengths and audience-specific handoff reports. With docs installed, copy `docs/foundation-templates/product-review-brief.md`; the installed skill also includes a self-contained `references/product-review-brief.md` for `--no-docs` use. Complete its Inputs before running it. Reviews are opt-in, local-output by default and do not authorize subagents.
 
 Feed findings into the existing tracker after review. Promote only shell-quality lessons back to the blueprint; product fixes and feature requirements stay with the reviewed product.
+
+## Deterministic fixtures and trustworthy visual baselines
+
+Run routine smoke and visual checks with disposable, explicitly seeded data. Fix the clock, locale and relevant preferences where the assertion needs determinism. Block or stub unselected external services before navigation so a test cannot accidentally send analytics, email or hosted writes. Live integration checks use a separate explicit target and owned cleanup; passing a stubbed check does not prove the real service works.
+
+Use an identified build/server for each test run, with isolated output and ports; do not silently attach to an unrelated existing server. Wait for expected fonts, images and settled application state before capture. Keep viewport, browser/OS and rendering environment associated with each baseline. Inspect the diff before accepting a new baseline; never regenerate screenshots simply to turn a failure green. Pair important images with behavior assertions. Browser text enlargement is useful stress coverage but does not replace native system text scaling. See [Playwright visual comparisons](https://playwright.dev/docs/test-snapshots).
+
+For guards, include a known-valid case and a deliberate violating fixture when the rule is important enough to gate releases. Verify nonzero failure status, the files/platforms actually covered, and a clear diagnostic. A script being present, or passing because its scan matched no files, is not evidence that a rule is enforced.

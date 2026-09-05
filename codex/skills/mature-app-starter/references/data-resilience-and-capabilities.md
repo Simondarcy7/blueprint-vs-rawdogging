@@ -33,3 +33,11 @@ Keep destructive test fixtures disposable and identified. Unit tests prove logic
 ## Existing data lifecycle
 
 When a product already supports replacing or resetting data, invalidate selections, caches and any undo history belonging to the previous dataset. Verify that failed validation leaves current data and its valid editing context intact. This is a correctness rule for an existing capability, not a requirement to build import, restore or Undo features.
+
+## Startup failures need a usable recovery surface
+
+The app must have a comprehensible outcome when an essential startup dependency fails. Place a minimal recovery boundary so it can render without the database, account state or provider that failed to initialize. Offer a meaningful retry or restart where supported, handle failure of that recovery action itself, and avoid indefinite automatic retry loops. Handle asynchronous operation failures explicitly as well as render failures.
+
+Do not silently erase data or replace it with a demo to recover startup. Claim that data is unchanged only when the failed operation's boundary establishes that. For persistent apps, distinguish unavailable storage from invalid stored data and preserve diagnostic evidence without exposing record contents.
+
+Keep crash diagnostics behind a typed boundary: stable operation/error categories and release/platform metadata with deliberate field and value allowlists. Inspect SDK-added fields, URLs, stack filenames and attachments too. Test with sentinel personal text and tokens to prove they are excluded; a key-name allowlist alone does not sanitize arbitrary string values. A reporting failure must not make recovery fail. Retain enough sanitized location and release information to diagnose the problem.

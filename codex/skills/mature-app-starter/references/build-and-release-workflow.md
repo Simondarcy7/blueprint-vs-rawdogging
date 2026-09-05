@@ -61,3 +61,27 @@ Rolling back JavaScript does not reverse a storage migration, undo a server writ
 Document who can publish, review their least-privilege access and protect release credentials. Make an explicit OTA signing decision, including key custody, renewal and recovery; follow [Expo update code signing](https://docs.expo.dev/eas-update/code-signing/). Keep secrets out of source and reports. Check current platform/store constraints when choosing what to deliver through OTA; it does not replace the native store release process.
 
 Before handoff, record the binary/build ID, source revision, runtime, channel/environment, update group and per-platform IDs, device evidence, rollout state and recovery result. Pending device or recovery checks mean OTA is configured but not verified. The structural blueprint verifier cannot prove this operational gate.
+
+## Preflight before expensive or external release work
+
+Validate the selected project/account, linked host, environment, platform and artifact/action combination before upload or cloud compilation. Check local identity constraints only where the provider requires them; never copy a particular person's email or rewrite published Git history to satisfy a deployment check. Local configuration checks do not prove remote membership. Keep the result and unresolved provider checks explicit.
+
+Expose one documented release entrypoint and reuse its validation in CI. Separate build-only from submit/publish actions, reject impossible combinations early, and verify the orchestrator with stubbed provider responses. Test failure, cancellation, timeout and partial platform completion without starting cloud builds. Record direct commands that bypass the entrypoint rather than pretending a local script is an unbypassable access control.
+
+## CI must cover the release, not just one client
+
+Map each required concern to a job and a required status: client, shared packages, native export and backend checks when present. If using an aggregate gate, include every required job and fail on failed, cancelled or unexpectedly skipped results. Confirm the repository's actual merge/release rules require the intended statuses. A green web job cannot stand in for a failed database job.
+
+Set job timeouts and separate obsolete-check cancellation from release concurrency: cancelling an old PR check can save work, while interrupting an active release may leave partial external state. Start workflow permissions narrowly, pin third-party actions to reviewed immutable revisions, and keep production credentials out of untrusted PR jobs. Pass untrusted workflow values through structured inputs or quoted environment variables rather than interpolating them into shell code. Document how pins are kept current. See [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use).
+
+## Know the dependencies that actually ship
+
+At release, keep a versioned inventory of production dependencies and relevant native/transitive components. Include custom native modules and SDKs that a JavaScript lockfile inventory cannot establish. Associate the inventory with the build and retain it for a stated period. An SBOM is useful when tooling supports it; record its coverage gaps rather than presenting manually declared native metadata as a complete binary inspection. See [npm SBOM](https://docs.npmjs.com/cli/v11/commands/npm-sbom/).
+
+Review new/changed licenses and missing metadata through a project-owned process. An engineering allowlist is not legal clearance, and another product's accepted expressions are not universal approvals. Track overrides with their reason and removal/revisit trigger. Dependency audit success does not prove absence of vulnerabilities or resolve content/font rights.
+
+## Store readiness is a separate release gate
+
+For store distribution, maintain one authoritative listing record and derive copy packs or provider metadata from it where tooling supports that. Check current store field and asset requirements at submission time; do not freeze another release's limits or categories into the shell.
+
+Record each screenshot's source build, platform, locale and capture method. Keep web-rendered/mock review candidates clearly distinguished from actual native release captures; do not silently promote a mock into submission evidence. Verify listing claims against the build being submitted, and confirm public support/privacy pages and a real support owner. Asset generation, binary upload, metadata upload, store review and public availability are separate outcomes. Record console/manual checks that scripts cannot establish. See [Expo store submission](https://docs.expo.dev/deploy/submit-to-app-stores/).

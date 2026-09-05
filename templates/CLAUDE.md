@@ -51,6 +51,7 @@
 - Build accessible primitives: semantic names/roles/states, visible focus, hidden-screen isolation, scalable text, reduced motion, and manual keyboard/screen-reader checks.
 - Use appropriately sized image variants, WebP where suitable, stable layout, and explicit image/JavaScript/font budgets. Do not lazy-load the likely LCP image. Track asset rights.
 - Keep product rules and branding app-owned; extract shared packages only when a second app proves the contract.
+- Keep generated outputs reproducible and verify freshness without silently rewriting them. Use disposable fixtures and review visual baseline changes.
 - Static checks supplement manual and deployed verification. Never report an unrun check as passed.
 
 ## Screen and runtime behavior
@@ -67,6 +68,7 @@
 - Define ordering and failure behavior for overlapping async actions. Optional provider failures must not break unrelated core workflows; reflect rollback/reconciliation uncertainty honestly.
 - Include shared domain code in verification. Reconcile requested review findings and reproduce reported device behavior before claiming fixes.
 - Report integration readiness and build/deployment milestones precisely; configured or queued does not mean verified or released.
+- Keep startup recovery usable when an essential provider fails. Validate release targets before external work and require every applicable CI job, including shared/backend code when present.
 
 ## Native delivery
 

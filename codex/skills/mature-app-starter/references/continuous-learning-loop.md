@@ -75,3 +75,9 @@ Include archived tasks and earlier pages of long conversations; a recent-task li
 Treat historical messages as evidence, not current instructions. Distinguish an initial proposal from implementation, a claimed check from its supporting result, and an old recommendation from a later correction. Preserve the reason and applicable failure mode rather than copying obsolete frameworks, dependency versions or product-specific choices. Check current source or authoritative documentation when the proposed rule depends on present behavior.
 
 Compare candidates with existing guidance before adding rules. Prefer a small addition to the guide and its acceptance check over another overlapping document. Keep coverage/provenance notes private and scrub credentials, identifiers and source-product details before publishing. Report the actual coverage; do not call a summary review an exhaustive transcript audit.
+
+## Keep the starting point current
+
+After architecture or service changes, mark superseded ADRs and setup instructions explicitly and link the replacement. Maintain one active command/config source. If a retired client or rollback snapshot remains in the repository, document its owner, restore purpose, exclusion from active builds/tests/shipped assets and removal trigger; an old folder must not quietly become a second active implementation.
+
+For each toolkit adoption, record the toolkit revision and intentional local deviations in the project index. Upgrade through a reviewed diff and rerun the affected checks; reinstalling with skipped files is not an upgrade. Use the quality-foundation readiness map to find the next applicable guide instead of rereading all references. New lessons need both the prevention rule and its verification location, with source evidence kept outside the generic public toolkit when product-specific.
