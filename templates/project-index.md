@@ -10,6 +10,7 @@ Status: setup pending. Read `BLUEPRINT.md` before implementation. Replace this r
 - Route root: `src/app/`.
 - Product ownership: `src/modules/`; deliberate `index.ts` public APIs.
 - Shared UI / theme / config / services: `src/components/ui/`, `src/theme/`, `src/config/`, `src/services/` as needed.
+- Architecture/system map: pending; keep a short map here or link `docs/architecture.md`. Record the critical workflow, data authority, failure boundaries and evidence; update when those decisions change.
 - Module owners and purposes:
 - Approved exceptions and ADR links: none recorded.
 

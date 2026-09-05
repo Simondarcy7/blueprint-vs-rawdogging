@@ -10,6 +10,14 @@ When user-created data matters, provide an appropriate export/delete path. Consi
 
 For historical transactions, decide whether a record needs a snapshot of names, prices, rules or configuration as they were at completion. A live reference alone can silently change the meaning of history. Snapshot only the fields required and honor retention/redaction requirements.
 
+## Protection coverage and platform boundaries
+
+For each selected export, recovery or backup mechanism, list included and excluded data, required credentials, restore behavior and deletion scope in the system map. Do not label a partial backup as complete protection. A local recovery copy can be lost with its device/storage; a remote copy may not include drafts, settings or all collections. Test the promised coverage by restoring representative data into an identified clean target, including a missing-credential case where relevant.
+
+Document storage scope separately for native and web: installation, browser profile and origin may change what remains accessible. Confirm the selected adapter's availability, quota and loss behavior. Where applicable, distinguish deleting local data, an account, server records and provider-held data in both implementation and user copy. Test upgrade and rollback compatibility against populated data before promising recovery through an older client.
+
+Treat caches and optional OS surfaces as projections of an explicit authority. Their commands must pass through the owning validation and persistence boundary; invalidation and refresh must not overwrite newer authoritative data. This does not require adding widgets, a sync engine or another store.
+
 ## Offline and retries
 
 - Decide which workflows work offline and which require a network. Do not promise offline support merely because the shell is cached.

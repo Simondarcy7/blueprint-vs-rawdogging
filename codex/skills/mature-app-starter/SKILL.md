@@ -120,7 +120,7 @@ At kickoff, record shell/navigation and applicable screen-state behavior in the 
 
 ## Expo architecture profile
 
-When planning or documenting an Expo Router app, read `references/expo-project-structure.md` before proposing its folder tree. Use `src/app` for routing and `src/modules` for product ownership. Report an existing conflicting convention and follow the contract exception process. Explain folder responsibilities and dependency direction, not just names. Separate Expo requirements from toolkit conventions; avoid copying an App.tsx entry assumption into a Router app. Preserve established architecture unless the user requests a migration.
+When planning or documenting an Expo Router app, read `references/expo-project-structure.md` before proposing its folder tree. Use `src/app` for routing and `src/modules` for product ownership. Report an existing conflicting convention and follow the contract exception process. Explain folder responsibilities and dependency direction, not just names. Use `references/architecture-system-map.md` to maintain a short source-backed system map in the project index or a linked document; include only applicable boundaries and update them with implementation changes. Separate Expo requirements from toolkit conventions; avoid copying an App.tsx entry assumption into a Router app. Preserve established architecture unless the user requests a migration.
 
 ## Correctness and evidence references
 

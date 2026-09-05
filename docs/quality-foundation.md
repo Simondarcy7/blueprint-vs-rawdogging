@@ -56,6 +56,8 @@ Use [Expo development and web setup](expo-development-and-web.md) for repeatable
 
 For Expo Router, use the [Expo folder and file architecture](expo-project-structure.md) before choosing the initial tree. It distinguishes routing requirements from feature-ownership conventions and documents why code belongs in each location. Keep one feature/module naming convention per app.
 
+Maintain a concise system map in the project index, or link `docs/architecture.md` as the app grows. Use `docs/foundation-templates/architecture-system-map.md`, also available as the installed skill reference `architecture-system-map.md` with `--no-docs`. Capture data authority, the critical workflow, failure/protection boundaries and measured tradeoffs; omit capabilities the product does not use. Update affected sections alongside architecture changes.
+
 ## Correctness and delivery details
 
 - [Code correctness](code-correctness.md): unknown versus zero, IDs, units, time, shared parsing, async ordering and truthful side effects.
@@ -71,7 +73,7 @@ Start here after BLUEPRINT.md. Work through the applicable stages, loading the l
 | Stage | What should exist in the new project | Guide / completion evidence |
 | --- | --- | --- |
 | Scope and adoption | First workflow, non-goals, surfaces, toolkit revision and approved exceptions | [Kickoff](kickoff-checklist.md); completed project index |
-| Architecture | Thin routes, module public APIs, service boundaries and real ownership | [Expo structure](expo-project-structure.md); structural and applicable import checks |
+| Architecture | Thin routes, module public APIs, service boundaries and a maintained system map | [Expo structure](expo-project-structure.md); structural and applicable import checks |
 | Local development | Reproducible commands, SDK/tool versions and identified dev/test targets | [Expo tooling/web](expo-development-and-web.md); verified commands |
 | UI and navigation | Shared controls/tokens, gallery fixtures, safe areas and predictable Back | [Design primitives](design-system-primitives.md), [shell](app-shell-and-navigation.md); representative rendered and behavior checks |
 | Accessibility and states | Applicable empty/loading/error states, text scaling, focus and assistive navigation | [Accessibility](accessibility-baseline.md), [UI states](ui-states-and-forms.md); manual and focused test evidence |

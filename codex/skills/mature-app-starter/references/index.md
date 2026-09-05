@@ -7,6 +7,7 @@ Load only the file needed for the user's request.
 | Project blueprint, setup checklist, or reusable starting template | `project-blueprint.md` |
 | Project instruction files | `starter-agents-template.md` |
 | Architecture decision records | `adr-templates.md` |
+| System map, data authority, critical flows and architecture handoff | `architecture-system-map.md` |
 | UX, UI, animation, interaction, or design-quality guidance | `ux-ui-motion-principles.md` |
 | Token cost, context usage, or efficient AI-assisted development | `token-utilization.md` |
 | MVP boundaries, screen maps, beta scope, or product states | `mvp-boundary-and-screen-map.md` |

@@ -26,6 +26,7 @@
 - Put framework-agnostic helpers in `src/lib/`.
 - Centralize runtime config in `src/config/`.
 - Prefer feature-local types until reuse is real.
+- Maintain a concise architecture/system map in the project index or a linked document. Use the installed `references/architecture-system-map.md`; capture actual authority, critical flows and failure boundaries, and update affected sections when they change. Do not seed unused capabilities to fill the template.
 
 ## Product UX
 
