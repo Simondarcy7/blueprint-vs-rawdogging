@@ -4,7 +4,7 @@ This is the project contract for new apps adopting this toolkit. Read it before 
 
 ## Scope: a consistent quality shell
 
-The blueprint standardizes how apps are built: architecture, shared UI, navigation, accessible states, configuration, performance and verification. The new product brief defines what the app does.
+The blueprint standardizes how apps are built: architecture, shared UI, navigation, accessible states, configuration, performance, release operations and verification. The new product brief defines what the app does.
 
 Do not add product capabilities, screens, dependencies or services merely because this toolkit mentions them or another app used them. Detailed guides are conditional references, not a feature backlog. Implement only the capabilities required by the current product scope. A capability being useful in several apps does not make it part of the shell.
 
@@ -17,6 +17,12 @@ Do not add product capabilities, screens, dependencies or services merely becaus
 - Put accessible shared primitives in `src/components/ui/`, visual tokens in `src/theme/`, validated environment and app configuration in `src/config/`, and shared platform/vendor adapters in `src/services/`.
 - Keep feature state, types and helpers local until there is a real shared need. Foundation contracts, when needed, must remain independent of concrete product modules and vendors.
 - Use compatible Expo/Router versions and consult matching official documentation. Do not invent version pins or copy stale SDK configuration.
+
+## Native delivery default
+
+For apps distributed to native testers or users, prepare and verify over-the-air (OTA) delivery before external beta. EAS Update is the default Expo approach; record an owner-approved store-only or alternative delivery exception when appropriate. Web-only apps mark native OTA N/A. This is release infrastructure, not a product feature.
+
+The release gate requires an update-enabled installed binary, compatible runtime policy, explicit channel/environment mapping, preview device verification, safe update application, release identification and a tested recovery procedure. Follow the installed build-and-release-workflow guide. Do not infer native OTA readiness from Metro, Expo Go, a web export or a successful upload. Installing this blueprint does not publish an update or authorize a live release.
 
 ## Required working behavior
 

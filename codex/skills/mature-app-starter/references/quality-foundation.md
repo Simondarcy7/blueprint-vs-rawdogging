@@ -44,6 +44,10 @@ Keep public toolkit material generic: describe the problem, reusable rule, appli
 
 Use the installed `docs/foundation-templates/screen-behavior.md` for the first workflow. With `--no-docs`, record equivalent decisions from the guides. Keep experiments optional; use the experiment-brief template to choose evidence appropriate to traffic and risk.
 
+## Operational setup is part of the shell
+
+Carry release knowledge forward as well as code conventions: reproducible commands, separated environments, identifiable artifacts, compatible updates, useful failure diagnostics and tested recovery. For distributed native apps, OTA is the default before external beta, with an owner-approved alternative where needed. Follow the [build and release workflow](build-and-release-workflow.md#ota-delivery-is-part-of-native-setup); leave readiness pending until an installed build has applied an update and recovery has been checked. The toolkit does not publish releases on installation.
+
 ## Development setup
 
 Use [Expo development and web setup](expo-development-and-web.md) for repeatable local commands, minimal Metro configuration, exported-web checks and optional MCP debugging. When product analytics is selected, use [analytics setup](product-analytics-setup.md) for platform adapters, explicit collection policy and delivery evidence. Neither guide authorizes adding an unused service.

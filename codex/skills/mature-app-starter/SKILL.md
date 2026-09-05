@@ -133,3 +133,7 @@ Only when a formal product review is requested, read `references/product-review-
 ## Expo toolchain and optional analytics
 
 For local Expo/Metro setup, web export or MCP debugging, read `references/expo-development-and-web.md`. For analytics already selected by the product brief, read `references/product-analytics-setup.md`. Keep MCP development-only and analytics vendor-optional; verify real connections without installing tools or enabling collection merely because the guides exist.
+
+## Native operational baseline
+
+For distributed native apps, plan OTA delivery before external beta as required by BLUEPRINT.md. Read `references/build-and-release-workflow.md`, record readiness in the project index and quality contract, and keep it pending until installed-build and recovery evidence exists. Record an owner-approved alternative when applicable. This is release setup; it does not authorize automatic publication or add a mandatory update screen.

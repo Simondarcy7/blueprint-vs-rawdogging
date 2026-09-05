@@ -73,6 +73,11 @@ Use with the required BLUEPRINT.md contract.
 - Include shared domain code in verification. Reconcile requested review findings and reproduce reported device behavior before claiming fixes.
 - Report integration readiness and build/deployment milestones precisely; configured or queued does not mean verified or released.
 
+## Native delivery
+
+- For distributed native apps, prepare and verify OTA before external beta, or record an owner-approved alternative. Use the installed build-and-release-workflow guide for compatible runtimes, explicit channels/environments, safe apply timing and tested recovery.
+- Record the installed binary and running update identity. An upload or Expo Go session does not prove OTA readiness. Do not publish a live release merely because setup instructions exist.
+
 ## Verification
 
 - Run `node scripts/verify-blueprint.mjs` before implementation handoff and include it in app checks/CI. Also run the lightest relevant behavioral verification. The structural check alone does not establish full conformance.

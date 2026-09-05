@@ -19,6 +19,7 @@ Status: setup pending. Read `BLUEPRINT.md` before implementation. Replace this r
 - Lint: pending.
 - Relevant tests: pending.
 - Development / export / supported platform verification: pending.
+- Native delivery: OTA readiness pending for distributed native apps; record provider, runtime policy, channel/environment mapping, device/recovery evidence or approved alternative. Web-only: N/A.
 - CI entrypoint containing the structural check: pending.
 - Quality decisions and evidence: `docs/app-quality-contract.md`.
 

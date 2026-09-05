@@ -175,3 +175,7 @@ Use the [product review brief](templates/product-review-brief.md) before a beta,
 ## Expo tooling, web and optional analytics
 
 The [Expo development and web guide](docs/expo-development-and-web.md) covers repeatable commands, Metro defaults, production web verification and optional Expo/Metro MCP tools. The [analytics guide](docs/product-analytics-setup.md) documents a vendor-neutral contract with PostHog as an optional native/web adapter. Both install with the skill references, including `--no-docs`; they do not install servers, create accounts or activate collection.
+
+## Native updates as a release default
+
+The shell includes operational foundations. For distributed native apps, [OTA delivery](docs/build-and-release-workflow.md#ota-delivery-is-part-of-native-setup) is a required pre-beta setup gate unless the owner approves an alternative. The guide covers compatible runtimes, channels and environments, preview verification, rollout, safe restart timing, signing decisions and recovery with existing user data. The installer creates no cloud resources and publishes no updates.

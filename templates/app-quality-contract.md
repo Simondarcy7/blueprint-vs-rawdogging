@@ -33,6 +33,7 @@ Verify these for the selected platforms and existing surfaces. A check is not an
 | Typecheck, lint, structural check and relevant behavior tests | | | Pending |
 | Data minimization and sanitized error diagnostics | | | Pending |
 | Release identity and verification on supported surfaces | | | Pending |
+| Native OTA: installed binary, runtime/channel/environment, safe apply and recovery (or approved alternative) | | | Pending |
 
 ## Selected product capabilities
 

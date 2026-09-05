@@ -12,6 +12,7 @@ Turn repeatable mistakes into focused checks. Record actual commands in the app 
 | Public SEO | Route policy, HTML/metadata, sitemap, status and robots behavior | Build and deployment; migrations |
 | Privacy | Analytics opt-out, payload allowlist/redaction, absence of secrets/private content | Integration changes and release |
 | Deployment | Expected account/project/domain, required assets, representative deep links, rollback path | Before and after deployment |
+| Native OTA | Installed update-enabled binary, runtime/channel/environment match, applied update and recovery evidence (or approved alternative) | Before external native beta and affected releases |
 
 ## Architecture that remains portable
 
