@@ -4,8 +4,8 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 
 ## Use at kickoff
 
-1. Choose the surfaces: public website, private web app, native app, or a combination. State which pages should be discoverable in search.
-2. Copy `templates/app-quality-contract.md` to the new app's `docs/app-quality-contract.md`. After installation, the template is in `docs/foundation-templates/`. With `--no-docs`, create the equivalent record from this guide.
+1. Read BLUEPRINT.md and keep the required Expo/Router/modules architecture. Choose the surfaces: public website, private web app, native app, or a combination. State which pages should be discoverable in search.
+2. Complete the installed `docs/project-index.md` and `docs/app-quality-contract.md`. The installer seeds both even with `--no-docs`; copying the toolkit alone does not complete them.
 3. Record the first workflow, applicable quality checks, chosen budgets, and verification commands. Mark irrelevant checks N/A with a reason; leave unimplemented checks visibly pending.
 4. Build one complete workflow, including its recovery and accessibility states. Wire relevant automated checks into CI before beta.
 5. Check the deployed artifact, then capture any new reusable lesson with its evidence and limits.

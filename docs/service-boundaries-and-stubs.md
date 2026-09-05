@@ -13,7 +13,7 @@ Good:
 - `src/services/api/client.ts`
 - `src/services/analytics/index.ts`
 - `src/services/storage/client.ts`
-- `src/features/<feature>/<feature>-service.ts`
+- `src/modules/<feature>/<feature>-service.ts`
 
 Avoid:
 

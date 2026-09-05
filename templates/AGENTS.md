@@ -2,7 +2,7 @@
 
 ## Project orientation
 
-- Start with `docs/project-index.md` when resuming project work.
+- Read `BLUEPRINT.md` first, then `docs/project-index.md`. The blueprint is required for new apps; detailed guides do not override it.
 - Run `git status --short --branch` before modifying files.
 - Preserve user changes already present in the worktree.
 - Keep work focused on the current task; avoid unrelated refactors.
@@ -16,11 +16,11 @@
 
 ## Architecture
 
-- Prefer TypeScript for app code unless the project has a clear reason not to.
-- Prefer React for web apps and Expo React Native for mobile/cross-platform apps unless a better-suited stack is chosen and documented.
-- Use newer or more suitable platform choices when they materially improve the project; record meaningful deviations in an ADR.
+- Use TypeScript for the app; require explicit user direction for departures from BLUEPRINT.md.
+- Use Expo React Native + Expo Router for the product app on native and web.
+- Do not substitute a framework or mandatory architecture rule on your own. Record user-approved exceptions in an ADR; an ADR alone is not approval.
 - Keep routes/pages focused on routing and screens focused on UI orchestration; move business rules and integration details into feature modules. For Expo Router, read the installed mature-app-starter `references/expo-project-structure.md` before choosing the folder tree.
-- Put product capability code under one chosen root: `src/features/` generally, or `src/modules/` for the Expo architecture profile. Preserve an established convention.
+- Put product capabilities in `src/modules/` with explicit `index.ts` public APIs; routes belong in `src/app/`. Report existing conflicts without silently migrating them.
 - Put shared UI under `src/components/` only after reuse is clear.
 - Put external integrations behind typed modules in `src/services/`.
 - Put framework-agnostic helpers in `src/lib/`.
@@ -61,7 +61,7 @@
 
 ## Verification
 
-- Use the lightest verification that proves the change.
+- Run `node scripts/verify-blueprint.mjs` before implementation handoff and include it in app checks/CI. Also run the lightest relevant behavioral verification. The structural check alone does not establish full conformance.
 - Docs-only changes do not require tests/builds.
 - Product logic changes should run typecheck and relevant tests.
 - UI changes should include a relevant manual check when practical.

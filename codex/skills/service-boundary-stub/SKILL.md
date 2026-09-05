@@ -20,5 +20,5 @@ Use this skill to keep uncertain integrations out of UI code.
 ## Placement
 
 - Shared external integrations: `src/services/<service>/`.
-- Feature-specific adapters: `src/features/<feature>/<feature>-service.ts`.
+- Feature-specific adapters: `src/modules/<feature>/<feature>-service.ts`.
 - Keep screens/routes thin.

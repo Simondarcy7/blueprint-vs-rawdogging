@@ -7,6 +7,8 @@ description: Use when creating, reviewing, or restructuring AGENTS.md, CLAUDE.md
 
 Use this skill to create layered project instructions without bloating context.
 
+Read the project BLUEPRINT.md first, or `../mature-app-starter/references/required-blueprint.md` when planning from the installed skills.
+
 ## Workflow
 
 1. Inspect existing project structure.
@@ -18,7 +20,7 @@ Use this skill to create layered project instructions without bloating context.
 ## Recommended Layers
 
 - Root: architecture, workflow, verification, dependency, token, and subagent policy.
-- `src/features/`: feature boundaries and product-logic testing.
+- `src/modules/`: feature boundaries and product-logic testing.
 - `src/services/`: integration boundaries, typed stubs, and vendor isolation.
 - Backend/schema folder: migrations, data policy, permissions, and verification.
 

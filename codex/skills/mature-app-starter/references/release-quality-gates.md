@@ -1,6 +1,6 @@
 # Release quality gates
 
-Turn repeatable mistakes into focused checks. Record actual commands in the app quality contract; this toolkit does not install framework-specific verifiers or claim an app is release-ready.
+Turn repeatable mistakes into focused checks. Record actual commands in the app quality contract; the installed structural verifier checks the required Expo foundation, while framework behavior and release readiness require additional checks.
 
 | Concern | Reusable check | When to run |
 | --- | --- | --- |

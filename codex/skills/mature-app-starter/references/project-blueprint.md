@@ -37,12 +37,11 @@ platform, and risk profile.
 
 ## Default Technical Preferences
 
-These are defaults, not laws. Start here unless the project context clearly points to a newer,
-simpler, safer, or more suitable choice. Record meaningful deviations in an ADR.
+Follow BLUEPRINT.md: Expo + Expo Router + TypeScript is the required starting stack. Departures need explicit user direction and a recorded ADR.
 
 - Language: TypeScript by default.
-- Web frontend: React by default.
-- Mobile or cross-platform: Expo React Native by default.
+- Web frontend: the Expo application with Expo Router.
+- Native and cross-platform: Expo React Native + Expo Router.
 - Routing: use the framework-native router; keep route, page, and screen files thin.
 - Styling/UI: use one consistent design system or component approach; avoid one-off styling patterns.
 - State: start with local/component state; add shared state only when real cross-feature need appears.
@@ -58,9 +57,9 @@ simpler, safer, or more suitable choice. Record meaningful deviations in an ADR.
 ## Suggested Structure
 
 ```text
-app-or-routes/
 src/
-  features/
+  app/
+  modules/
   components/
   services/
   lib/
@@ -74,7 +73,7 @@ docs/
 ## Instruction Layers
 
 - `AGENTS.md`: app-wide architecture, workflow, verification, dependency, and subagent policy.
-- `src/features/AGENTS.md`: feature boundaries and product-logic testing rules.
+- `src/modules/AGENTS.md`: feature boundaries and product-logic testing rules.
 - `src/services/AGENTS.md`: typed integration boundaries and vendor isolation.
 - Backend/schema `AGENTS.md`: migrations, data policy, and schema verification rules.
 - Repo skill: project-specific task workflow once the work pattern repeats.
@@ -114,4 +113,4 @@ Read `quality-foundation.md` and create `docs/app-quality-contract.md` with rout
 
 ## Expo Router profile
 
-For Expo Router, read `expo-project-structure.md` from the mature-app-starter references (or installed `docs/foundation/`) before applying the generic tree. Prefer `src/app/` plus `src/modules/` for a new project using that profile, preserve an established `src/features/` convention, and document responsibilities, public APIs and dependency direction. Do not create both product hierarchies.
+For Expo Router, read `expo-project-structure.md` from the mature-app-starter references (or installed `docs/foundation/`) before applying the generic tree. Prefer `src/app/` plus `src/modules/` for a new project using that profile, preserve an established `src/modules/` convention, and document responsibilities, public APIs and dependency direction. Do not create both product hierarchies.

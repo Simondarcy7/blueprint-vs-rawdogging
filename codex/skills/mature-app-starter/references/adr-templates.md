@@ -36,7 +36,7 @@ What are we choosing?
 
 - Target platforms.
 - App framework.
-- Default preference: TypeScript, React for web, Expo React Native for mobile/cross-platform unless a better-suited choice is justified.
+- Default preference: TypeScript + Expo React Native + Expo Router for native and web; exceptions require explicit user direction and an ADR.
 - Alternatives considered, including newer or simpler options.
 - Hosting/deployment target.
 - Why this stack is sufficient for the first serious version.

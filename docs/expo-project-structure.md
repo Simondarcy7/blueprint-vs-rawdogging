@@ -2,7 +2,7 @@
 
 Use this profile for an Expo application with Expo Router and TypeScript. The goal is feature ownership: a change to one capability should be understandable mostly within that module, while routes, shared infrastructure and branding remain easy to locate.
 
-`src/app` follows Expo Router conventions. `src/modules`, public module APIs and the other boundaries below are toolkit choices, not requirements imposed by Expo. Existing projects can use `src/features` for the same role; choose one name and keep it consistent. Record the choice in `docs/project-index.md` and an architecture decision record.
+`src/app` follows Expo Router conventions. `src/modules`, public module APIs and the other boundaries below are toolkit choices, not requirements imposed by Expo. This blueprint requires `src/modules`. If an existing project uses a different structure, report the conflict and agree an adoption/migration or exception with the user before changing it. Record that decision in `docs/project-index.md` and an ADR.
 
 ## Folder map
 
@@ -120,8 +120,8 @@ node .agents/skills/mature-app-starter/scripts/create-feature.mjs --root . --nam
 
 Use `.claude/skills/` for the Claude installation. This creates `README.md`, `types.ts` and `index.ts` only. Add the screen, real domain types and route as the workflow is implemented; add a focused behavior test rather than testing placeholder values.
 
-The generic installer currently places feature instructions in `src/features/AGENTS.md`. For this profile, adapt `templates/src-modules-AGENTS.md` into `src/modules/AGENTS.md` (installed under `docs/foundation-templates/`). Preserve existing instructions and do not leave conflicting active feature conventions. Do not move a populated feature tree just to adopt this profile. With `--no-docs`, derive module instructions from this guide. Keep route guidance in root/module instructions, not a Markdown instruction file inside `src/app`.
+The installer places module instructions directly in `src/modules/AGENTS.md` for Codex and `src/modules/CLAUDE.md` for Claude. It never creates `src/features/`. Existing instructions are preserved unless deliberately replaced; reconcile conflicts before claiming blueprint adoption. Keep route guidance in root/module instructions, not a Markdown file inside `src/app`.
 
-At kickoff, check file placement, alias resolution and the selected convention. As the app grows, add focused lint/dependency checks for private cross-module imports, cycles, environment reads outside config and foundation-to-feature coupling. Verify supported platform imports, typecheck, relevant tests and a deep-link/navigation smoke path. This guide installs no architecture verifier and proves no app build by itself.
+At kickoff, check file placement, alias resolution and the selected convention. As the app grows, add focused lint/dependency checks for private cross-module imports, cycles, environment reads outside config and foundation-to-feature coupling. Verify supported platform imports, typecheck, relevant tests and a deep-link/navigation smoke path. The installed `scripts/verify-blueprint.mjs` checks structural requirements only; import-graph, behavioral and platform checks remain necessary.
 
 Checked against Expo documentation on 2026-09-05. Read the documentation matching the installed SDK/Router versions before implementing version-sensitive APIs. Feature packaging, names and ownership rules remain project decisions.

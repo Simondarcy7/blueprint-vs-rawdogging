@@ -35,7 +35,7 @@ Use this before or during the first repo setup.
 - Create root `AGENTS.md`.
 - Create `docs/project-index.md`.
 - Create `docs/adr/`.
-- Create `src/features/`, `src/components/`, `src/services/`, `src/lib/`, `src/config/`, `src/types/`, `src/test/`.
+- Create `src/modules/`, `src/components/`, `src/services/`, `src/lib/`, `src/config/`, `src/types/`, `src/test/`.
 - Add domain `AGENTS.md` files only where useful.
 - Add typecheck, lint, format, and test scripts.
 - Add `.env.example` if runtime config exists.

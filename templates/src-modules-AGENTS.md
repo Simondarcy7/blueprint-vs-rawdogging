@@ -1,6 +1,6 @@
 # Product module instructions
 
-Use in `src/modules/AGENTS.md` when the project chooses product modules. Adapt the root instructions to the same convention; do not create a competing `src/features/` hierarchy.
+Read BLUEPRINT.md at the project root. These instructions apply to src/modules for both Codex (AGENTS.md) and Claude (CLAUDE.md). Product modules are required; report an existing conflicting hierarchy instead of creating a second one.
 
 - Each module owns one capability: screens, local components, hooks, services, state, helpers, types and tests as needed. Do not precreate unused folders.
 - Expose supported entrypoints from `index.ts`. Other modules and routes use that public API; internal files use direct relative imports instead of their own barrel.

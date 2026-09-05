@@ -17,6 +17,16 @@ Start with the [quality foundation](docs/quality-foundation.md) and copy the [ap
 
 These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Framework-specific code and checks still need implementation in each new app.
 
+## Give this blueprint to a new project
+
+[BLUEPRINT.md](BLUEPRINT.md) is the required contract: **TypeScript + Expo + Expo Router**, with routes in **src/app** and capabilities in **src/modules**. The installer adds that contract, matching Codex/Claude instructions, planning records and a structural verifier even with `--no-docs`.
+
+Paste this into a new project's task:
+
+> Adopt https://github.com/Simondarcy7/blueprint-vs-rawdogging and follow BLUEPRINT.md strictly. Read it before implementation, install the project instructions, complete the project index and quality contract, then build the first useful workflow. Use Expo + Expo Router + TypeScript with src/app and src/modules. Do not change the stack or required architecture without my explicit direction. Add the structural check to app checks/CI and report actual verification. Preserve existing work and report conflicts before migration.
+
+Run `node scripts/verify-blueprint.mjs` from the new app after foundation setup. An instruction-only install should fail. Passing this structural gate does not prove behavior, accessibility or full conformance; the contract requires those checks separately. Existing installs skip customized files and need reviewed updates. See [installation](docs/installation.md).
+
 ## Who This Is For
 
 - Founders who want a better starting point than a blank repo.
@@ -73,12 +83,11 @@ See `docs/installation.md` for details.
 
 ## Recommended Defaults
 
-These are defaults, not laws. Use newer, simpler, safer, or more suitable choices when the project
-context justifies them, and record meaningful deviations in an ADR.
+Follow [BLUEPRINT.md](BLUEPRINT.md). Expo + Expo Router + TypeScript is the required starting stack; departures require explicit user direction and a recorded ADR.
 
 - TypeScript by default.
-- React by default for web.
-- Expo React Native by default for mobile or cross-platform.
+- Expo Router for the product web surface, sharing the Expo application.
+- Expo React Native + Expo Router for native and web.
 - Framework-native routing with thin route/page/screen files.
 - Feature modules for product capabilities.
 - Typed service boundaries for APIs, analytics, auth, storage, AI, and backend integrations.
@@ -141,8 +150,8 @@ Use the [app shell and navigation guide](docs/app-shell-and-navigation.md) for s
 
 Copy the [screen behavior worksheet](templates/screen-behavior.md) for important screens and the [experiment brief](templates/experiment-brief.md) when evaluating a change. The optional [feature scaffold](docs/feature-scaffolding.md) creates a TypeScript feature boundary without adding dependencies. These are adaptable conventions, not mandatory infrastructure for every app.
 
-Maintainer checks: `node --test tests/create-feature.test.mjs` verifies the optional generator. The installer includes its script with the mature-app-starter skill.
+Maintainer checks: `node --test tests/*.test.mjs` verifies the optional generator. The installer includes its script with the mature-app-starter skill.
 
 ## Expo folder and file architecture
 
-For an Expo Router app, start with the [intentional Expo project structure](docs/expo-project-structure.md). It includes a full folder tree, ownership rules, module anatomy, thin route/public API examples, state and service placement, platform adapters, and the reasons behind each boundary. Use the [module instruction template](templates/src-modules-AGENTS.md) when choosing `src/modules/`. This is an optional platform profile; the generic toolkit still supports other architectures.
+For an Expo Router app, start with the [intentional Expo project structure](docs/expo-project-structure.md). It includes a full folder tree, ownership rules, module anatomy, thin route/public API examples, state and service placement, platform adapters, and the reasons behind each boundary. Use the [module instruction template](templates/src-modules-AGENTS.md) when choosing `src/modules/`. This is the required starting architecture. Other stacks require explicit user direction and a documented exception.

@@ -2,7 +2,7 @@ import { lstat, mkdir, realpath, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 async function main(args) {
-  const options = { layout: 'features' };
+  const options = { layout: 'modules' };
   for (let i = 0; i < args.length; i += 2) {
     const key = args[i];
     if (!['--root', '--name', '--layout'].includes(key) || !args[i + 1] || args[i + 1].startsWith('--')) {

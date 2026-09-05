@@ -30,7 +30,7 @@ test('creates both supported layouts with a matching public type export', async 
 test('refuses an existing feature and preserves user files', async (t) => {
   const root = await project(t);
   assert.equal(run(root, '--name', 'editor').status, 0);
-  const file = join(root, 'src', 'features', 'editor', 'types.ts');
+  const file = join(root, 'src', 'modules', 'editor', 'types.ts');
   await writeFile(file, 'user-owned content');
   assert.notEqual(run(root, '--name', 'editor').status, 0);
   assert.equal(await readFile(file, 'utf8'), 'user-owned content');

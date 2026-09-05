@@ -8,6 +8,10 @@ description: Use when a greenfield app needs a mature foundation plan before imp
 Use this skill to establish a strong baseline before building a new app. Keep the output practical:
 decisions, tradeoffs, file structure, verification, and next actions.
 
+## Required contract
+
+Read `references/required-blueprint.md` first and follow the project's `BLUEPRINT.md`. For new apps, use Expo + Expo Router + TypeScript with src/app and src/modules. Detailed references cannot authorize departures. Complete planning records and run the installed structural check plus applicable verification before handoff. Report conflicts in an existing app and obtain explicit user direction before changing its architecture.
+
 ## First Pass
 
 Start by identifying:
@@ -44,9 +48,9 @@ If the user has not provided enough context, make conservative assumptions and l
 Recommend a starter structure like:
 
 ```text
-app-or-routes/
 src/
-  features/
+  app/
+  modules/
   components/
   services/
   lib/
@@ -62,7 +66,7 @@ docs/
 Create or recommend:
 
 - Root `AGENTS.md` for project-wide rules.
-- Domain `AGENTS.md` files for `src/features/`, `src/services/`, and backend/schema folders when they exist.
+- Domain `AGENTS.md` files for `src/modules/`, `src/services/`, and backend/schema folders when they exist.
 - ADRs for stack choice, backend strategy, testing strategy, analytics/observability, and sensitive-data handling.
 - A focused task workflow skill only when the project has a repeated task process.
 
@@ -112,4 +116,4 @@ At kickoff, record shell/navigation and applicable screen-state behavior in the 
 
 ## Expo architecture profile
 
-When planning or documenting an Expo Router app, read `references/expo-project-structure.md` before proposing its folder tree. Use `src/app` for routing and choose one product ownership root (`src/modules` for this profile, or an established `src/features`). Explain folder responsibilities and dependency direction, not just names. Separate Expo requirements from toolkit conventions; avoid copying an App.tsx entry assumption into a Router app. Preserve established architecture unless the user requests a migration.
+When planning or documenting an Expo Router app, read `references/expo-project-structure.md` before proposing its folder tree. Use `src/app` for routing and `src/modules` for product ownership. Report an existing conflicting convention and follow the contract exception process. Explain folder responsibilities and dependency direction, not just names. Separate Expo requirements from toolkit conventions; avoid copying an App.tsx entry assumption into a Router app. Preserve established architecture unless the user requests a migration.

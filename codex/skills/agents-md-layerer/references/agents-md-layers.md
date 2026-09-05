@@ -6,7 +6,7 @@ Use layered instructions so Codex gets the right context without loading a giant
 
 - Global personal rules: token discipline, collaboration preferences, safety defaults.
 - Project root `AGENTS.md`: app-wide architecture, workflow, verification, dependency, and subagent policy.
-- Domain files: `src/features/AGENTS.md`, `src/services/AGENTS.md`, backend/schema `AGENTS.md`.
+- Domain files: `src/modules/AGENTS.md`, `src/services/AGENTS.md`, backend/schema `AGENTS.md`.
 - Repo skills: reusable project workflows once the work pattern repeats.
 
 ## Rule Of Thumb

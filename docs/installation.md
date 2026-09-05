@@ -44,7 +44,7 @@ now, the shell installer is lower maintenance and easier to inspect.
 - `--agent both`: install both Codex and Claude files.
 - `--dry-run`: show what would happen without writing files.
 - `--force`: overwrite existing files.
-- `--no-docs`: skip copying docs/templates.
+- `--no-docs`: skip the optional docs/template library; required project contract, planning records and verifier still install.
 - `--install-user-assets`: also install user-level Codex skills and custom agents.
 
 ## What Gets Installed
@@ -62,7 +62,15 @@ Claude:
 - `.claude/commands/*`
 - `.claude/settings.json`
 
-Shared project docs:
+Required baseline for every agent and `--no-docs`:
+
+- `BLUEPRINT.md`
+- `docs/project-index.md` and `docs/app-quality-contract.md` (complete these during kickoff)
+- `scripts/verify-blueprint.mjs` (requires Node.js)
+- `src/modules/AGENTS.md` and `src/services/AGENTS.md` for Codex
+- `src/modules/CLAUDE.md` and `src/services/CLAUDE.md` for Claude
+
+Optional shared reference library:
 
 - `docs/foundation/*`
 - `docs/foundation-templates/*`
@@ -74,16 +82,18 @@ replace existing project files.
 
 ## Quality defaults and future updates
 
-New installs include the quality guides under `docs/foundation/`, the copyable `app-quality-contract.md` under `docs/foundation-templates/`, and focused references inside each agent's mature-app-starter skill. Kickoff creates the app-owned `docs/app-quality-contract.md`; installing does not implement app code or verification commands.
+New installs include the quality guides under `docs/foundation/`, the copyable `app-quality-contract.md` under `docs/foundation-templates/`, and focused references inside each agent's mature-app-starter skill. The installer seeds the app-owned planning records and structural verifier; kickoff must complete the records, create the Expo app and connect verification to app scripts/CI.
 
-With `--no-docs`, skill references still work: create the quality contract using the bundled quality-foundation guide. Reinstalling without `--force` skips existing skill/doc directories. To update an existing customized app, install into a disposable directory and review/merge the relevant changes; `--force` replaces customized files/directories. User-level assets are unchanged unless explicitly installed.
+With `--no-docs`, the required baseline and self-contained skill references still install. Reinstalling without `--force` skips existing skill/doc directories. To update an existing customized app, install into a disposable directory and review/merge the relevant changes; `--force` replaces customized files/directories. User-level assets are unchanged unless explicitly installed.
 
 ## Optional feature scaffold and behavior templates
 
-The mature-app-starter skill includes `scripts/create-feature.mjs`; Node.js is required only to run this optional command. See the bundled `references/feature-scaffolding.md`. Normal installation adds no app dependencies or generated features.
+The mature-app-starter skill includes `scripts/create-feature.mjs`; Node.js runs this command and the required structural verifier. See the bundled `references/feature-scaffolding.md`. Normal installation adds no app dependencies or generated features.
 
 With docs enabled, `docs/foundation-templates/` also contains `screen-behavior.md` and `experiment-brief.md`. Existing installs need reviewed updates: the installer skips existing directories by default, so stale documentation may remain until deliberately removed or replaced.
 
-## Expo architecture profile
+## Required Expo architecture
 
-The Expo folder guide is available in shared docs and in the mature-app-starter references, including `--no-docs` installs. With docs enabled, `docs/foundation-templates/src-modules-AGENTS.md` can be adapted into `src/modules/AGENTS.md`. The installer still creates generic `src/features/` instructions for Codex; choosing the Expo profile requires reconciling those instructions with the selected module root. Installation does not restructure an existing app or generate an Expo project.
+New installs directly use src/app routes and src/modules product ownership instructions. The installer does not create src/features, restructure existing apps, or generate an Expo project. An instruction-only install is expected to fail `node scripts/verify-blueprint.mjs` until the foundation exists. Read BLUEPRINT.md and complete setup before claiming adoption.
+
+Existing installations preserve their files by default and may retain older, conflicting instructions. Install into a disposable directory and review/merge the baseline, root and nested instructions, skills, and verification command. Resolve an existing src/features or alternative-stack conflict through the user-approved adoption/exception process. Do not use --force on customized files without intending to replace them.

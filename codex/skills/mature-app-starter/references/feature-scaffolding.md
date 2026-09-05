@@ -10,7 +10,7 @@ node .agents/skills/mature-app-starter/scripts/create-feature.mjs --root . --nam
 
 For Claude, use `.claude/skills/mature-app-starter/scripts/create-feature.mjs`. From the toolkit source, use `codex/skills/mature-app-starter/scripts/create-feature.mjs`.
 
-The default destination is `src/features/saved-items`. Pass `--layout modules` for `src/modules/saved-items`. The project root must already exist. Names must be lowercase kebab-case starting with a letter. The command rejects existing destinations and symlinked source/layout directories; it never overwrites an existing feature.
+The default destination is `src/modules/saved-items`. The legacy `--layout features` option is only for a user-approved exception to BLUEPRINT.md; the standard structural check rejects that layout. The project root must already exist. Names must be lowercase kebab-case starting with a letter. The command rejects existing destinations and symlinked source/layout directories; it never overwrites an existing feature.
 
 The starter state is deliberately minimal. Add only states the workflow needs, describe them with the screen-behavior template, and write tests for real transitions or validation. Create components/hooks/services folders only as work requires them. The generated public API exports types initially; explicitly export supported feature entrypoints as they are implemented.
 
@@ -18,4 +18,4 @@ Use this for TypeScript apps with feature/module ownership. Other stacks can cop
 
 ## Expo profile
 
-For Expo Router, use `--layout modules` when following the [Expo project structure](expo-project-structure.md). The guide explains the route tree, public APIs and how to place module instructions. The generator intentionally does not add framework screens, route registration or empty subfolders.
+The default `--layout modules` follows the [Expo project structure](expo-project-structure.md). The guide explains the route tree, public APIs and how to place module instructions. The generator intentionally does not add framework screens, route registration or empty subfolders.

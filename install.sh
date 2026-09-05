@@ -36,7 +36,7 @@ Options:
   --agent VALUE           codex, claude, or both. Defaults to both.
   --force                 Overwrite existing files.
   --dry-run               Print actions without writing.
-  --no-docs               Skip copying docs/templates into the target project.
+  --no-docs               Skip the optional reference library; required contract/planning files still install.
   --install-user-assets   Also install user-level Codex skills/agents into ~/.agents and ~/.codex.
   -h, --help              Show this help.
 USAGE
@@ -151,6 +151,10 @@ copy_dir() {
 }
 
 run mkdir -p "$target"
+copy_file "$repo_root/BLUEPRINT.md" "$target/BLUEPRINT.md"
+copy_file "$repo_root/templates/project-index.md" "$target/docs/project-index.md"
+copy_file "$repo_root/templates/app-quality-contract.md" "$target/docs/app-quality-contract.md"
+copy_file "$repo_root/templates/scripts/verify-blueprint.mjs" "$target/scripts/verify-blueprint.mjs"
 
 if [[ "$with_docs" -eq 1 ]]; then
   copy_dir "$repo_root/docs" "$target/docs/foundation"
@@ -159,7 +163,7 @@ fi
 
 if [[ "$agent" == "codex" || "$agent" == "both" ]]; then
   copy_file "$repo_root/templates/AGENTS.md" "$target/AGENTS.md"
-  copy_file "$repo_root/templates/src-features-AGENTS.md" "$target/src/features/AGENTS.md"
+  copy_file "$repo_root/templates/src-modules-AGENTS.md" "$target/src/modules/AGENTS.md"
   copy_file "$repo_root/templates/src-services-AGENTS.md" "$target/src/services/AGENTS.md"
   copy_dir "$repo_root/codex/skills/mature-app-starter" "$target/.agents/skills/mature-app-starter"
   for skill_dir in "$repo_root"/codex/skills/*; do
@@ -171,6 +175,8 @@ fi
 
 if [[ "$agent" == "claude" || "$agent" == "both" ]]; then
   copy_file "$repo_root/templates/CLAUDE.md" "$target/CLAUDE.md"
+  copy_file "$repo_root/templates/src-modules-AGENTS.md" "$target/src/modules/CLAUDE.md"
+  copy_file "$repo_root/templates/src-services-AGENTS.md" "$target/src/services/CLAUDE.md"
   copy_dir "$repo_root/codex/skills/mature-app-starter" "$target/.claude/skills/mature-app-starter"
   for skill_dir in "$repo_root"/codex/skills/*; do
     skill_name="$(basename "$skill_dir")"
@@ -197,6 +203,9 @@ fi
 say ""
 say "Done. Installed Blueprint vs Rawdogging into: $target"
 say "Agent target: $agent"
+say "Read BLUEPRINT.md, complete the planning records, then implement the Expo foundation."
+say "Run node scripts/verify-blueprint.mjs after setup; installation alone is not a passing app."
+say "Existing files/directories are skipped unless --force is used; review skipped files before claiming adoption."
 if [[ "$dry_run" -eq 1 ]]; then
   say "Dry-run only; no files were changed."
 fi

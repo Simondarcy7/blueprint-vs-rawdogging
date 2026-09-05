@@ -33,3 +33,4 @@ Load only the file needed for the user's request.
 | Runtime profiling, responsiveness, caching and background work | `runtime-performance.md` |
 | Optional feature/module scaffold command | `feature-scaffolding.md` |
 | Expo Router folder/file structure, module ownership and platform adapters | `expo-project-structure.md` |
+| Required stack, adoption rules, exceptions and verification gates | `required-blueprint.md` |
