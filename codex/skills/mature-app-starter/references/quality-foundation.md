@@ -12,6 +12,8 @@ Boilerplate the decisions, conventions, and checks that repeatedly save work. Ke
 
 ## Shell baseline and product scope
 
+Use the [generic app baseline](generic-app-baseline.md) for settings, notification preferences where supported, public-web SEO and shared loading/recovery states. Complete the installed `docs/app-baseline.md`; copyable source recipes are included with the skill. These starting behaviors are distinct from optional business features and external services.
+
 The shell provides consistent architecture, shared UI/theme conventions, predictable navigation, accessible states, centralized configuration, image/performance budgets and focused verification. Public web surfaces also need the SEO baseline.
 
 The product brief determines which screens, data and integrations exist. Do not add a capability because it appears in a guide. Add capability-specific acceptance checks only after the product requires that capability; detailed resilience, integration and release guides explain how to build selected work safely.
@@ -25,7 +27,7 @@ The product brief determines which screens, data and integrations exist. Do not 
 
 ## Starting prompt
 
-> Use the installed mature-app-starter skill and quality-foundation reference to start this app: [idea, users, platforms]. Carry forward the toolkit's SEO, accessibility, image-performance, privacy, and verification defaults where applicable. Create docs/app-quality-contract.md with explicit shell decisions, budgets, and acceptance checks, then implement the first useful workflow. Add capabilities only from this product brief; do not turn reference guides into a feature backlog. Keep product rules and branding app-owned. Ask only for information that materially blocks progress. Keep reads targeted and use no subagents unless I ask.
+> Use the installed mature-app-starter skill and quality-foundation reference to start this app: [idea, users, platforms]. Carry forward the toolkit's SEO, accessibility, image-performance, privacy, and verification defaults where applicable. Create docs/app-quality-contract.md with explicit shell decisions, budgets, and acceptance checks, then implement the first useful workflow. Apply the generic app baseline and record applicability; add business capabilities and external services only from this product brief. Keep product rules and branding app-owned. Ask only for information that materially blocks progress. Keep reads targeted and use no subagents unless I ask.
 
 ## How this compounds
 

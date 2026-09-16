@@ -154,6 +154,7 @@ run mkdir -p "$target"
 copy_file "$repo_root/BLUEPRINT.md" "$target/BLUEPRINT.md"
 copy_file "$repo_root/templates/project-index.md" "$target/docs/project-index.md"
 copy_file "$repo_root/templates/app-quality-contract.md" "$target/docs/app-quality-contract.md"
+copy_file "$repo_root/templates/app-baseline.md" "$target/docs/app-baseline.md"
 copy_file "$repo_root/templates/scripts/verify-blueprint.mjs" "$target/scripts/verify-blueprint.mjs"
 
 if [[ "$with_docs" -eq 1 ]]; then

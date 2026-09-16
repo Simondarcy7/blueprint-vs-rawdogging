@@ -105,3 +105,7 @@ Code correctness, verification/review and build/release references are bundled w
 ## Optional formal review brief
 
 With docs enabled, `docs/foundation-templates/product-review-brief.md` is a copyable commissioning brief. Every mature-app-starter skill install also includes `references/product-review-brief.md`, including `--no-docs`. Installing this material does not run an audit; use it only when a product review is requested. Existing installs need a reviewed update as described above.
+
+## Baseline source recipes
+
+Every installation seeds `docs/app-baseline.md` and includes `assets/app-baseline/` plus `references/generic-app-baseline.md` inside each selected mature-app-starter skill, including with `--no-docs`. Existing files and skill directories retain the normal skip/force behavior. Review differences before replacing a customized skill. The installer does not merge recipes into `src/` or install dependencies; follow the asset README to integrate them with the existing app.

@@ -14,7 +14,8 @@ Use this skill to guide a new app from idea to first implementation slice.
 3. Identify: problem, target user, first valuable workflow, platform, risk profile, non-goals, and first beta success signal.
 4. Apply BLUEPRINT.md: TypeScript, Expo React Native + Expo Router, src/app routes, src/modules capabilities, typed services and centralized config. Report conflicts; do not silently substitute a stack.
 5. Read `../mature-app-starter/references/quality-foundation.md` (the installer includes both skills). Record platform-specific SEO, accessibility, image budgets, privacy and release checks in `docs/app-quality-contract.md`.
-6. Produce a setup checklist: repo structure, instruction files, ADRs, verification commands, and first tasks.
+6. Read `../mature-app-starter/references/generic-app-baseline.md`; record the starting features and applicability in `docs/app-baseline.md`. Use the copyable source recipes when implementation is requested.
+7. Produce a setup checklist: repo structure, instruction files, ADRs, verification commands, and first tasks.
 
 ## Output
 

@@ -66,3 +66,10 @@ Use this before or during the first repo setup.
 - Name the first persistence/capability failure to verify, where applicable.
 - Set a runtime performance baseline and realistic data-volume fixture.
 - Use the screen-behavior template; run the optional feature generator only when it fits the chosen stack.
+
+## Generic starting features
+
+- Read the generic-app-baseline guide and complete `docs/app-baseline.md`.
+- Integrate settings, persisted appearance/motion, support/about and shared loading/recovery behavior using the app's design system.
+- Record notification applicability and public-web SEO policy. Keep delivery providers and other external services disabled until selected and verified.
+- Review the installed skill's `assets/app-baseline/README.md` before copying source; preserve existing code and verify host adapters.

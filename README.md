@@ -3,14 +3,14 @@
 A practical startup app foundation toolkit for product thinking, UX/UI, architecture, testing,
 AI-agent setup, and token-efficient software engineering.
 
-This is not a template app. It is a playbook and installable toolkit you can use before building
+This is a playbook, installable toolkit and collection of copyable app-baseline modules you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 
 ## Consistent quality, product-owned features
 
-Use this blueprint for a consistent Expo app shell: folder structure, shared UI and theme tokens, navigation, accessible states, configuration, image/performance budgets and verification. Each new product supplies its own workflows and capabilities. Optional reference guides must never become an automatic feature checklist.
+Use this blueprint for a consistent Expo app shell: folder structure, shared UI and theme tokens, navigation, accessible states, configuration, image/performance budgets and verification. Each new product supplies its own workflows and capabilities. The [generic baseline](docs/generic-app-baseline.md) defines everyday starting features; optional service guides do not automatically enable integrations.
 
-The toolkit currently supplies instructions and checks; the runnable shell is implemented in each new project.
+The toolkit supplies instructions, checks and [generic app baseline source](codex/skills/mature-app-starter/assets/app-baseline/README.md). Integrate these modules into a new Expo app; this is not a full app generator.
 
 ## Carry your learnings into the next build
 
@@ -21,7 +21,7 @@ Start with the [quality foundation](docs/quality-foundation.md) and copy the [ap
 - [Images and performance](docs/images-and-performance.md): WebP variants, loading, asset rights and measurable budgets.
 - [Release checks](docs/release-quality-gates.md): architecture, recovery, privacy and deployed evidence.
 
-These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Framework-specific code and checks still need implementation in each new app.
+These guides are included in Codex and Claude installs and connected to kickoff skills and instruction templates. Use the [starting prompt](docs/quality-foundation.md#starting-prompt) for your next app. Copyable settings, notification-state, recovery, transition and SEO helpers are included; platform adapters and release checks still need integration and verification in each app.
 
 ## Start from the readiness map
 
@@ -33,7 +33,7 @@ The [readiness map](docs/quality-foundation.md#readiness-map-use-the-blueprint-w
 
 Paste this into a new project's task:
 
-> Adopt https://github.com/Simondarcy7/blueprint-vs-rawdogging and follow BLUEPRINT.md strictly. Read it before implementation, install the project instructions, complete the project index and quality contract, then build the first useful workflow. Use Expo + Expo Router + TypeScript with src/app and src/modules. Do not change the stack or required architecture without my explicit direction. Add the structural check to app checks/CI and report actual verification. Preserve existing work and report conflicts before migration. Apply the quality shell only; add features and services only when required by this product brief.
+> Adopt https://github.com/Simondarcy7/blueprint-vs-rawdogging and follow BLUEPRINT.md strictly. Read it before implementation, install the project instructions, complete the project index and quality contract, then build the first useful workflow. Use Expo + Expo Router + TypeScript with src/app and src/modules. Do not change the stack or required architecture without my explicit direction. Add the structural check to app checks/CI and report actual verification. Preserve existing work and report conflicts before migration. Apply the generic app baseline, record applicability in docs/app-baseline.md, and keep business features and external services scoped to this product brief.
 
 Run `node scripts/verify-blueprint.mjs` from the new app after foundation setup. An instruction-only install should fail. Passing this structural gate does not prove behavior, accessibility or full conformance; the contract requires those checks separately. Existing installs skip customized files and need reviewed updates. See [installation](docs/installation.md).
 
@@ -183,3 +183,11 @@ The [Expo development and web guide](docs/expo-development-and-web.md) covers re
 ## Native updates as a release default
 
 The shell includes operational foundations. For distributed native apps, [OTA delivery](docs/build-and-release-workflow.md#ota-delivery-is-part-of-native-setup) is a required pre-beta setup gate unless the owner approves an alternative. The guide covers compatible runtimes, channels and environments, preview verification, rollout, safe restart timing, signing decisions and recovery with existing user data. The installer creates no cloud resources and publishes no updates.
+
+## Generic starting features
+
+Start with settings, persisted appearance and reduced motion, support/about details, shared loading/empty/error/recovery states, and predictable navigation. Add notification preferences for supported delivery and SEO for public web content. See the [baseline catalogue](docs/generic-app-baseline.md) and [copyable source integration guide](codex/skills/mature-app-starter/assets/app-baseline/README.md).
+
+The installer includes `docs/app-baseline.md` and source recipes inside the mature-app-starter skill for both agents, including `--no-docs`. It preserves app code; integrate selected recipes with the existing shell and design system. The adapters do not activate accounts, push delivery or analytics.
+
+Maintainer verification: use Node 22.18+ and run `node --test tests/*.test.mjs` for installer/scaffold and baseline behavior checks. Validate TSX recipes with the target Expo app's typecheck and UI checks.

@@ -10,7 +10,7 @@ decisions, tradeoffs, file structure, verification, and next actions.
 
 ## Scope guard
 
-Apply this toolkit as a consistent quality shell. The current product brief owns features and integrations. Do not add capabilities, dependencies or screens because a reference guide mentions them. Load optional guides only for work already in scope; keep kickoff acceptance focused on the shell and explicitly selected capabilities.
+Apply this toolkit as a reusable app baseline. Read `references/generic-app-baseline.md` at kickoff and record applicability in `docs/app-baseline.md`. Integrate settings, shared states and recovery; use notification preferences where supported and SEO on public web. Copyable source lives in `assets/app-baseline/`; read its integration guide and preserve existing app code. The product brief owns business features and external services. Load optional guides only for selected capabilities; do not activate providers merely because an adapter exists.
 
 ## Required contract
 

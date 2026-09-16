@@ -13,6 +13,8 @@ Complete at kickoff; update when decisions or release evidence change. `Pending`
 - Production origin / preview indexing policy:
 - Data collected / storage / retention / export-delete needs:
 
+See `docs/app-baseline.md` for the generic starting feature set, host adapters and applicability.
+
 ## Core shell acceptance
 
 Verify these for the selected platforms and existing surfaces. A check is not an instruction to create another feature. For example, navigation checks do not require tabs, appearance checks do not require a theme picker, and SEO checks do not require a marketing site.

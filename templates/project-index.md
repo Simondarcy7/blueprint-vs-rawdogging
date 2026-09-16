@@ -29,3 +29,11 @@ Status: setup pending. Read `BLUEPRINT.md` before implementation. Replace this r
 ## Starting request
 
 > Follow BLUEPRINT.md strictly. Use TypeScript, Expo and Expo Router with src/app routes and src/modules features. Complete the project index and quality contract, then implement the first useful workflow. Keep modules and services within their documented boundaries. Do not change the stack or required architecture without my explicit direction. Add the structural verifier to checks/CI and report actual verification results. Do not treat an instruction-only installation as a completed app.
+
+## Generic app baseline
+
+- Adoption record: `docs/app-baseline.md`
+- Settings and shared loading/recovery components:
+- Notification applicability / selected adapter:
+- Public-web SEO applicability:
+- Host integration and verification still pending:

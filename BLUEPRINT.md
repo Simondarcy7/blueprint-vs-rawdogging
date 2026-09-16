@@ -2,11 +2,13 @@
 
 This is the project contract for new apps adopting this toolkit. Read it before planning or implementation. Detailed guides explain how to satisfy it; they do not authorize a different architecture. Explicit user instructions take precedence.
 
-## Scope: a consistent quality shell
+## Scope: a reusable app baseline
 
 The blueprint standardizes how apps are built: architecture, shared UI, navigation, accessible states, configuration, performance, release operations and verification. The new product brief defines what the app does.
 
-Do not add product capabilities, screens, dependencies or services merely because this toolkit mentions them or another app used them. Detailed guides are conditional references, not a feature backlog. Implement only the capabilities required by the current product scope. A capability being useful in several apps does not make it part of the shell.
+Start interactive apps with the generic app baseline: settings and persisted appearance/motion preferences, support/about details, shared loading and recovery states, navigation and accessible controls. Include notification preferences where a useful notification capability exists and SEO for public web content. Read the installed `generic-app-baseline.md` guide and complete `docs/app-baseline.md`; record inapplicable items with a reason.
+
+Business features and external services remain product-owned. Accounts, payments, sync, analytics collection and notification delivery are not activated by adopting the baseline. Detailed optional guides are not a feature backlog. The source recipes provide reusable behavior without imposing branding or domain logic.
 
 ## Required starting architecture
 
@@ -34,7 +36,7 @@ The release gate requires an update-enabled installed binary, compatible runtime
 6. Before handoff, run `node scripts/verify-blueprint.mjs`, typecheck, lint and the relevant behavioral tests. Include required manual accessibility/device checks when affected. Wire the structural check into the app's normal check command and CI once those exist. Do not claim completion with missing or failed required checks.
 7. Report what changed, checks and results, unresolved gaps and approved exceptions. Preserve unrelated user work; keep searches targeted and use no subagents unless the user explicitly asks.
 
-The installer supplies instructions, planning templates and a structural verifier. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
+The installer supplies instructions, planning templates, a structural verifier and copyable generic baseline source inside the installed skill. Source recipes require deliberate host integration and do not overwrite app code. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
 
 ## Exceptions and existing projects
 
