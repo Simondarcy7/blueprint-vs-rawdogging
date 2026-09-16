@@ -6,7 +6,7 @@ This is the project contract for new apps adopting this toolkit. Read it before 
 
 The blueprint standardizes how apps are built: architecture, shared UI, navigation, accessible states, configuration, performance, release operations and verification. The new product brief defines what the app does.
 
-Start interactive apps with the generic app baseline: settings and persisted appearance/motion preferences, support/about details, shared loading and recovery states, navigation and accessible controls. Include notification preferences where a useful notification capability exists and SEO for public web content. Read the installed `generic-app-baseline.md` guide and complete `docs/app-baseline.md`; record inapplicable items with a reason.
+Start interactive apps with the generic app baseline: settings and persisted appearance/motion preferences, support/about details, shared loading and recovery states, navigation and accessible controls. Include notification preferences where a useful notification capability exists and SEO for public web content. Read the installed `generic-app-baseline.md` and `portable-infrastructure.md` guides and complete `docs/app-baseline.md`; record inapplicable items with a reason.
 
 Business features and external services remain product-owned. Accounts, payments, sync, analytics collection and notification delivery are not activated by adopting the baseline. Detailed optional guides are not a feature backlog. The source recipes provide reusable behavior without imposing branding or domain logic.
 
@@ -33,10 +33,10 @@ The release gate requires an update-enabled installed binary, compatible runtime
 3. Build the first useful workflow with relevant loading, empty, partial, offline, error and recovery states. Use semantic controls, visible/unobscured focus, usable navigation and reduced motion. Sticky UI and optional infrastructure must be justified by the workflow.
 4. Keep SEO/public-route policy, image delivery, performance, privacy and data recovery explicit. Mark conditional requirements N/A with a reason; do not omit mandatory architecture because a feature does not need SEO or persistence.
 5. For data/state changes, preserve unknown values and stable identity, use authoritative parsing/config contracts, and define async ordering and failure semantics. Verify the applicable behavior; the installed code-correctness guide provides focused patterns. For integrations and releases, distinguish configured/submitted states from verified/completed outcomes.
-6. Before handoff, run `node scripts/verify-blueprint.mjs`, typecheck, lint and the relevant behavioral tests. Include required manual accessibility/device checks when affected. Wire the structural check into the app's normal check command and CI once those exist. Do not claim completion with missing or failed required checks.
+6. Before app handoff, run `node scripts/verify-blueprint.mjs`, `node scripts/verify-architecture.mjs`, `node scripts/verify-accessibility.mjs`, typecheck, lint and the relevant behavioral tests. Run the installed performance check against web export output using app-owned budgets. Include required manual accessibility/device checks when affected. Wire the structural check into the app's normal check command and CI once those exist. Do not claim completion with missing or failed required checks.
 7. Report what changed, checks and results, unresolved gaps and approved exceptions. Preserve unrelated user work; keep searches targeted and use no subagents unless the user explicitly asks.
 
-The installer supplies instructions, planning templates, a structural verifier and copyable generic baseline source inside the installed skill. Source recipes require deliberate host integration and do not overwrite app code. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
+The installer supplies instructions, planning templates, structural/architecture/accessibility/performance checks, release helpers and copyable generic baseline/optional source inside the installed skill. The additive scaffold command copies selected source after collision checks. Source recipes require deliberate host integration and do not overwrite app code. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
 
 ## Exceptions and existing projects
 
@@ -47,3 +47,5 @@ Record approved exceptions in `docs/adr/` with the affected rule, reason, user d
 ## Verification limits
 
 `verify-blueprint.mjs` checks package declarations, the standard Router entrypoint, required files, route/module roots, module public entrypoints and obvious misplaced route files. It does not analyze import graphs, prove thin routes, validate semantic accessibility, run the app, or authenticate human approval. Add framework-appropriate lint/import checks and behavior tests as implementation grows. Passing the structural check is one gate, not full blueprint conformance.
+
+The additional architecture checker resolves static imports and common environment access; the accessibility checker inspects explicit JSX props. Neither proves runtime or assistive behavior. The performance checker measures exported asset bytes, not observed load time. Follow `portable-infrastructure.md` for contracts, exclusions and real host verification.

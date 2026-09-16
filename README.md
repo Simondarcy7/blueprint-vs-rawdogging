@@ -160,7 +160,7 @@ Use the [app shell and navigation guide](docs/app-shell-and-navigation.md) for s
 
 Copy the [screen behavior worksheet](templates/screen-behavior.md) for important screens and the [experiment brief](templates/experiment-brief.md) when evaluating a change. The optional [feature scaffold](docs/feature-scaffolding.md) creates a TypeScript feature boundary without adding dependencies. These are adaptable conventions, not mandatory infrastructure for every app.
 
-Maintainer checks: `node --test tests/*.test.mjs` verifies the optional generator. The installer includes its script with the mature-app-starter skill.
+Maintainer checks: `npm ci && npm test` verifies generators, infrastructure recipes, installer variants and quality-check fixtures. The installer includes its script with the mature-app-starter skill.
 
 ## Expo folder and file architecture
 
@@ -190,4 +190,18 @@ Start with settings, persisted appearance and reduced motion, support/about deta
 
 The installer includes `docs/app-baseline.md` and source recipes inside the mature-app-starter skill for both agents, including `--no-docs`. It preserves app code; integrate selected recipes with the existing shell and design system. The adapters do not activate accounts, push delivery or analytics.
 
-Maintainer verification: use Node 22.18+ and run `node --test tests/*.test.mjs` for installer/scaffold and baseline behavior checks. Validate TSX recipes with the target Expo app's typecheck and UI checks.
+Maintainer verification: use Node 22.18+, run `npm ci`, then `npm test` for installer/scaffold, component and infrastructure behavior checks. Validate TSX recipes with the target Expo app's typecheck and UI checks.
+
+## Portable infrastructure and safe scaffolding
+
+The [portable infrastructure guide](docs/portable-infrastructure.md) maps the available code: shared controls and screen layout, accessible notices, motion and navigation helpers, async guards/cache, storage/backup/recovery, device actions, local feature flags and privacy-safe diagnostics. Optional packs are selected explicitly.
+
+After the normal toolkit install, preview the source copy:
+
+```sh
+node .agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs --root . --with storage,device,flags,diagnostics --dry-run
+```
+
+Remove `--dry-run` to copy, or omit `--with` for the baseline alone. Claude-only installs use `.claude/skills/`. Existing destination files cause the entire preflight to fail before copying; merge existing implementations manually. No providers, routes or dependencies are configured automatically.
+
+The installer also includes architecture, static accessibility and exported-size checks plus provider-neutral release helpers. Set measured budgets in `config/performance-budgets.json`, integrate the source with the host app, and run the documented checks. The [optional pack guide](codex/skills/mature-app-starter/assets/app-capabilities/README.md) explains adapter contracts and limitations.

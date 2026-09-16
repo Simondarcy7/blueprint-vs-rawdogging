@@ -4,6 +4,7 @@ Load only the file needed for the user's request.
 
 | Request | Reference |
 | --- | --- |
+| Portable UI/navigation/storage/device code, scaffold command and executable quality checks | `portable-infrastructure.md` |
 | Generic settings, notification preferences, SEO, recovery and loading source recipes | `generic-app-baseline.md` |
 | Project blueprint, setup checklist, or reusable starting template | `project-blueprint.md` |
 | Project instruction files | `starter-agents-template.md` |

@@ -137,3 +137,7 @@ For local Expo/Metro setup, web export or MCP debugging, read `references/expo-d
 ## Native operational baseline
 
 For distributed native apps, plan OTA delivery before external beta as required by BLUEPRINT.md. Read `references/build-and-release-workflow.md`, record readiness in the project index and quality contract, and keep it pending until installed-build and recovery evidence exists. Record an owner-approved alternative when applicable. This is release setup; it does not authorize automatic publication or add a mandatory update screen.
+
+## Portable source adoption
+
+For new app implementation or reusable infrastructure, read `references/portable-infrastructure.md` and the selected asset READMEs. Use `scripts/scaffold-baseline.mjs --root APP --dry-run` to inspect additive source copying; optionally select `--with storage,device,flags,diagnostics`. Never overwrite existing primitives/modules or activate a service merely because its adapter is included. Wire installed architecture/accessibility/performance checks to the app's checks and CI; fill performance budgets from measurements. Pure helpers and mocked component tests do not prove native/browser integration.

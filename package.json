@@ -1,0 +1,8 @@
+{
+  "name": "mature-app-foundation-toolkit",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "devDependencies": { "typescript": "~5.9.3", "react": "19.2.3", "react-test-renderer": "19.2.3" }
+}

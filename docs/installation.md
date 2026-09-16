@@ -109,3 +109,9 @@ With docs enabled, `docs/foundation-templates/product-review-brief.md` is a copy
 ## Baseline source recipes
 
 Every installation seeds `docs/app-baseline.md` and includes `assets/app-baseline/` plus `references/generic-app-baseline.md` inside each selected mature-app-starter skill, including with `--no-docs`. Existing files and skill directories retain the normal skip/force behavior. Review differences before replacing a customized skill. The installer does not merge recipes into `src/` or install dependencies; follow the asset README to integrate them with the existing app.
+
+## Infrastructure source and checks
+
+Both agent installations now carry `scripts/scaffold-baseline.mjs`, extended `assets/app-baseline/` and optional `assets/app-capabilities/`. These are included with `--no-docs`. The installer also seeds `scripts/verify-architecture.mjs`, `scripts/verify-accessibility.mjs`, `scripts/verify-performance.mjs`, `scripts/release-tools.mjs` and `config/performance-budgets.json`. Budgets start null deliberately: choose actual targets before running the performance check. Existing files retain normal skip/force behavior; review upgrades.
+
+The new checks use the adopting app's TypeScript where needed. They do not install runtime dependencies. Maintainers of this toolkit run `npm ci && npm test` on Node 22.18+. See the installed `references/portable-infrastructure.md` for commands and verification limits.

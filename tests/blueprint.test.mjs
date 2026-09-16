@@ -74,11 +74,11 @@ for (const agent of ['codex', 'claude', 'both']) {
       assert.deepEqual(await readdir(root), []);
       result = spawnSync('bash', args, { cwd: repo, encoding: 'utf8' });
       assert.equal(result.status, 0, result.stderr);
-      for (const file of ['BLUEPRINT.md', 'docs/project-index.md', 'docs/app-quality-contract.md', 'docs/app-baseline.md', 'scripts/verify-blueprint.mjs']) {
+      for (const file of ['BLUEPRINT.md', 'docs/project-index.md', 'docs/app-quality-contract.md', 'docs/app-baseline.md', 'scripts/verify-blueprint.mjs', 'scripts/verify-architecture.mjs', 'scripts/verify-accessibility.mjs', 'scripts/verify-performance.mjs', 'scripts/release-tools.mjs', 'config/performance-budgets.json']) {
         assert.ok((await readFile(join(target, file), 'utf8')).length);
       }
       assert.ok(!(await readdir(join(target, 'src'))).includes('features'));
-      const verifier = spawnSync(process.execPath, ['scripts/verify-blueprint.mjs'], { cwd: target, encoding: 'utf8' });
+      const verifier = spawnSync(process.execPath, ['scripts/verify-blueprint.mjs', 'scripts/verify-architecture.mjs', 'scripts/verify-accessibility.mjs', 'scripts/verify-performance.mjs', 'scripts/release-tools.mjs', 'config/performance-budgets.json'], { cwd: target, encoding: 'utf8' });
       assert.notEqual(verifier.status, 0, 'Instruction-only installation must not pass');
       for (const flavor of agent === 'both' ? ['codex', 'claude'] : [agent]) {
         const name = flavor === 'codex' ? 'AGENTS.md' : 'CLAUDE.md';
@@ -88,6 +88,9 @@ for (const agent of ['codex', 'claude', 'both']) {
           assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter/assets/app-baseline', asset), 'utf8'), await readFile(join(repo, source), 'utf8'));
         }
         assert.match(await readFile(join(target, prefix, 'skills/mature-app-starter/references/generic-app-baseline.md'), 'utf8'), /Default starting feature set/);
+        for (const asset of ['scripts/scaffold-baseline.mjs', 'references/portable-infrastructure.md', 'assets/app-capabilities/README.md', 'assets/app-capabilities/storage/src/services/storage/backup.ts', 'assets/app-capabilities/device/src/services/device/actions.ts', 'assets/app-capabilities/flags/src/services/features/featureStore.ts', 'assets/app-capabilities/diagnostics/src/services/observability/safeTelemetry.ts']) {
+          assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter', asset), 'utf8'), await readFile(join(repo, 'codex/skills/mature-app-starter', asset), 'utf8'));
+        }
         assert.match(await readFile(join(target, name), 'utf8'), /Read `BLUEPRINT.md` first/);
         assert.match(await readFile(join(target, 'src/modules', name), 'utf8'), /Product modules are required/);
         assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter/references/required-blueprint.md'), 'utf8'), await readFile(join(repo, 'BLUEPRINT.md'), 'utf8'));

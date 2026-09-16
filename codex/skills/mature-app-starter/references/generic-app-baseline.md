@@ -58,3 +58,7 @@ For persistent products, include schema validation, migrations and recovery test
 - Notification permission is not requested on startup; duplicate actions do not duplicate registration, and revocation changes the displayed capability.
 - Preview and private routes are absent from the sitemap; noindex metadata is not mistaken for access control.
 - Settings and shared states are checked with keyboard, screen reader, enlarged text, light/dark appearance and supported native devices.
+
+## Extended infrastructure
+
+See [portable infrastructure](portable-infrastructure.md) for the safe scaffold command, shared controls, notices, navigation, async/cache helpers, optional storage/device/flags/diagnostics packs and executable quality checks. Read the selected asset READMEs before integration.

@@ -156,6 +156,10 @@ copy_file "$repo_root/templates/project-index.md" "$target/docs/project-index.md
 copy_file "$repo_root/templates/app-quality-contract.md" "$target/docs/app-quality-contract.md"
 copy_file "$repo_root/templates/app-baseline.md" "$target/docs/app-baseline.md"
 copy_file "$repo_root/templates/scripts/verify-blueprint.mjs" "$target/scripts/verify-blueprint.mjs"
+for check in verify-architecture verify-accessibility verify-performance release-tools; do
+  copy_file "$repo_root/templates/scripts/$check.mjs" "$target/scripts/$check.mjs"
+done
+copy_file "$repo_root/templates/performance-budgets.json" "$target/config/performance-budgets.json"
 
 if [[ "$with_docs" -eq 1 ]]; then
   copy_dir "$repo_root/docs" "$target/docs/foundation"

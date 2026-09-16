@@ -88,3 +88,7 @@ Start here after BLUEPRINT.md. Work through the applicable stages, loading the l
 | Review and maintenance | Prioritized findings, fixed/remaining evidence, updated decisions and toolkit lessons | [Review](verification-and-review.md), [learning loop](continuous-learning-loop.md); current records |
 
 Do not mark a stage complete because its folder or document exists. A configured integration is not verified, an unexecuted test is not passing, and a generated preview is not a device capture. Add new product-specific work to the product brief rather than expanding this map into a feature backlog.
+
+## Executable infrastructure
+
+Use [portable infrastructure](portable-infrastructure.md) to adopt reusable source and architecture/accessibility/performance checks. Scaffold safely into missing paths; merge existing code deliberately. Optional packs remain explicitly selected and require host adapters.

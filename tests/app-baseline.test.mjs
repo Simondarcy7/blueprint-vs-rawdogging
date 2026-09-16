@@ -133,7 +133,7 @@ test('SEO rejects token-bearing or ambiguous paths and invalid origins', () => {
 });
 
 test('public baseline references remain in sync with installed skill copies', async () => {
-  for (const name of ['generic-app-baseline', 'quality-foundation']) {
+  for (const name of ['generic-app-baseline', 'quality-foundation', 'portable-infrastructure']) {
     assert.equal(await readFile(new URL(`../docs/${name}.md`, import.meta.url), 'utf8'),
       await readFile(new URL(`../codex/skills/mature-app-starter/references/${name}.md`, import.meta.url), 'utf8'));
   }

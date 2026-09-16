@@ -109,3 +109,9 @@ Use with the required BLUEPRINT.md contract.
 - Use subagents only when the user explicitly asks; independent tracks alone do not authorize delegation.
 - Avoid subagents when token cost, coordination, or merge conflicts would outweigh speed.
 ```
+
+## Portable infrastructure
+
+- Read the installed `references/portable-infrastructure.md` before copying source recipes. Preview with `scripts/scaffold-baseline.mjs`; preserve existing modules and shared primitives.
+- Select optional packs by actual scope; wire real adapters and record remaining platform checks.
+- Run installed architecture/accessibility checks alongside typecheck/lint, and apply measured performance budgets to web export output. Static checks and mock tests are not device evidence.

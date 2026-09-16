@@ -29,3 +29,13 @@ List only selected capabilities, their purpose, data ownership and focused accep
 - Automated checks run:
 - Manual/device/deployed checks pending:
 - Existing primitives reused / recipes deliberately omitted:
+
+## Portable code and checks
+
+- Scaffold dry-run / existing-file merge record:
+- Optional packs selected (storage / device / flags / diagnostics):
+- Storage authority, instance ownership and cleanup limits:
+- Shared UI, focus/navigation and async integration evidence:
+- Architecture/static accessibility commands and results:
+- Export performance budgets and measured results:
+- Provider/device integration still pending:
