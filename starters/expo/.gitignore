@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+dist/
+dist-native/
+web-build/
+coverage/
+test-results/
+playwright-report/
+.env*
+!.env.example
+android/
+ios/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+.DS_Store

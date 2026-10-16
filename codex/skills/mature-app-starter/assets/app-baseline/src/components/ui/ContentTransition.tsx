@@ -1,11 +1,11 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Animated } from 'react-native';
 
 /** Content is mounted immediately; animation never controls data readiness or interaction. */
 export function ContentTransition({ children, reducedMotion = true, transitionKey }: {
   children: ReactNode; reducedMotion?: boolean; transitionKey: string;
 }) {
-  const opacity = useRef(new Animated.Value(1)).current;
+  const [opacity] = useState(() => new Animated.Value(1));
   useEffect(() => {
     opacity.stopAnimation();
     if (reducedMotion) { opacity.setValue(1); return; }

@@ -2,6 +2,8 @@
 
 Use this before or during the first repo setup.
 
+Use the mature-app-starter `references/start-here.md` as the compact entry point (repository: `docs/start-here.md`). Record motion purpose and interruption/reduced-motion behavior alongside navigation, data and recovery decisions in the app baseline. Optional patterns belong in its `references/feature-recipes.md` catalogue, not the default backlog.
+
 ## Product Clarity
 
 - Problem:
@@ -50,6 +52,8 @@ Use this before or during the first repo setup.
 - Run the narrowest verification that proves the setup.
 
 ## Quality contract
+
+At handoff report what exists, what is stubbed, commands/results, known gaps and the next useful task.
 
 - Create `docs/app-quality-contract.md` from the installed template, or record equivalent decisions using the mature-app-starter quality-foundation reference.
 - Classify public/private web routes and choose rendering/indexing behavior.

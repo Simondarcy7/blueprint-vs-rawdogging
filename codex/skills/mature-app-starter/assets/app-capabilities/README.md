@@ -10,6 +10,8 @@ Use `.claude/skills/` for a Claude-only install. Remove `--dry-run` to copy afte
 
 ## Storage
 
+`adapterContract.ts` runs Unicode/empty-value, instance-reopen, key-isolation and removal checks against an injected adapter. Use a unique disposable namespace with no concurrent writers; existing contract keys cause refusal. It cleans up only its two keys. This is not a crash/atomicity, real process restart, encryption or quota test. Add injected-write-failure and actual platform lifecycle checks for the host's persistence promises.
+
 - `ports.ts`: storage adapter, collision-resistant namespace encoding and owner-generation tickets. Check tickets **before committing/applying** async results. Namespace separation is not encryption or server authorization.
 - `backup.ts`: UTF-8 size limit, application/schema identity, mandatory snapshot parser and validate-before-replace flow. Choose limits from the product. `replaceAtomically` must be implemented by the host database transaction or a durable operation journal. No cloud backup or schema migration is implied.
 - `recoveryJournal.ts`: bounded, deduplicated local snapshots and newest-valid fallback. The journal uses atomic single-key writes and serializes one instance. A malformed journal is surfaced, not discarded. Use a bounded backup codec, appropriate protected storage, one instance per key, and explicit retention/deletion policy. Local history does not survive losing its storage.

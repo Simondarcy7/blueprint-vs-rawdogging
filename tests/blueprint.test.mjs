@@ -88,6 +88,10 @@ for (const agent of ['codex', 'claude', 'both']) {
           assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter/assets/app-baseline', asset), 'utf8'), await readFile(join(repo, source), 'utf8'));
         }
         assert.match(await readFile(join(target, prefix, 'skills/mature-app-starter/references/generic-app-baseline.md'), 'utf8'), /Default starting feature set/);
+        for (const name of ['start-here', 'feature-recipes', 'content-trust']) {
+          assert.equal(await readFile(join(target, prefix, `skills/mature-app-starter/references/${name}.md`), 'utf8'),
+            await readFile(join(repo, `docs/${name}.md`), 'utf8'));
+        }
         for (const asset of ['scripts/scaffold-baseline.mjs', 'references/portable-infrastructure.md', 'assets/app-capabilities/README.md', 'assets/app-capabilities/storage/src/services/storage/backup.ts', 'assets/app-capabilities/device/src/services/device/actions.ts', 'assets/app-capabilities/flags/src/services/features/featureStore.ts', 'assets/app-capabilities/diagnostics/src/services/observability/safeTelemetry.ts']) {
           assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter', asset), 'utf8'), await readFile(join(repo, 'codex/skills/mature-app-starter', asset), 'utf8'));
         }

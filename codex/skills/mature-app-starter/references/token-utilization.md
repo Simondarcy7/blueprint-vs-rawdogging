@@ -29,3 +29,19 @@ Ask Codex to briefly estimate:
 - Use small diffs.
 - Run the narrowest verification that proves the change.
 - End with commands run, known gaps, and token-use notes.
+
+## Subagent Cost Discipline
+
+Use subagents when:
+
+- The user explicitly asks.
+- The task has independent tracks.
+- File ownership can be split cleanly.
+- Parallelism saves meaningful time.
+
+Avoid subagents when:
+
+- The task is small.
+- The work touches the same files.
+- The result depends on a single blocking decision.
+- Coordination cost exceeds speed benefit.

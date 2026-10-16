@@ -25,7 +25,11 @@ export function createFeatureStore<T extends Record<string, boolean>>(defaults: 
     getSnapshot: () => snapshot,
     getServerSnapshot: () => initial,
     subscribe(listener: () => void) { listeners.add(listener); return () => { listeners.delete(listener); }; },
-    load: () => serial(async () => publish(parse(await storage.read()))),
+    load: () => serial(async () => {
+      snapshot = Object.freeze({ ...snapshot, ready: false });
+      for (const listener of listeners) try { listener(); } catch {}
+      return publish(parse(await storage.read()));
+    }),
     set: (key: keyof T & string, enabled: boolean) => serial(async () => {
       if (!snapshot.ready) throw new Error('Load flags before editing');
       if (!Object.hasOwn(baseline, key) || typeof enabled !== 'boolean') throw new Error('Invalid feature flag');

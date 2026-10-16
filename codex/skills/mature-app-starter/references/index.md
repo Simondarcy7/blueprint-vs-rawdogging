@@ -4,6 +4,9 @@ Load only the file needed for the user's request.
 
 | Request | Reference |
 | --- | --- |
+| Starting any project; don't forget motion, recovery or verification | `start-here.md` |
+| Selecting optional product features without bloating the shell | `feature-recipes.md` |
+| External content identity, capability, freshness, rights and quotas | `content-trust.md` |
 | Portable UI/navigation/storage/device code, scaffold command and executable quality checks | `portable-infrastructure.md` |
 | Generic settings, notification preferences, SEO, recovery and loading source recipes | `generic-app-baseline.md` |
 | Project blueprint, setup checklist, or reusable starting template | `project-blueprint.md` |

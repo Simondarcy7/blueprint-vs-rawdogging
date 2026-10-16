@@ -28,6 +28,8 @@ The release gate requires an update-enabled installed binary, compatible runtime
 
 ## Required working behavior
 
+Start with `docs/start-here.md` (installed: mature-app-starter `references/start-here.md`). Record Included, Deferred or N/A decisions, including purposeful motion and reduced-motion/interruption behavior. The optional feature catalogue guides selected capabilities; it is not a required backlog.
+
 1. Read this contract and the installed mature-app-starter `references/expo-project-structure.md`. If using only a repository link, fetch/read those files before adopting the toolkit. Inspect existing project instructions and changes first.
 2. Complete `docs/project-index.md` with product scope, first workflow, platforms, ownership and real commands. Complete `docs/app-quality-contract.md` with applicable checks, measurable budgets and pending evidence.
 3. Build the first useful workflow with relevant loading, empty, partial, offline, error and recovery states. Use semantic controls, visible/unobscured focus, usable navigation and reduced motion. Sticky UI and optional infrastructure must be justified by the workflow.
@@ -36,7 +38,7 @@ The release gate requires an update-enabled installed binary, compatible runtime
 6. Before app handoff, run `node scripts/verify-blueprint.mjs`, `node scripts/verify-architecture.mjs`, `node scripts/verify-accessibility.mjs`, typecheck, lint and the relevant behavioral tests. Run the installed performance check against web export output using app-owned budgets. Include required manual accessibility/device checks when affected. Wire the structural check into the app's normal check command and CI once those exist. Do not claim completion with missing or failed required checks.
 7. Report what changed, checks and results, unresolved gaps and approved exceptions. Preserve unrelated user work; keep searches targeted and use no subagents unless the user explicitly asks.
 
-The installer supplies instructions, planning templates, structural/architecture/accessibility/performance checks, release helpers and copyable generic baseline/optional source inside the installed skill. The additive scaffold command copies selected source after collision checks. Source recipes require deliberate host integration and do not overwrite app code. It does not generate an Expo application, install dependencies, configure CI, or complete planning records. The verifier should fail on a fresh instruction-only install until the app foundation exists.
+The installer supplies instructions, planning templates, checks, release helpers and copyable source inside the installed skill. The additive scaffold copies selected source after collision checks and requires deliberate host integration. For a new runnable Expo application, use the repository's `scripts/create-app.mjs`; it creates a brandable shell with a replaceable workflow and CI. Neither path completes product planning, authorizes publication or proves platform readiness. The verifier should fail on a fresh instruction-only install until the app foundation exists.
 
 ## Exceptions and existing projects
 

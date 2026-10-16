@@ -1,0 +1,168 @@
+{
+  "reviewDate": "2026-10-17",
+  "purpose": "Exhaustive reusable-foundation extraction and toolkit integration review",
+  "scope": {
+    "sourceProduct": {
+      "revision": "de8dc24b47666981323a2753f990146f238e1221",
+      "trackedPaths": 11756,
+      "additionalWorkingTreePathsAtInventory": 19,
+      "reachableCommits": 336,
+      "historyStart": "2026-06-15",
+      "historyEnd": "2026-10-14",
+      "pathDispositions": {
+        "text": 3241,
+        "binaryOrAsset": 5180,
+        "dataFixtureOrArtifact": 3354
+      },
+      "featureModuleFamilies": 46
+    },
+    "toolkit": {
+      "baseRevision": "ba02e4bc90c1511dc4bf9e610a729a2e22a69b4e",
+      "trackedPathsBeforeRefresh": 181,
+      "additionalRefreshPathsAtInventory": 118,
+      "reachableCommitsIncludingExistingShellBranch": 22,
+      "pathDispositions": {
+        "text": 289,
+        "binaryOrAsset": 8,
+        "lockfileOrFixture": 2
+      }
+    },
+    "availableConversations": {
+      "localArchiveFilesExamined": 94,
+      "relevantArchiveFiles": 83,
+      "uniqueRelevantConversationIds": 80,
+      "archiveFirstDate": "2026-10-02",
+      "archiveLastDate": "2026-10-16",
+      "additionalEarlierQualityConversation": "All 58 accessible turns read through the app's conversation API",
+      "limits": "Archives include automated continuations; entries are not counted as unique human requests. This does not claim access to every historic or deleted chat."
+    }
+  },
+  "method": [
+    "Enumerated every tracked path plus present untracked candidates; read/parsed all recognized text files for headings, exports, test names and reliability markers.",
+    "Inspected all reachable commit subjects/dates and file-change history; followed foundation-related historical diffs into current source.",
+    "Reviewed every feature/module family for a reusable behavior, conditional recipe, existing coverage or explicit exclusion.",
+    "Reviewed toolkit contracts, installed skill paths, source recipes, templates, scaffolds, runnable shell, workflow configuration and tests.",
+    "Cross-checked historical preferences against current implementation and separated work-in-progress from verified patterns.",
+    "Verified the integrated toolkit and a freshly generated example; excluded private transcripts, source branding/data and temporary review artifacts from publication."
+  ],
+  "coverage": [
+    {
+      "area": "Architecture, config and framework migration",
+      "disposition": "Retain thin routes, module APIs, typed adapters and documented retirement; verify generated app against installed rules."
+    },
+    {
+      "area": "Shared controls, layout, typography and visual character",
+      "disposition": "Generic compact hierarchy and functional/expressive type roles; brand tokens and artwork remain app-owned."
+    },
+    {
+      "area": "Motion, disclosure, gestures and feedback",
+      "disposition": "Working reduced-motion/presence recipes with interruption tests; contextual delight and visible gesture alternatives."
+    },
+    {
+      "area": "Navigation, keyboard, overlays and retained screens",
+      "disposition": "Conditional sticky controls, context restoration, modal return focus, inactive-screen isolation and narrow-width checks."
+    },
+    {
+      "area": "Lifecycle, drafts, completion, identity and history",
+      "disposition": "Optional recipes and stable-data rules; do not copy domain calculations or default confirmation values."
+    },
+    {
+      "area": "Storage, migrations, recovery, backup and deletion",
+      "disposition": "Preserve corrupt data, block writes after failed reload, test real-engine upgrades and define deletion/restore coverage."
+    },
+    {
+      "area": "Accounts, guest migration, browser ownership and sync",
+      "disposition": "Conditional ownership, durable intents, pagination/conflicts, safe handover and cleanup guidance; no default backend."
+    },
+    {
+      "area": "Device permissions, media, voice, notifications and sharing",
+      "disposition": "Injected optional adapters, contextual permission, temporary-resource ownership and honest completion states."
+    },
+    {
+      "area": "Discovery, catalogue, location, pricing and external content",
+      "disposition": "Generic identity/freshness/rights/capability and bounded-provider rules; no domain registries or location datasets."
+    },
+    {
+      "area": "Personalization, shortcuts, guidance and engagement",
+      "disposition": "Optional recipes with meaningful eligibility, undo, stale-target and accessibility checks; no default campaigns/gamification."
+    },
+    {
+      "area": "Analytics, diagnostics, privacy and support",
+      "disposition": "Disabled-by-default allowlisted boundaries, consent lifecycle and actual payload verification; vendor/product policy app-owned."
+    },
+    {
+      "area": "Performance, assets and deferred loading",
+      "disposition": "Measured budgets, runtime dependency review, realistic lists and stable layouts; preserve useful design and content."
+    },
+    {
+      "area": "Tests, release, CI, updates and store evidence",
+      "disposition": "Change-sensitive checks, clean generated-app proof, exact artifact reporting and manual native compilation workflow."
+    },
+    {
+      "area": "Documentation, instructions, maintenance and delivery",
+      "disposition": "Single kickoff, canonical guide/source parity, honest review coverage, commit/push/readback and owned cleanup."
+    },
+    {
+      "area": "Domain models, provider fixtures, artwork, marketing and historical artifacts",
+      "disposition": "Inventory/text-scan where applicable; deliberately excluded from generic source extraction."
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "issue": "Scattered kickoff guidance made motion and recovery easy to overlook",
+      "resolution": "One start-here checklist connected to both agent paths and app-baseline records."
+    },
+    {
+      "id": "F02",
+      "issue": "Source recipes lacked a proven integrated creation path",
+      "resolution": "Existing shell work integrated; clean generation, actual workflow and release limits verified."
+    },
+    {
+      "id": "F03",
+      "issue": "Motion exits and preference races needed behavioral protection",
+      "resolution": "Interruption-safe presence, live reduced motion, persisted preferences and focused checks."
+    },
+    {
+      "id": "F04",
+      "issue": "Previously hydrated stores could overwrite unreadable data after a failed reload",
+      "resolution": "Preference/flag reloads become non-writable; success-failure-write-recovery regressions."
+    },
+    {
+      "id": "F05",
+      "issue": "Notification duplicate protection discarded different queued intents",
+      "resolution": "Serialize distinct intents and deduplicate only consecutive equivalent operations."
+    },
+    {
+      "id": "F06",
+      "issue": "Equivalent-read coalescing and lossless-write ordering were easy to confuse",
+      "resolution": "Small serial queue recipe with order/rejection tests and explicit contract guidance."
+    },
+    {
+      "id": "F07",
+      "issue": "Public guides and installed references drifted",
+      "resolution": "Canonical synchronization/check covers mirrored guides and selected executable sources."
+    },
+    {
+      "id": "F08",
+      "issue": "Generated app violated installed route/formatting rules",
+      "resolution": "Thin route re-exports and formatted shared checks included in generator source."
+    },
+    {
+      "id": "F09",
+      "issue": "Potential feature growth blurred optional guidance and working code",
+      "resolution": "Catalogue states applicability and implementation limits; no automatic providers/features."
+    },
+    {
+      "id": "F10",
+      "issue": "SDK package mismatches and inherited dependency findings",
+      "resolution": "Compatible package/lock updates, 21/21 Expo Doctor checks, unresolved upstream audit paths explicitly retained as a release gap."
+    }
+  ],
+  "limits": [
+    "This is exhaustive for repository inventory, reachable history, available conversation records and reusable-foundation disposition; automated traversal is not a claim that every line/image was manually audited.",
+    "Not an exhaustive vulnerability scan, production deployment, signed-native-device or OTA acceptance.",
+    "Source-product local changes are preserved and never committed or deleted by this task.",
+    "Raw private review ledgers/transcripts and temporary apps are removed after remote delivery verification."
+  ]
+}

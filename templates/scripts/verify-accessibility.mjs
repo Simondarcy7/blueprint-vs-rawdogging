@@ -10,23 +10,46 @@ export async function verifyAccessibility(root, ts) {
     for (const entry of await readdir(dir, { withFileTypes: true })) {
       const file = resolve(dir, entry.name);
       if (entry.isSymbolicLink()) throw new Error('Source symlinks require review');
-      if (entry.isDirectory()) { await walk(file); continue; }
+      if (entry.isDirectory()) {
+        await walk(file);
+        continue;
+      }
       if (!/\.tsx$/.test(file) || /\.(test|spec)\.tsx$/.test(file)) continue;
-      const tree = ts.createSourceFile(file, await readFile(file, 'utf8'), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+      const tree = ts.createSourceFile(
+        file,
+        await readFile(file, 'utf8'),
+        ts.ScriptTarget.Latest,
+        true,
+        ts.ScriptKind.TSX,
+      );
       function visit(node) {
         if (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) {
           const name = node.tagName.getText(tree);
-          const props = new Map(node.attributes.properties.filter(ts.isJsxAttribute).map(prop => [prop.name.getText(tree), prop]));
-          const report = message => issues.push(`${relative(root, file)}:${tree.getLineAndCharacterOfPosition(node.getStart(tree)).line + 1}: ${message}`);
-          if (name === 'Pressable' && !props.has('accessibilityRole')) report('Pressable needs an explicit role');
-          if (name === 'TextInput' && !props.has('accessibilityLabel')) report('TextInput needs an explicit accessible name');
+          const props = new Map(
+            node.attributes.properties
+              .filter(ts.isJsxAttribute)
+              .map((prop) => [prop.name.getText(tree), prop]),
+          );
+          const report = (message) =>
+            issues.push(
+              `${relative(root, file)}:${tree.getLineAndCharacterOfPosition(node.getStart(tree)).line + 1}: ${message}`,
+            );
+          if (name === 'Pressable' && !props.has('accessibilityRole'))
+            report('Pressable needs an explicit role');
+          if (name === 'TextInput' && !props.has('accessibilityLabel'))
+            report('TextInput needs an explicit accessible name');
           if (name === 'Image') {
             const value = props.get('accessible')?.initializer;
-            const decorative = value && ts.isJsxExpression(value) && value.expression?.kind === ts.SyntaxKind.FalseKeyword;
+            const decorative =
+              value &&
+              ts.isJsxExpression(value) &&
+              value.expression?.kind === ts.SyntaxKind.FalseKeyword;
             if (!props.has('accessible')) report('Classify Image as decorative or accessible');
-            if (!decorative && !props.has('accessibilityLabel')) report('Accessible Image needs a label');
+            if (!decorative && !props.has('accessibilityLabel'))
+              report('Accessible Image needs a label');
           }
-          if (props.get('allowFontScaling')?.initializer?.getText(tree) === '{false}') report('Disabling text scaling requires explicit review');
+          if (props.get('allowFontScaling')?.initializer?.getText(tree) === '{false}')
+            report('Disabling text scaling requires explicit review');
         }
         ts.forEachChild(node, visit);
       }
@@ -42,6 +65,11 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     const ts = createRequire(resolve(root, 'package.json'))('typescript');
     const issues = await verifyAccessibility(root, ts);
     if (issues.length) throw new Error(issues.join('\n'));
-    console.log('Static accessibility checks passed; keyboard, screen-reader and visual checks remain required.');
-  } catch (error) { console.error(error.message); process.exitCode = 1; }
+    console.log(
+      'Static accessibility checks passed; keyboard, screen-reader and visual checks remain required.',
+    );
+  } catch (error) {
+    console.error(error.message);
+    process.exitCode = 1;
+  }
 }

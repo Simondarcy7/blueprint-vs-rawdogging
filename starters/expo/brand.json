@@ -1,0 +1,38 @@
+{
+  "name": "Gather",
+  "slug": "gather",
+  "scheme": "gather",
+  "bundleIdentifier": "com.example.gather",
+  "description": "A little space for your next idea.",
+  "welcome": "Make room for what matters.",
+  "subtitle": "Capture a thought. Find it when you need it.",
+  "supportEmail": "",
+  "light": {
+    "background": "#F6F5F1",
+    "surface": "#FFFFFF",
+    "text": "#202523",
+    "muted": "#606862",
+    "border": "#D5DBD5",
+    "accent": "#315C4A",
+    "onAccent": "#FFFFFF",
+    "tint": "#E7EFE8",
+    "danger": "#A32D32",
+    "dangerSurface": "#FDEDEE",
+    "focus": "#245CA8",
+    "controlBorder": "#737D75"
+  },
+  "dark": {
+    "background": "#121A17",
+    "surface": "#1E2923",
+    "text": "#F2F5ED",
+    "muted": "#B2C2B6",
+    "border": "#435449",
+    "accent": "#B3D9BD",
+    "onAccent": "#14261A",
+    "tint": "#2A4032",
+    "danger": "#FFB3B5",
+    "dangerSurface": "#44252A",
+    "focus": "#9FC5FF",
+    "controlBorder": "#819386"
+  }
+}

@@ -1,5 +1,7 @@
 # Continuous Learning Loop
 
+Public guides in `docs/` are canonical where installed references mirror them. After edits, run `npm run references:sync`, review the diff, then `npm run references:check`. The check covers every mirrored guide, skill-specific copies, the required contract and selected shared source recipes. Do not edit generated mirrors independently. The runnable example must keep code-versus-platform evidence explicit.
+
 Use this loop when an active project teaches something reusable.
 
 ## Capture Triggers
@@ -13,9 +15,7 @@ Capture a learning when:
 - A UX state, accessibility check, testing pattern, or verification step proves valuable.
 - A dependency, tool, or workflow decision should influence future projects.
 
-## During A Project Task
-
-At handoff, add a short section when relevant:
+## Handoff Prompt
 
 ```md
 Reusable toolkit learning:
@@ -24,39 +24,20 @@ Reusable toolkit learning:
 - Suggested toolkit update:
 ```
 
-Skip this section when there is no reusable learning.
-
-## After A Task Or Milestone
-
-1. Decide whether the learning is project-specific or reusable.
-2. If reusable, classify it: Product, UX, Architecture, Data, Testing, Security, Workflow, Tooling.
-3. Update the matching Notion page or database entry.
-4. Update the executable Codex source if the learning should affect future agent behavior:
-   - `mature-app-starter/SKILL.md`
-   - `references/project-blueprint.md`
-   - `references/starter-agents-template.md`
-   - `references/adr-templates.md`
-   - `references/kickoff-checklist.md`
-   - custom agent TOML templates
-5. Sync the active user skill to the portable plugin copy.
-
 ## Promotion Rule
 
 Promote a lesson into the default shell only when it improves implementation quality without inventing a product feature. Reuse across several apps is not enough by itself. Keep capability-specific requirements in the owning product; optional toolkit guidance must stay conditional and must not seed new capabilities into kickoff checklists.
 
-Do not add every project detail to the toolkit. Promote only:
+Promote only:
 
 - Rules likely to apply to at least two future projects.
 - Practices that reduce setup mistakes.
 - UX or engineering defaults that improve quality without overfitting.
 - Checklists that would change future implementation behavior.
 
-## Review Cadence
-
-- After each meaningful project milestone: capture possible learnings.
-- Monthly or before starting a new app: prune stale rules and update the toolkit changelog.
-
 ## Evidence and installation parity
+
+After a milestone, classify the lesson, update its existing guide/check, and review applicability to another product. Skip capture when there is no reusable learning. Before the next app, prune obsolete rules and check dependency/framework guidance. Update external knowledge bases, user skills or plugin installations only when requested; repository maintenance does not authorize those writes.
 
 For each promoted lesson, record source path and revision/date, whether it is committed or work in progress, observed behavior versus verified result, applicability, exceptions, and the smallest preventive check. Keep private data and product assets out of the toolkit.
 

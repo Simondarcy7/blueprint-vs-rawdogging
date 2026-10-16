@@ -30,6 +30,8 @@
 
 ## Product UX
 
+- Begin new-project setup with the installed mature-app-starter `references/start-here.md`. Explicitly decide motion, interruption/reduced-motion behavior, context preservation and recovery. Select optional features from the product brief; `references/feature-recipes.md` is a catalogue, not a backlog.
+
 - Apply the blueprint as a quality shell. Use the installed generic-app-baseline reference for settings, supported notification preferences, public-web SEO and shared loading/recovery behavior. Complete docs/app-baseline.md. The product brief owns business features and external services; optional guides are not a feature backlog.
 - Build the real primary workflow before marketing or decorative pages. Verify first use with representative initial content.
 - Use the shared design primitives in real screens. Decide supported appearance modes and verify startup across the target platforms. Test persisted preferences and system changes when those behaviors are supported.

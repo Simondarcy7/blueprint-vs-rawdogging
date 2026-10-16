@@ -32,4 +32,8 @@ Reference: [web.dev INP optimization](https://web.dev/articles/optimize-inp?hl=e
 
 ## Keep optimizations correct
 
+Treat public barrels as runtime dependencies too: re-exporting an optional heavy screen can pull it back into startup. Use deliberate narrow public entrypoints where measurement supports them, and inspect the actual export graph. Keep design galleries, large source documents, archived announcements and build caches out of production startup/uploads without dropping fixtures or evidence required by clean-checkout validation.
+
+For growing search collections, apply intended filtering and sorting consistently with pagination; sorting only a fetched subset can misrepresent the full result. Preserve records with unknown prices or missing optional images when they remain useful. Verify realistic large-list scroll, focus and state restoration rather than treating desktop smoothness as native proof.
+
 Split broad subscriptions and remove unnecessary serialization or repeated initialization only after tracing their cost and ownership. Dependency-level lazy loading can be a smaller change than experimental route-level splitting; verify the exported startup and hydration behavior on every supported surface before promotion. Distinguish repository cleanup from reducing shipped bytes, and distinguish compressed transfer size from unpacked binary size. Preserve visuals and functionality while measuring comparable builds.

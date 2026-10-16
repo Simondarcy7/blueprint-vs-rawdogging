@@ -1,5 +1,7 @@
 # Generic app baseline source
 
+For a new runnable app use the toolkit's `scripts/create-app.mjs` and `starters/expo/README.md`. These recipes remain the integration path for existing apps. `Presence` supports interruption-safe visual exits; keep child content supplied during exit, pass the live reduced-motion preference and handle focus at the owning control.
+
 Copyable TypeScript/React Native modules for an existing Expo Router app. These are integration building blocks, not a complete generated app or a published package. No backend, storage provider, notification SDK, analytics vendor or extra production dependency is installed.
 
 ## Adopt

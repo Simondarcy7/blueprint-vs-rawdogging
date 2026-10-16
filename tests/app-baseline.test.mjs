@@ -19,6 +19,7 @@ test('preferences persist explicit appearance and respect OS reduced motion', as
   const value = await nextLaunch.load();
   assert.equal(resolveAppearance(value, 'light'), 'dark');
   assert.equal(resolveAppearance(defaultPreferences, 'dark'), 'dark');
+  assert.equal(resolveAppearance(defaultPreferences, 'unspecified'), 'light');
   assert.equal(reduceMotion(value, true), true);
   assert.equal(reduceMotion({ ...value, motion: 'reduced' }, false), true);
 });
@@ -69,6 +70,38 @@ function notifications(permission = 'undetermined') {
     revoke: () => { permission = 'denied'; },
   };
 }
+
+test('failed preference reload blocks edits after an earlier successful hydration', async () => {
+  let raw = null;
+  const adapter = { read: async () => raw, write: async value => { raw = value; } };
+  const store = createPreferencesStore(adapter);
+  await store.load();
+  await store.update({ appearance: 'dark' });
+  raw = '{"version":2}';
+  await assert.rejects(store.load());
+  await assert.rejects(store.update({ appearance: 'light' }), /Load preferences/);
+  assert.equal(raw, '{"version":2}');
+  raw = null;
+  await store.load();
+  await store.update({ motion: 'reduced' });
+  assert.equal(store.current().motion, 'reduced');
+});
+
+test('opposite notification intents retain order instead of disappearing behind duplicate protection', async () => {
+  const writes = [];
+  const adapter = notifications('granted');
+  const controller = createNotificationController({ ...adapter, setEnabled: async value => { writes.push(value); } });
+  const first = controller.setEnabled(true);
+  const second = controller.setEnabled(false);
+  const third = controller.setEnabled(true);
+  assert.notEqual(first, second);
+  assert.notEqual(first, third);
+  assert.equal(third, controller.setEnabled(true));
+  await Promise.all([first, second, third]);
+  assert.deepEqual(writes, [true, false, true]);
+  assert.equal(controller.current().enabled, true);
+  assert.equal(controller.current().status, 'ready');
+});
 
 test('refresh never prompts, duplicate enable actions share one operation, revocation is visible', async () => {
   const adapter = notifications();

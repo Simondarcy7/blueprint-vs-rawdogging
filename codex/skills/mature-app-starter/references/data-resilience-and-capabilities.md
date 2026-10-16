@@ -40,6 +40,14 @@ Keep destructive test fixtures disposable and identified. Unit tests prove logic
 
 ## Existing data lifecycle
 
+For accounts or multiple browser writers, choose one write owner per scope. A generation ticket protects in-flight results, but is not a cross-tab lock. If using a browser lease, define handover, suspended-tab timeout and retry without forcing an unsafe unlock. Fence writers after release and reacquisition, including account A → B → A. A single-writer example must not be advertised as multi-tab or multi-device safe.
+
+For paginated restore/import, enforce a total item/byte limit before accumulation grows without bound. Require a stable cursor/snapshot policy, detect repeated or non-progressing cursors, validate every page and require a trustworthy completion condition. A short page alone may reflect a provider cap rather than completion. Failed or malformed pages cannot apply a partial dataset as a complete restore.
+
+For deletion, inventory current, legacy, recovery, draft, cache and provider-held copies. Stop writers that could recreate deleted local records; distinguish local reset from cloud deletion. Journal required account/device cleanup when interruption is possible, and keep guest recovery separate from blocked account cleanup. Verify another identity remains untouched.
+
+Temporary resources have per-operation ownership: use collision-resistant names, clean partial creation, retain the original actionable error if cleanup also fails, and make failed cleanup retryable where needed. Never delete a user-selected original or let one concurrent export remove another operation's file. Opening a picker/share sheet is not proof that its operation completed.
+
 When a product already supports replacing or resetting data, invalidate selections, caches and any undo history belonging to the previous dataset. Verify that failed validation leaves current data and its valid editing context intact. This is a correctness rule for an existing capability, not a requirement to build import, restore or Undo features.
 
 ## Startup failures need a usable recovery surface

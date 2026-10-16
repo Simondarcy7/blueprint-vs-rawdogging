@@ -26,11 +26,14 @@ Avoid reconstructing unknown detail from an aggregate merely to fill a screen. L
 
 ## Async operations must have an owner
 
+Choose the ordering contract explicitly. Coalesce equivalent reads, ignore obsolete search responses, serialize meaningful writes, or finish active work and then process the newest desired snapshot when intermediate snapshots can safely be superseded. These are different promises: a latest-only queue must not drop completed events, deletion records or required reminders. The copyable `createSerialTaskQueue` provides per-resource invocation order and recovery after rejection; it is not a durable outbox or cross-process lock.
+
 Choose behavior per operation. Reads often need cancellation or latest-result-wins handling; writes may need ordering, idempotency or explicit conflict handling. Do not serialize every request globally.
 
 - When several actions mutate the same resource, define their ordering. Read current state when queued work executes rather than relying on a stale captured value. A rejected operation must not permanently block later work.
 - For a setting that also changes storage or device state, define the commit point and rollback/reconciliation behavior. Do not show “enabled” after the underlying operation failed. If rollback itself fails, expose uncertainty and retry/reconcile deliberately.
 - Share initialization/migration ownership for a resource such as a database. Cache a handle only after successful initialization; close/discard failed handles and allow a controlled retry.
+- A failed reload must make an already-hydrated store non-writable until a valid reload succeeds. Keep the last confirmed view where useful, but never overwrite corrupt/future-version bytes using stale defaults. Test success → failed reload → attempted write → recovery, not only first-launch failure.
 - Bound loading states with success, failure or cancellation paths. Always release pending state; contain rejected promises at event/provider boundaries and avoid updates after a view is no longer active.
 - Keep optional provider failures local. A telemetry or reminder outage should not replace the core app with its root error screen. If falling back to memory, communicate any reduced persistence guarantee where it affects the user.
 - Separate independent capabilities: one denied permission must not disable unrelated functionality. Give subscriptions, timers and background work explicit cleanup and foreground reconciliation where needed.

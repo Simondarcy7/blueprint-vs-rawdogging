@@ -15,28 +15,30 @@ export type NotificationAdapter = {
 /** No OS prompt at startup. Refresh on foreground; enable only from an explicit action. */
 export function createNotificationController(adapter: NotificationAdapter) {
   let state: NotificationState = { permission: 'unconfigured', enabled: false, status: 'idle' };
-  let pending: Promise<NotificationState> | undefined;
-  function run(action: () => Promise<void>) {
-    // Duplicate taps share the current operation. The UI disables controls while pending.
-    if (pending) return pending;
+  let latest: { key: string; promise: Promise<NotificationState> } | undefined;
+  let tail: Promise<unknown> = Promise.resolve();
+  function run(key: string, action: () => Promise<void>) {
+    if (latest?.key === key) return latest.promise;
     state = { ...state, status: 'pending' };
-    pending = Promise.resolve().then(action).then(() => {
-      state = { ...state, status: 'ready' };
+    const operation = tail.then(action).then(() => {
+      state = { ...state, status: latest?.promise === operation ? 'ready' : 'pending' };
       return state;
     }).catch(() => {
-      state = { ...state, status: 'error' };
+      state = { ...state, status: latest?.promise === operation ? 'error' : 'pending' };
       return state;
-    }).finally(() => { pending = undefined; });
-    return pending;
+    }).finally(() => { if (latest?.promise === operation) latest = undefined; });
+    latest = { key, promise: operation };
+    tail = operation;
+    return operation;
   }
   return {
     current: () => state,
-    refresh: () => run(async () => {
+    refresh: () => run('refresh', async () => {
       const permission = await adapter.getPermission();
       const enabled = await adapter.readEnabled();
       state = { ...state, permission, enabled };
     }),
-    setEnabled: (enabled: boolean) => run(async () => {
+    setEnabled: (enabled: boolean) => run(String(enabled), async () => {
       let permission = await adapter.getPermission();
       state = { ...state, permission };
       if (enabled && permission === 'undetermined') {

@@ -41,4 +41,6 @@ Use the lightest proof:
 
 ## Coverage and evidence gaps
 
+Use a change-sensitive cadence: focused checks while iterating, then the relevant combined gates for handoff. Repeat expensive builds only after changes or unresolved evidence justify them. For storage migrations, pair fast mocks with real-engine tests using populated historical schemas, transaction rollback and failed-initialization retry. For privacy-sensitive services, test final wire payloads and consent revocation during initialization/in-flight work, including vendor-added data.
+
 Read `verification-and-review.md` from the mature-app-starter references or installed foundation docs when assessing review findings, platform bugs or release claims. Ensure shared domain code and public exports are included in typechecking/test discovery. Test data meaning and async ordering using `code-correctness.md` where applicable. Record unverified device/deployment behavior separately from passing source checks.

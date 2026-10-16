@@ -1,5 +1,7 @@
 # Installation
 
+For a new working app, run `node scripts/create-app.mjs --target ../my-app --name my-app` from this repository. Read `starters/expo/README.md` and `docs/start-here.md`. This is separate from the additive instruction installer below; neither path publishes anything or configures service accounts.
+
 Use the installer to copy the toolkit into a project.
 
 ## Recommended

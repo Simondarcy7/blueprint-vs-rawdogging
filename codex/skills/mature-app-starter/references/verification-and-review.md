@@ -26,6 +26,10 @@ For Expo web, inspect the exported app and its browser console for startup/hydra
 
 ## Evidence freshness
 
+For an exhaustive extraction review, inventory every repository path and commit in the stated history, classify reusable source versus product-specific/generated/binary material, and give every subsystem a disposition. Record automated traversal separately from human implementation review. Include accessible historical decisions/sessions and disclose unavailable history. A complete inventory is not a line-by-line correctness, security or native-device audit.
+
+If publishing is requested, completion includes the commit, successful push and remote SHA readback. Verify the requested CI separately; unavailable Actions minutes or an unrun job is not a pass. Clean task-owned temporary outputs and report any authorized local checkout removal only after remote persistence is confirmed. Do not delete another project's changes, history or personal browser state.
+
 Record the revision/build and environment for meaningful verification. If concurrent work changes relevant files, validate the combined state before release; use isolated output directories for experiments so one build cannot overwrite another's evidence. Separate a newly introduced failure from a pre-existing one, but do not describe a release as passing while a required gate fails.
 
 Screenshots establish appearance, exports establish bundle generation, compiled binaries establish a different milestone, and real device journeys establish behavior. Report only the milestone actually reached. A configured cache or proposed optimization is not a measured speed improvement.

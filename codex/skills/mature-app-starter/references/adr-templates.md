@@ -27,7 +27,7 @@ What are we choosing?
 
 ## Revisit When
 
-- 
+-
 ```
 
 ## Baseline ADRs For A New App

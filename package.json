@@ -3,6 +3,11 @@
   "private": true,
   "type": "module",
   "engines": { "node": ">=22.18.0" },
-  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "scripts": {
+    "test": "node scripts/sync-references.mjs --check && node --test tests/*.test.mjs",
+    "references:check": "node scripts/sync-references.mjs --check",
+    "references:sync": "node scripts/sync-references.mjs --write",
+    "create:app": "node scripts/create-app.mjs"
+  },
   "devDependencies": { "typescript": "~5.9.3", "react": "19.2.3", "react-test-renderer": "19.2.3" }
 }

@@ -1,5 +1,7 @@
 # Quality foundation for the next app
 
+Start with [the project kickoff](start-here.md). The runnable shell in the toolkit's `starters/expo/` demonstrates the baseline without accounts or remote services. Optional features are selected from the [catalogue](feature-recipes.md); keep unselected capabilities out of the app.
+
 Boilerplate the decisions, conventions, and checks that repeatedly save work. Keep the brand, user journey, business rules, and target surfaces specific to the new product.
 
 ## Use at kickoff

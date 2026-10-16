@@ -3,17 +3,36 @@
 Use concise ADRs. Record the decision, the context, the tradeoff, and what would make the team
 revisit it.
 
-## Baseline ADRs
+## ADR File Template
 
-- Stack and platform choice.
-- App structure and module boundaries.
-- Backend and data strategy.
-- Auth and permission model.
-- Testing strategy.
-- Analytics, observability, and error reporting.
-- Sensitive-data handling.
+```md
+# ADR NNNN: Title
 
-## Stack And Platform Choice
+Date:
+Status: Proposed | Accepted | Superseded
+
+## Context
+
+What problem are we solving? What constraints matter?
+
+## Decision
+
+What are we choosing?
+
+## Consequences
+
+- Positive:
+- Negative:
+- Follow-up:
+
+## Revisit When
+
+-
+```
+
+## Baseline ADRs For A New App
+
+### Stack And Platform Choice
 
 - Target platforms.
 - App framework.
@@ -23,7 +42,38 @@ revisit it.
 - Why this stack is sufficient for the first serious version.
 - What complexity is intentionally deferred.
 
-## Analytics And Observability
+### App Structure And Module Boundaries
+
+- Route/page/screen ownership.
+- Feature module boundaries.
+- Shared UI promotion rule.
+- Service boundary rule.
+- Config/env rule.
+
+### Backend And Data Strategy
+
+- Current backend state: stubbed, local-only, managed backend, custom API, or existing API.
+- Data sensitivity level.
+- Storage and retention assumptions.
+- Migration strategy if applicable.
+- Export/deletion expectations if applicable.
+
+### Auth And Permissions
+
+- Whether identity is needed for the first workflow.
+- User roles.
+- Recovery path.
+- Permission checks and ownership model.
+
+### Testing Strategy
+
+- Typecheck/lint standard.
+- Unit test targets.
+- Component test targets.
+- End-to-end timing.
+- Manual verification expectations.
+
+### Analytics And Observability
 
 - Error reporting choice.
 - Analytics event boundary.
@@ -32,4 +82,10 @@ revisit it.
 - Event naming convention.
 - Production monitoring threshold.
 
-See `templates/adr-template.md` for the copyable template.
+### Sensitive Data Handling
+
+- Data classes.
+- Where sensitive data is stored.
+- Secrets management.
+- Consent, retention, audit, and deletion assumptions.
+- Expert review required, if any.

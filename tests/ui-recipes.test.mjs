@@ -22,6 +22,12 @@ const native = {
   AppState: { addEventListener: () => ({ remove() {} }) },
 };
 const cache = new Map();
+const animations = [];
+native.Animated = {
+  View: 'AnimatedView',
+  Value: class { constructor(value) { this.value = value; } setValue(value) { this.value = value; } stopAnimation() {} },
+  timing: (value, options) => ({ start: complete => animations.push({ value, options, complete }) }),
+};
 function load(path) {
   if (cache.has(path)) return cache.get(path);
   const compiled = ts.transpileModule(readFileSync(path, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2022 } }).outputText;
@@ -42,6 +48,40 @@ function load(path) {
 const { AppButton, AppTextField } = load(resolve(source, 'components/ui/primitives.tsx'));
 const { AppState } = load(resolve(source, 'components/ui/AppState.tsx'));
 const { useReducedMotion } = load(resolve(source, 'hooks/useReducedMotion.ts'));
+const { Presence } = load(resolve(source, 'components/ui/Presence.tsx'));
+
+test('presence disables exiting controls immediately and ignores an interrupted exit completion', async () => {
+  animations.length = 0;
+  let renderer;
+  const content = visible => React.createElement(Presence, { visible, reducedMotion: false }, React.createElement('Control'));
+  await act(async () => { renderer = create(content(true)); });
+  await act(async () => renderer.update(content(false)));
+  const exiting = animations.at(-1);
+  assert.equal(renderer.root.findByType('AnimatedView').props.pointerEvents, 'none');
+  assert.equal(renderer.root.findByType('AnimatedView').props.inert, true);
+  assert.equal(renderer.root.findByType('AnimatedView').props['aria-hidden'], true);
+  await act(async () => renderer.update(content(true)));
+  await act(async () => exiting.complete({ finished: true }));
+  assert.equal(renderer.root.findByType('AnimatedView').props.pointerEvents, 'auto');
+  await act(async () => renderer.update(content(false)));
+  await act(async () => animations.at(-1).complete({ finished: true }));
+  assert.equal(renderer.toJSON(), null);
+  await act(async () => renderer.unmount());
+});
+
+test('reduced motion settles a running exit and stale callbacks cannot remove a new arrival', async () => {
+  let renderer;
+  const content = (visible, reducedMotion) => React.createElement(Presence, { visible, reducedMotion }, React.createElement('Control'));
+  await act(async () => { renderer = create(content(true, false)); });
+  await act(async () => renderer.update(content(false, false)));
+  const exit = animations.at(-1);
+  await act(async () => renderer.update(content(false, true)));
+  assert.equal(renderer.toJSON(), null);
+  await act(async () => renderer.update(content(true, true)));
+  await act(async () => exit.complete({ finished: true }));
+  assert.equal(renderer.root.findByType('AnimatedView').props['aria-hidden'], false);
+  await act(async () => renderer.unmount());
+});
 
 test('shared button blocks duplicate async actions and retains actionable failure text', async () => {
   let calls = 0; let fail; let renderer;

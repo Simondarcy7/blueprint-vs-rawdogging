@@ -24,6 +24,8 @@ Mark unused states N/A with a reason.
 - Input validation / duplicate-submit handling:
 - Persistence promise / retry / optimistic rollback:
 - Keyboard / focus / screen-reader behavior:
+- Motion purpose / arrival-change-exit / reduced-motion alternative / interruption behavior:
+- Confirmation, undo and focus return; essential feedback that must remain visible:
 - Narrow viewport / enlarged text / keyboard-open behavior:
 - Slow device/network / realistic data-volume check:
 - Outstanding gaps and next verification step:

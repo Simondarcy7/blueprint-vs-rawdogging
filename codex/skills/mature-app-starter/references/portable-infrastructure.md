@@ -4,6 +4,10 @@ The toolkit includes reusable source, executable checks and an additive scaffold
 
 ## What is implemented
 
+Async recipes distinguish generation guards, equivalent-work coalescing, deadlines and lossless per-resource serial queues. Choose the required contract; do not use deduplication to discard different write intents. Preference and flag reloads preserve confirmed values but block edits after a failed hydration.
+
+For a runnable integration, use the repository's `scripts/create-app.mjs` and `starters/expo/README.md`. The default recipes also include interruption-safe `Presence`; the optional storage pack includes `adapterContract.ts` for disposable adapter checks. These are separate from product capabilities in [the optional catalogue](feature-recipes.md).
+
 | Area | Source in the installed mature-app-starter skill | Behavior |
 | --- | --- | --- |
 | Settings and appearance | `assets/app-baseline/src/modules/settings/` | Controlled settings screen, versioned preferences and confirmed durable writes |

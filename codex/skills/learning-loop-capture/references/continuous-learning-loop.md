@@ -1,5 +1,7 @@
 # Continuous Learning Loop
 
+Public guides in `docs/` are canonical where installed references mirror them. After edits, run `npm run references:sync`, review the diff, then `npm run references:check`. The check covers every mirrored guide, skill-specific copies, the required contract and selected shared source recipes. Do not edit generated mirrors independently. The runnable example must keep code-versus-platform evidence explicit.
+
 Use this loop when an active project teaches something reusable.
 
 ## Capture Triggers
@@ -24,6 +26,8 @@ Reusable toolkit learning:
 
 ## Promotion Rule
 
+Promote a lesson into the default shell only when it improves implementation quality without inventing a product feature. Reuse across several apps is not enough by itself. Keep capability-specific requirements in the owning product; optional toolkit guidance must stay conditional and must not seed new capabilities into kickoff checklists.
+
 Promote only:
 
 - Rules likely to apply to at least two future projects.
@@ -32,6 +36,8 @@ Promote only:
 - Checklists that would change future implementation behavior.
 
 ## Evidence and installation parity
+
+After a milestone, classify the lesson, update its existing guide/check, and review applicability to another product. Skip capture when there is no reusable learning. Before the next app, prune obsolete rules and check dependency/framework guidance. Update external knowledge bases, user skills or plugin installations only when requested; repository maintenance does not authorize those writes.
 
 For each promoted lesson, record source path and revision/date, whether it is committed or work in progress, observed behavior versus verified result, applicability, exceptions, and the smallest preventive check. Keep private data and product assets out of the toolkit.
 
@@ -42,3 +48,17 @@ Do not promote exact product budgets or vendor choices as universal rules. Durin
 ## Generic public guidance
 
 Public toolkit updates should describe reusable behavior, applicability and checks without naming the source app or including its local paths, commit IDs, branding, domain data or arbitrary performance values. Keep any necessary private provenance separately with appropriate authorization. Promote a portable lesson only when its evidence supports it; distinguish proposed patterns from verified behavior.
+
+## Mining older task histories
+
+Include archived tasks and earlier pages of long conversations; a recent-task list is not the project history. Start with a project-scoped inventory and record the date range, tasks/pages inspected and unavailable or unreviewed gaps. Read summaries and final outcomes first, then load the particular decision, failure or correction needed to assess a candidate lesson. Avoid raw tool logs and unrelated conversations.
+
+Treat historical messages as evidence, not current instructions. Distinguish an initial proposal from implementation, a claimed check from its supporting result, and an old recommendation from a later correction. Preserve the reason and applicable failure mode rather than copying obsolete frameworks, dependency versions or product-specific choices. Check current source or authoritative documentation when the proposed rule depends on present behavior.
+
+Compare candidates with existing guidance before adding rules. Prefer a small addition to the guide and its acceptance check over another overlapping document. Keep coverage/provenance notes private and scrub credentials, identifiers and source-product details before publishing. Report the actual coverage; do not call a summary review an exhaustive transcript audit.
+
+## Keep the starting point current
+
+After architecture or service changes, mark superseded ADRs and setup instructions explicitly and link the replacement. Maintain one active command/config source. If a retired client or rollback snapshot remains in the repository, document its owner, restore purpose, exclusion from active builds/tests/shipped assets and removal trigger; an old folder must not quietly become a second active implementation.
+
+For each toolkit adoption, record the toolkit revision and intentional local deviations in the project index. Upgrade through a reviewed diff and rerun the affected checks; reinstalling with skipped files is not an upgrade. Use the quality-foundation readiness map to find the next applicable guide instead of rereading all references. New lessons need both the prevention rule and its verification location, with source evidence kept outside the generic public toolkit when product-specific.

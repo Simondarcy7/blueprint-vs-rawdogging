@@ -1,5 +1,7 @@
 # Continuous Learning Loop
 
+Public guides in `docs/` are canonical where installed references mirror them. After edits, run `npm run references:sync`, review the diff, then `npm run references:check`. The check covers every mirrored guide, skill-specific copies, the required contract and selected shared source recipes. Do not edit generated mirrors independently. The runnable example must keep code-versus-platform evidence explicit.
+
 Use this loop when an active project teaches something reusable.
 
 ## Capture Triggers
@@ -34,6 +36,8 @@ Promote only:
 - Checklists that would change future implementation behavior.
 
 ## Evidence and installation parity
+
+After a milestone, classify the lesson, update its existing guide/check, and review applicability to another product. Skip capture when there is no reusable learning. Before the next app, prune obsolete rules and check dependency/framework guidance. Update external knowledge bases, user skills or plugin installations only when requested; repository maintenance does not authorize those writes.
 
 For each promoted lesson, record source path and revision/date, whether it is committed or work in progress, observed behavior versus verified result, applicability, exceptions, and the smallest preventive check. Keep private data and product assets out of the toolkit.
 

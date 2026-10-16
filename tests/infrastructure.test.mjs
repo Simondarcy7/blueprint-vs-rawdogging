@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createGenerationGuard, singleFlight, withDeadline } from '../codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts';
+import { createGenerationGuard, createSerialTaskQueue, singleFlight, withDeadline } from '../codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts';
 import { createResourceCache } from '../codex/skills/mature-app-starter/assets/app-baseline/src/lib/resourceCache.ts';
 import { createScrollMemory } from '../codex/skills/mature-app-starter/assets/app-baseline/src/modules/navigation/scrollMemory.ts';
 import { scopedStorage, createOwnerScope } from '../codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/ports.ts';
@@ -24,6 +24,24 @@ const codec = () => createBackupCodec({ appId: 'example', schemaVersion: 1, maxB
   if (!value || typeof value !== 'object' || !Array.isArray(value.items) || !value.items.every(item => typeof item === 'string')) throw new Error('Invalid snapshot');
   return { items: [...value.items] };
 } });
+
+test('serial writes retain invocation order, read state at execution and recover from failure', async () => {
+  const queue = createSerialTaskQueue();
+  const calls = [];
+  let release;
+  let value = 0;
+  const first = queue.run(async () => { calls.push('first'); await new Promise(resolve => { release = resolve; }); throw new Error('failed'); });
+  const rejected = assert.rejects(first, /failed/);
+  const second = queue.run(() => { calls.push('second'); value += 1; });
+  const third = queue.run(() => { calls.push('third'); return value + 1; });
+  await Promise.resolve();
+  assert.deepEqual(calls, ['first']);
+  release();
+  await rejected;
+  await second;
+  assert.equal(await third, 2);
+  assert.deepEqual(calls, ['first', 'second', 'third']);
+});
 
 test('stale tickets remain invalid after identity changes away and back', () => {
   const scope = createOwnerScope('one'); const ticket = scope.capture();
@@ -108,6 +126,23 @@ test('device actions distinguish unsupported, cancelled, failed and confirmed ou
   assert.equal((await actions.share({ title: 'Example', url: 'javascript:alert(1)' })).status, 'failed');
   assert.equal((await actions.copyText('hello')).status, 'failed');
   assert.equal((await actions.confirm({ title: 'Remove?', message: 'Remove item', confirmLabel: 'Remove', destructive: true })).value, false);
+});
+
+test('failed flag reload preserves values but blocks subsequent writes until recovery', async () => {
+  let raw = null;
+  const store = createFeatureStore({ enabled: false }, { read: async () => raw, write: async value => { raw = value; } });
+  await store.load();
+  await store.set('enabled', true);
+  raw = '{broken';
+  await assert.rejects(store.load());
+  assert.equal(store.getSnapshot().ready, false);
+  assert.equal(store.getSnapshot().flags.enabled, true);
+  await assert.rejects(store.set('enabled', false));
+  assert.equal(raw, '{broken');
+  raw = null;
+  await store.load();
+  await store.set('enabled', true);
+  assert.equal(store.getSnapshot().flags.enabled, true);
 });
 test('temporary leases keep failed cleanup retryable and release once', async () => {
   let fail = true; const removed = [];

@@ -9,6 +9,8 @@ Use this skill to guide a new app from idea to first implementation slice.
 
 ## Workflow
 
+Use `../mature-app-starter/references/start-here.md` as the compact decision checklist. Explicitly consider motion, reduced-motion changes, navigation context and failed-action recovery. Record applicability without adding unused features. Optional patterns are in `../mature-app-starter/references/feature-recipes.md`.
+
 1. Read BLUEPRINT.md (or ../mature-app-starter/references/required-blueprint.md), then available project context and existing instructions. The contract controls new-app setup.
 2. Use `references/app-startup-blueprint.md` and `references/kickoff-checklist.md`; fall back to `docs/foundation/` copies when installed.
 3. Identify: problem, target user, first valuable workflow, platform, risk profile, non-goals, and first beta success signal.

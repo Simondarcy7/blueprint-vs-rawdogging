@@ -1,5 +1,15 @@
 # Mature App Foundation
 
+**[Start every project here](docs/start-here.md).** One kickoff checklist covers motion, accessibility, recovery, data, performance and release decisions. Use the [optional feature catalogue](docs/feature-recipes.md) only for capabilities your product needs.
+
+For a working iOS/Android/web starting point:
+
+```sh
+node scripts/create-app.mjs --target ../my-app --name my-app
+```
+
+The [runnable shell](starters/expo/README.md) includes a replaceable notes workflow, persisted settings, shared controls, motion and failure checks. Existing projects should use the additive installer and selected recipes. See the [refresh review](docs/refresh-review.md) for scope and exclusions.
+
 A practical startup app foundation toolkit for product thinking, UX/UI, architecture, testing,
 AI-agent setup, and token-efficient software engineering.
 

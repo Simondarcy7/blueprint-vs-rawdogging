@@ -18,6 +18,8 @@ Read `references/required-blueprint.md` first and follow the project's `BLUEPRIN
 
 ## First Pass
 
+Read `references/start-here.md` for every new project. Record Included, Deferred or N/A decisions in the app baseline, including motion and interruption behavior. For a new runnable Expo app, use the toolkit repository's `scripts/create-app.mjs`; for an existing app, install instructions and merge selected recipes. Read `references/feature-recipes.md` only when selecting product capabilities; the catalogue is not a backlog. Keep code-versus-guidance limits explicit.
+
 Start by identifying:
 
 - Target users and their high-stakes moments.
