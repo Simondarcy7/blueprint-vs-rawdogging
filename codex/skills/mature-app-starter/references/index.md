@@ -47,3 +47,6 @@ Load only the file needed for the user's request.
 | Expo local development, Metro, web export and optional MCP debugging | `expo-development-and-web.md` |
 | Selected product analytics and optional PostHog native/web adapters | `product-analytics-setup.md` |
 | Diagnostic trails, current-save receipts and temporary QA resource ownership | `reliability-recipes.md` |
+| First workflow scope, comprehensive polish and optional character | `product-scope-and-polish.md` |
+| Animation catalogue, tokens, reduced motion, interruption and haptics | `animation-playbook.md` |
+| Planning included effects, alternatives and acceptance evidence | `motion-plan.md` |

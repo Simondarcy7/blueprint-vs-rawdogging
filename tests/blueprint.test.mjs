@@ -88,7 +88,7 @@ for (const agent of ['codex', 'claude', 'both']) {
           assert.equal(await readFile(join(target, prefix, 'skills/mature-app-starter/assets/app-baseline', asset), 'utf8'), await readFile(join(repo, source), 'utf8'));
         }
         assert.match(await readFile(join(target, prefix, 'skills/mature-app-starter/references/generic-app-baseline.md'), 'utf8'), /Default starting feature set/);
-        for (const name of ['start-here', 'feature-recipes', 'content-trust']) {
+        for (const name of ['start-here', 'feature-recipes', 'content-trust', 'animation-playbook', 'product-scope-and-polish']) {
           assert.equal(await readFile(join(target, prefix, `skills/mature-app-starter/references/${name}.md`), 'utf8'),
             await readFile(join(repo, `docs/${name}.md`), 'utf8'));
         }

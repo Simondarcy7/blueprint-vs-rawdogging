@@ -29,3 +29,15 @@ Mark unused states N/A with a reason.
 - Narrow viewport / enlarged text / keyboard-open behavior:
 - Slow device/network / realistic data-volume check:
 - Outstanding gaps and next verification step:
+
+## Interaction scope when motion is included
+
+- Selected effects or deliberate static treatments; excluded/deferred effects:
+- Existing component / token / animation owner:
+- Semantic trigger and immediate committed/optimistic state:
+- Rapid reversal, newer data, unmount and background behavior:
+- Focus/input removal during exit and preference change mid-effect:
+- Optional haptic/audio/celebration policy or N/A:
+- Rendered timing/interruption evidence and platform gaps:
+
+Use the motion-plan worksheet for a multi-screen pass; keep one source of decisions.

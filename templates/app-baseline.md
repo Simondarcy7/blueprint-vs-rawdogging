@@ -47,3 +47,14 @@ Use `references/feature-recipes.md` as a conditional catalogue. It identifies co
 - Architecture/static accessibility commands and results:
 - Export performance budgets and measured results:
 - Provider/device integration still pending:
+
+## Product scope and interaction quality
+
+- Complete first loop, including failure/retry and repeat use:
+- Included surfaces / non-goals / deferred owner and trigger:
+- Shared motion contract and selected treatments, or intentional static choices:
+- Motion plan location (optional; equivalent feature-spec fields are sufficient):
+- Reusable code adopted versus guidance requiring local implementation:
+- Coverage of included screens/themes/platforms and remaining gaps:
+
+Read the installed references/product-scope-and-polish.md and, for motion work, references/animation-playbook.md. Their catalogues do not authorize extra features.

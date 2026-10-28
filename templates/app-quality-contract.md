@@ -58,3 +58,13 @@ Add rows only for capabilities required by this product brief. Keep detailed cri
 - General rule and applicability to another app:
 - Smallest check or template change that prevents recurrence:
 - Toolkit location to update:
+
+## Motion acceptance when applicable
+
+- Included effects and shared component/token owner:
+- Immediate state semantics, rapid reversal and stale-completion checks:
+- OS/app reduction before hydration and during an effect:
+- Focus, keyboard, screen-reader and enlarged-text evidence:
+- Fast/slow/failure results; meaningful success rather than timer completion:
+- Observed input/scroll performance on target device/build:
+- Verified surfaces / total included, platform gaps and deliberate static treatments:

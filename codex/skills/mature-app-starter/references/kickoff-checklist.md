@@ -77,3 +77,11 @@ At handoff report what exists, what is stubbed, commands/results, known gaps and
 - Integrate settings, persisted appearance/motion, support/about and shared loading/recovery behavior using the app's design system.
 - Record notification applicability and public-web SEO policy. Keep delivery providers and other external services disabled until selected and verified.
 - Review the installed skill's `assets/app-baseline/README.md` before copying source; preserve existing code and verify host adapters.
+
+## Scope and motion decisions
+
+- Read product-scope-and-polish for a first complete loop, included quality work and explicit exclusions.
+- For interaction/motion work, read animation-playbook and record included effects or deliberate static treatments.
+- Name the shared token/component owner, immediate state changes, cancellation and reduced-motion alternatives.
+- Use the motion-plan worksheet or equivalent feature-spec fields; record deferred owner/trigger and actual screen/platform coverage.
+- Select optional haptics, audio and celebration deliberately; they never imply another product capability.

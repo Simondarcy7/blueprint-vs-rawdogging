@@ -111,3 +111,7 @@
 - Read the installed `references/portable-infrastructure.md` before copying source recipes. Preview with `scripts/scaffold-baseline.mjs`; preserve existing modules and shared primitives.
 - Select optional packs by actual scope; wire real adapters and record remaining platform checks.
 - Run installed architecture/accessibility checks alongside typecheck/lint, and apply measured performance budgets to web export output. Static checks and mock tests are not device evidence.
+
+## Scope and animation planning
+
+For a requested scope/design/polish pass, read the installed mature-app-starter references/product-scope-and-polish.md. For motion work also read references/animation-playbook.md. Define included surfaces, meaningful triggers, shared tokens, interruption and reduced-motion behavior before multiplying effects. Use an existing feature spec or the optional motion-plan worksheet. Preserve current capabilities during visual polish; do not treat guidance catalogues as authorization for new features, vendors or dependencies. Verify real rendering and report sampled versus complete coverage.

@@ -17,7 +17,7 @@ const mirrors = new Map([
 ]);
 const referenceNames = new Set(await readdir(new URL(references, root)));
 for (const name of await readdir(new URL('docs/', root))) {
-  if (referenceNames.has(name) || ['start-here.md', 'feature-recipes.md', 'content-trust.md', 'reliability-recipes.md'].includes(name)) {
+  if (referenceNames.has(name) || ['start-here.md', 'feature-recipes.md', 'content-trust.md', 'reliability-recipes.md', 'animation-playbook.md', 'product-scope-and-polish.md'].includes(name)) {
     const source = `docs/${name}`;
     const destinations = mirrors.get(source) ?? [];
     const destination = `${references}${name}`;
@@ -25,6 +25,7 @@ for (const name of await readdir(new URL('docs/', root))) {
     mirrors.set(source, destinations);
   }
 }
+mirrors.set('templates/motion-plan.md', [`${references}motion-plan.md`]);
 const sourceRoot = 'codex/skills/mature-app-starter/assets/';
 for (const name of ['verify-architecture', 'verify-accessibility', 'verify-performance', 'release-tools']) {
   mirrors.set(`templates/scripts/${name}.mjs`, [`starters/expo/scripts/${name}.mjs`]);
