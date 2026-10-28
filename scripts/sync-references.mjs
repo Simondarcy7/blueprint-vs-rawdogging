@@ -17,7 +17,7 @@ const mirrors = new Map([
 ]);
 const referenceNames = new Set(await readdir(new URL(references, root)));
 for (const name of await readdir(new URL('docs/', root))) {
-  if (referenceNames.has(name) || ['start-here.md', 'feature-recipes.md', 'content-trust.md'].includes(name)) {
+  if (referenceNames.has(name) || ['start-here.md', 'feature-recipes.md', 'content-trust.md', 'reliability-recipes.md'].includes(name)) {
     const source = `docs/${name}`;
     const destinations = mirrors.get(source) ?? [];
     const destination = `${references}${name}`;

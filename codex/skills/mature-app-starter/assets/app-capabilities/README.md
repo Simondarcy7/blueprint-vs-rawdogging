@@ -37,3 +37,10 @@ All storage wrappers assume a single owning instance per scope. They are not a m
 `safeTelemetry.ts` constructs fresh allowlisted payloads and starts disabled. Event properties must match explicit allowed values. Diagnostics discard messages, URLs and arbitrary context; stack file names must match an app-generated allowlist. Put release metadata in trusted transport configuration, not user-supplied context. Add a source-map-aware vendor adapter if needed and test the resulting wire payload.
 
 The adapter must disable vendor auto-capture/replay and SDK-added identity, or sanitize those paths too. Enable collection only after the app's privacy/consent policy is hydrated. Disabling prevents new captures; it cannot retract a request already handed to a provider or delete previously collected data. Transport failure returns false and never blocks a primary workflow; callers should not await analytics before saving or navigation.
+
+## Optional reliability extensions
+
+- `diagnostics/.../safeTelemetry.ts` also exports `createDiagnosticTrail(policy, limit)`: a bounded, in-memory list of allowlisted events. Starts disabled; disabling clears history. Record static screen/action categories after policy hydration, clear on account changes, and attach `snapshot()` through a sanitized provider adapter. No URLs, record IDs, raw exception text or automatic capture. Snapshots are defensive copies; this helper does not send, persist or retract provider data.
+- `storage/.../saveAcknowledgement.ts` tracks whether the latest local revision has a verified save receipt. Call `changed()` for every committed local mutation, capture a ticket beside the immutable outgoing snapshot, and acknowledge only after confirmed persistence. Reset on identity/data replacement or lost writer ownership. A failed write leaves the state pending. Serialize remote writes or use server compare-and-swap: this helper cannot prevent an older request overwriting a newer server snapshot.
+
+See the reliability recipes guide for integration and failure cases. Both helpers are optional and require no vendor SDK.

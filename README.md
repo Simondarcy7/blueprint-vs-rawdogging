@@ -215,3 +215,5 @@ node .agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs --root . --
 Remove `--dry-run` to copy, or omit `--with` for the baseline alone. Claude-only installs use `.claude/skills/`. Existing destination files cause the entire preflight to fail before copying; merge existing implementations manually. No providers, routes or dependencies are configured automatically.
 
 The installer also includes architecture, static accessibility and exported-size checks plus provider-neutral release helpers. Set measured budgets in `config/performance-budgets.json`, integrate the source with the host app, and run the documented checks. The [optional pack guide](codex/skills/mature-app-starter/assets/app-capabilities/README.md) explains adapter contracts and limitations.
+
+See [reliability recipes](docs/reliability-recipes.md) for bounded diagnostic trails, verified save acknowledgements and owned temporary QA resources.

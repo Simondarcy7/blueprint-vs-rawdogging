@@ -46,3 +46,4 @@ Load only the file needed for the user's request.
 | Explicitly requested formal product review or owner assurance handoff | `product-review-brief.md` |
 | Expo local development, Metro, web export and optional MCP debugging | `expo-development-and-web.md` |
 | Selected product analytics and optional PostHog native/web adapters | `product-analytics-setup.md` |
+| Diagnostic trails, current-save receipts and temporary QA resource ownership | `reliability-recipes.md` |
