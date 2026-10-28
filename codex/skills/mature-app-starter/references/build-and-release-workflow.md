@@ -85,3 +85,13 @@ Review new/changed licenses and missing metadata through a project-owned process
 For store distribution, maintain one authoritative listing record and derive copy packs or provider metadata from it where tooling supports that. Check current store field and asset requirements at submission time; do not freeze another release's limits or categories into the shell.
 
 Record each screenshot's source build, platform, locale and capture method. Keep web-rendered/mock review candidates clearly distinguished from actual native release captures; do not silently promote a mock into submission evidence. Verify listing claims against the build being submitted, and confirm public support/privacy pages and a real support owner. Asset generation, binary upload, metadata upload, store review and public availability are separate outcomes. Record console/manual checks that scripts cannot establish. See [Expo store submission](https://docs.expo.dev/deploy/submit-to-app-stores/).
+
+## Release evidence and maintenance handoff
+
+Carry a compact record: source revision, environment, app version, native runtime/build, update identity where applicable, commands/results, artifact link, rollout state and recovery path. Pushed source, successful export, uploaded binary, test-track availability and public release are different milestones.
+
+Before applying an update, protect active editing and persisted data. Verify compatibility against populated prior-version state, including rollback limits: an older client may not understand a newer schema. Explain whether a reload/restart is safe now or should wait for a useful boundary. Avoid treating a launch gate as permission to block indefinitely on a network provider.
+
+When a check fails, identify whether the change caused it, whether it is an existing baseline issue or whether evidence is missing. Do not silently disable checks or upgrade unrelated dependencies to make a scoped guidance change look green. Record the limitation, owning follow-up and which later checks did not run. Respect enforced merge/release protections.
+
+Keep support links, store metadata, public/private indexing, source-map handling, asset rights and dependency checks in the applicable release workflow. Choose repeatable checks with explicit failure output; a script's presence alone does not establish coverage. Update the project index when operational ownership or active commands change.

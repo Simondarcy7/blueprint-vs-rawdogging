@@ -37,3 +37,11 @@ Treat public barrels as runtime dependencies too: re-exporting an optional heavy
 For growing search collections, apply intended filtering and sorting consistently with pagination; sorting only a fetched subset can misrepresent the full result. Preserve records with unknown prices or missing optional images when they remain useful. Verify realistic large-list scroll, focus and state restoration rather than treating desktop smoothness as native proof.
 
 Split broad subscriptions and remove unnecessary serialization or repeated initialization only after tracing their cost and ownership. Dependency-level lazy loading can be a smaller change than experimental route-level splitting; verify the exported startup and hydration behavior on every supported surface before promotion. Distinguish repository cleanup from reducing shipped bytes, and distinguish compressed transfer size from unpacked binary size. Preserve visuals and functionality while measuring comparable builds.
+
+## Measure repeated use as well as startup
+
+Define representative initial content, long-list volume, image count and a lower-powered target before setting budgets. Measure useful content readiness, input/scroll responsiveness, expensive screen arrival and repeated navigation. A smaller export alone does not prove a faster interaction.
+
+Keep optional heavy modules behind a clear load boundary with failure/retry UI. Check that prefetch, global imports or provider initialization do not accidentally restore their startup cost. Cache only with owner, size, freshness and invalidation rules. Stop hidden animation/subscription work and release listeners on teardown.
+
+Compare before/after using the same workload and build mode. Preserve correctness, visual quality and feature availability during optimization. If an optimization changes placeholders, focus, stale-data behaviour or accessibility, verify those consequences explicitly. Do not promote a single app's byte or timing threshold as a universal budget.

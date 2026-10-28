@@ -34,3 +34,9 @@ For generated images, icon subsets or asset registries, document the source inpu
 Keep the authoritative source separate from generated consumers; do not hand-edit both. Generate into temporary output and publish the set only after generation succeeds where partial writes could leave mismatched files. Prune stale outputs only inside explicitly generator-owned paths. State whether derivatives are committed or built in CI and verify a clean checkout can reproduce the chosen workflow.
 
 For icon/font subsetting, account for names chosen dynamically through an explicit manifest or supported static convention. A source search alone may miss runtime names. Verify actual rendered glyphs against the original and check the shipped bundle for accidental full-font imports. Hash checks prove freshness/integrity, not visual correctness. Keep generator tools isolated and reproducible without imposing their runtime dependencies on the app.
+
+## Asset behaviour beyond file size
+
+Define source rights, identity, aspect ratio, crop/focal point, reserved layout dimensions, placeholder and error fallback. Avoid substituting a plausible but incorrect real-world image for a missing one. User uploads need actual-byte/content validation, metadata/privacy handling and bounded decoded size at the owning service boundary.
+
+Use meaningful alternative text for informative images and avoid redundant announcements for decorative assets. Check missing images, slow loads, long captions and both supported themes. Share-card assets must match the preview and selected disclosure. Keep generated assets reproducible with a check mode, and keep temporary render/export files outside shipped source unless intentionally retained.

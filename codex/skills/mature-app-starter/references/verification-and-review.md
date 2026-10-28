@@ -49,3 +49,24 @@ Run routine smoke and visual checks with disposable, explicitly seeded data. Fix
 Use an identified build/server for each test run, with isolated output and ports; do not silently attach to an unrelated existing server. Wait for expected fonts, images and settled application state before capture. Keep viewport, browser/OS and rendering environment associated with each baseline. Inspect the diff before accepting a new baseline; never regenerate screenshots simply to turn a failure green. Pair important images with behavior assertions. Browser text enlargement is useful stress coverage but does not replace native system text scaling. See [Playwright visual comparisons](https://playwright.dev/docs/test-snapshots).
 
 For guards, include a known-valid case and a deliberate violating fixture when the rule is important enough to gate releases. Verify nonzero failure status, the files/platforms actually covered, and a clear diagnostic. A script being present, or passing because its scan matched no files, is not evidence that a rule is enforced.
+
+## Product behaviour coverage
+
+Use the product-behaviour worksheet to name included surfaces and applicable states before a comprehensive review. Keep a simple matrix of route/control × state × platform/theme. Count checked surfaces against the included scope; mark representative sampling explicitly. A broad list of checks is not proof they ran.
+
+Select fixtures that reveal real failure modes: empty install, returning user, long text, many records, missing image, partial/stale data, failed save, slow response, denied permission and interrupted identity. Add domain-specific fixtures only where the product requires them. Keep tests independent of private production records.
+
+Choose the evidence level that proves the promise:
+
+| Promise | Useful evidence |
+| --- | --- |
+| Pure state/calculation/validation | Focused deterministic unit tests |
+| Duplicate actions, focus semantics, stale completion | Component/interaction tests plus actual platform checks where needed |
+| Layout, text scaling, motion pacing | Rendered review at representative sizes with motion on/off |
+| Persistence, permissions, haptics, lifecycle | Actual supported browser/native adapter/device behaviour |
+| Authorization, concurrent writes, deletion | Backend integration with identified disposable identities/data |
+| Delivery/update/public content | Verified artifact, environment and deployed/installed outcome |
+
+For a shared-control change, review the primitive first and the affected consumers next. Cover keyboard and screen reader separately from static accessibility lint. Test actual interruption for animation; screenshots alone cannot prove it. Keep browser identity and temporary-build ownership explicit, preserving unrelated sessions.
+
+At handoff distinguish implemented, locally verified, platform verified, deployed and pending. Include an actionable next check for material gaps, not an unsupported readiness claim. See [product behaviour map](product-behavior-map.md) for the owning topic guides.

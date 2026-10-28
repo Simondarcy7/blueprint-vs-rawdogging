@@ -57,3 +57,19 @@ The app must have a comprehensible outcome when an essential startup dependency 
 Do not silently erase data or replace it with a demo to recover startup. Claim that data is unchanged only when the failed operation's boundary establishes that. For persistent apps, distinguish unavailable storage from invalid stored data and preserve diagnostic evidence without exposing record contents.
 
 Keep crash diagnostics behind a typed boundary: stable operation/error categories and release/platform metadata with deliberate field and value allowlists. Inspect SDK-added fields, URLs, stack filenames and attachments too. Test with sentinel personal text and tokens to prove they are excluded; a key-name allowlist alone does not sanitize arbitrary string values. A reporting failure must not make recovery fail. Retain enough sanitized location and release information to diagnose the problem.
+
+## A persistence state vocabulary
+
+Choose terms that match actual guarantees. A typical workflow may distinguish edited in memory, saved on this device, pending remote upload, verified remote commit, conflict and failed persistence. Not every app needs every state. Use the same meaning across editor, summary, account and backup surfaces.
+
+Track the version of work that a completion acknowledges. An older receipt cannot cover newer edits. Failed or uncertain writes retain user intent and expose a retry/reconcile path; do not automatically erase a draft because a transport returned. The optional save-acknowledgement helper is local bookkeeping, not server conflict control. See [reliability recipes](reliability-recipes.md).
+
+If a durable outbox is needed, persist mutation intent with the local change, use stable operation identity, and specify ordering, retry classification, conflict and tombstone behaviour. Avoid implementing multi-device sync for a product that only promises local storage. A timeout does not prove a server mutation failed; reconcile or retry idempotently.
+
+## Recovery must preserve trust
+
+Decide which failure boundaries can safely claim data is unchanged. A startup error before opening storage differs from a partially applied migration. Never automatically delete user data as a generic retry strategy. Keep the minimal recovery UI independent of the failed provider and make recovery-action failure itself understandable.
+
+Verify populated-version upgrades, corrupt-current/valid-recovery cases, quota exhaustion, unavailable storage and interrupted replacement where those promises exist. After recovery, verify actual values and continued editing. Keep backup retention and deletion policies aligned; extra hidden recovery copies are not harmless if they violate the intended removal boundary.
+
+Account lifecycle, guest migration and group ownership have separate acceptance recipes in [identity and collaboration](identity-and-collaboration.md).

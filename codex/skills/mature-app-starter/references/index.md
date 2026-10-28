@@ -50,3 +50,9 @@ Load only the file needed for the user's request.
 | First workflow scope, comprehensive polish and optional character | `product-scope-and-polish.md` |
 | Animation catalogue, tokens, reduced motion, interruption and haptics | `animation-playbook.md` |
 | Planning included effects, alternatives and acceptance evidence | `motion-plan.md` |
+| Comprehensive product thinking and topic selection | `product-behavior-map.md` |
+| Workflow behaviour, optional scope and acceptance worksheet | `product-behavior-spec.md` |
+| Search, filter sheets, favourites, shortcuts and defaults | `discovery-and-personalization.md` |
+| Import review, AI-assisted drafts, export and private sharing | `import-export-and-sharing.md` |
+| Guest migration, session boundaries, roles and shared activity | `identity-and-collaboration.md` |
+| Prompt cooldowns, notifications, feedback and support | `engagement-and-support.md` |
