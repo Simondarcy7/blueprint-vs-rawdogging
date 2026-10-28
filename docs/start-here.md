@@ -47,3 +47,5 @@ An addition needs two plausible uses, a clear owner/boundary, no hidden product/
 Keep business calculations, branded assets/copy, provider catalogues, credentials, production identifiers, arbitrary budgets and historical artifacts app-owned. Never copy an entire mature app into a new project.
 
 For the compact/mobile-first style and purposeful personality defaults, read [UX, UI and motion principles](ux-ui-motion-principles.md). These describe behavior and visual roles, not a compulsory brand.
+
+For a comprehensive scope or polish pass, use [product scope and polish](product-scope-and-polish.md). For animation decisions, use [the animation playbook](animation-playbook.md) and the optional motion-plan worksheet. Keep the first loop complete, effects interruptible, and optional character separate from required product capabilities.

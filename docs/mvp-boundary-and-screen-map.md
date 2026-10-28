@@ -73,3 +73,7 @@ Examples:
 - User understands result without explanation.
 - User returns to repeat the workflow.
 - User trusts output enough to act or save it.
+
+## Include quality in the scope
+
+For each included workflow, scope interaction states, context preservation and feedback alongside screens. Separate foundational usability from optional character and later capabilities using [product scope and polish](product-scope-and-polish.md). Name arrival/change/exit treatments, or an intentional static choice, with [the animation playbook](animation-playbook.md). Acceptance covers the whole loop and its failure path, not just the happy-path screen count.

@@ -83,3 +83,7 @@ Verify explicit modes after reload/relaunch, an OS change while in System mode, 
 Give each shared control one documented import path and behavior contract. Check new modules for parallel button/input/selection kits before promoting their designs. A platform adapter may implement the same contract differently; a second undocumented component vocabulary increases drift. Avoid ambiguous file/folder entrypoints that resolve to different implementations across tools.
 
 Keep a small gallery or fixture set for the primitives actually used by the first workflow: normal, disabled, pending, error, selected, long-content and enlarged-text states where applicable. Reuse those fixtures for visual review and focused behavior checks. Review changes to the shared control first, then its consumers. Keep one-off product layouts local. A gallery is a development aid; it need not become a public route or require another service.
+
+## Shared motion contracts
+
+Centralize purpose-based duration, distance and easing tokens with the theme. Shared controls own press, selected, pending and presence behavior; feature modules supply meaningful triggers. Keep preference resolution centralized and combined with the app choice. Avoid multiple effects owning the same route or property. Use the [animation playbook](animation-playbook.md) for suggested values and interruption/reduced-motion checks; adopt them through existing primitives rather than a parallel animation kit.

@@ -68,3 +68,5 @@ Fill the initially null performance budgets from measured targets before running
 ## Maintainer verification
 
 Use Node 22.18+, `npm ci`, then `npm test`. Tests cover pure behavior, scaffold preservation, installer variants, static check fixtures and component behavior with a lightweight React Native mock. Mocked component tests are not browser/device or visual evidence. Typecheck source recipes with the adopting Expo project's dependencies; match React, React Native, Router and TypeScript versions to that app.
+
+See [reliability recipes](reliability-recipes.md) for bounded diagnostic trails, verified save acknowledgements and owned temporary QA resources.

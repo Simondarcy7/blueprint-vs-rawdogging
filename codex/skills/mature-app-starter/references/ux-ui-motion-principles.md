@@ -79,3 +79,7 @@ Verify show → hide → show before completion, unmount during motion, reduced 
 - Does the interface still work with long text, empty data, and errors?
 - Are accessibility basics handled?
 - Does animation clarify the workflow rather than decorate it?
+
+## Plan the interaction scope
+
+Use [product scope and polish](product-scope-and-polish.md) to decide what belongs in the first complete workflow. For animation work, read the [animation playbook](animation-playbook.md): interaction catalogue, suggested timing tokens, immediate state changes, reduced-motion alternatives, interruption and verification. Complete the motion-plan worksheet or the same fields in the feature spec. An intentional static treatment is valid; the catalogue is not a required feature list.

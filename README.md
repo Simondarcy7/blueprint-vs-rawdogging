@@ -215,3 +215,11 @@ node .agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs --root . --
 Remove `--dry-run` to copy, or omit `--with` for the baseline alone. Claude-only installs use `.claude/skills/`. Existing destination files cause the entire preflight to fail before copying; merge existing implementations manually. No providers, routes or dependencies are configured automatically.
 
 The installer also includes architecture, static accessibility and exported-size checks plus provider-neutral release helpers. Set measured budgets in `config/performance-budgets.json`, integrate the source with the host app, and run the documented checks. The [optional pack guide](codex/skills/mature-app-starter/assets/app-capabilities/README.md) explains adapter contracts and limitations.
+
+See [reliability recipes](docs/reliability-recipes.md) for bounded diagnostic trails, verified save acknowledgements and owned temporary QA resources.
+
+## Product scope, animation and interaction polish
+
+The [scope guide](docs/product-scope-and-polish.md) defines a complete first workflow and separates foundational quality from optional features and brand moments. The [animation playbook](docs/animation-playbook.md) covers presses, selection, navigation, sheets, loading, value changes, lists, errors, completion, reduced motion, interruption, haptics and focused verification. Suggested timing values are starting points, not platform requirements.
+
+Use the [motion plan](templates/motion-plan.md) or equivalent feature-spec fields to scope a pass. These guides are connected to kickoff, agent instructions, screen behavior and acceptance records, and install with Codex/Claude references even with --no-docs. Existing customized installs need reviewed updates. This is reusable guidance plus the toolkit's existing motion primitives, not a claim that every catalogue pattern is implemented.

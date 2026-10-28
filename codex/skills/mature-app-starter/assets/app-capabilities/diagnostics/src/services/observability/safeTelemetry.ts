@@ -45,3 +45,30 @@ export function sanitizeDiagnostic(input: unknown, allowedFiles: readonly string
   }) : [];
   return { type: typeof event.type === 'string' && types.includes(event.type) ? event.type : 'Error', frames };
 }
+
+
+/** In-memory only. Supply static code-owned labels, never routes, IDs or user text. */
+export function createDiagnosticTrail(policy: EventPolicy, limit = 25) {
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100) throw new Error('Trail limit must be 1–100');
+  // Snapshot the policy so a caller cannot widen collection after construction.
+  const rules: EventPolicy = Object.fromEntries(Object.entries(policy).map(([name, fields]) =>
+    [name, Object.fromEntries(Object.entries(fields).map(([key, values]) => [key, [...values]]))]));
+  let enabled = false;
+  let entries: SafeEvent[] = [];
+  const copy = (event: SafeEvent): SafeEvent => ({ name: event.name, properties: { ...event.properties } });
+  return {
+    setEnabled(value: boolean) { enabled = value; if (!value) entries = []; },
+    clear() { entries = []; },
+    record(name: string, input: unknown = {}): boolean {
+      if (!enabled) return false;
+      try {
+        const event = sanitizeEvent(name, input, rules);
+        if (!event) return false;
+        entries.push(event);
+        if (entries.length > limit) entries.shift();
+        return true;
+      } catch { return false; }
+    },
+    snapshot(): SafeEvent[] { return entries.map(copy); },
+  };
+}

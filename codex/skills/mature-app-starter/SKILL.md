@@ -143,3 +143,7 @@ For distributed native apps, plan OTA delivery before external beta as required 
 ## Portable source adoption
 
 For new app implementation or reusable infrastructure, read `references/portable-infrastructure.md` and the selected asset READMEs. Use `scripts/scaffold-baseline.mjs --root APP --dry-run` to inspect additive source copying; optionally select `--with storage,device,flags,diagnostics`. Never overwrite existing primitives/modules or activate a service merely because its adapter is included. Wire installed architecture/accessibility/performance checks to the app's checks and CI; fill performance budgets from measurements. Pure helpers and mocked component tests do not prove native/browser integration.
+
+## Product scope and animation
+
+When planning scope, interaction quality or a comprehensive polish pass, read references/product-scope-and-polish.md. When animation is in scope, read references/animation-playbook.md and use references/motion-plan.md or equivalent fields in the existing feature spec. Include the first loop's failure/retry states, define deliberate static alternatives, and keep optional character separate from product capabilities. Reuse existing motion primitives; report implemented code separately from guidance and verify the affected platforms.
