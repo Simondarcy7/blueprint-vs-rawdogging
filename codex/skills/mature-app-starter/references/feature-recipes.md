@@ -35,3 +35,7 @@ For each selected pattern, record purpose, non-goals, authority, public API, pla
 - Prompts: dismissal and cooldown persist where promised; returning users are not repeatedly interrupted; essential work remains reachable.
 
 See [data resilience](data-resilience-and-capabilities.md), [UI states](ui-states-and-forms.md), [content trust](content-trust.md), [portable infrastructure](portable-infrastructure.md) and [verification](verification-and-review.md). Choose integration tests against actual authorization/storage when the promise depends on them.
+
+## Detailed behaviour recipes
+
+For selected capabilities, use [discovery/personalization](discovery-and-personalization.md), [import/export/sharing](import-export-and-sharing.md), [identity/collaboration](identity-and-collaboration.md) and [engagement/support](engagement-and-support.md). Forms/drafts/undo live in [UI states](ui-states-and-forms.md). The [product behaviour map](product-behavior-map.md) connects the whole set. These expand guidance and acceptance cases; they do not change the implementation status in the catalogue above.

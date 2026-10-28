@@ -223,3 +223,15 @@ See [reliability recipes](docs/reliability-recipes.md) for bounded diagnostic tr
 The [scope guide](docs/product-scope-and-polish.md) defines a complete first workflow and separates foundational quality from optional features and brand moments. The [animation playbook](docs/animation-playbook.md) covers presses, selection, navigation, sheets, loading, value changes, lists, errors, completion, reduced motion, interruption, haptics and focused verification. Suggested timing values are starting points, not platform requirements.
 
 Use the [motion plan](templates/motion-plan.md) or equivalent feature-spec fields to scope a pass. These guides are connected to kickoff, agent instructions, screen behavior and acceptance records, and install with Codex/Claude references even with --no-docs. Existing customized installs need reviewed updates. This is reusable guidance plus the toolkit's existing motion primitives, not a claim that every catalogue pattern is implemented.
+
+## A richer starting point for your next product
+
+Start with the [product behaviour map](docs/product-behavior-map.md). It carries a complete set of reusable decisions across navigation and overlays; forms, drafts and safe undo; visual hierarchy and charts; discovery and personalization; importing and sharing; accounts and collaboration; prompts, notifications and support; data trust; measurement and delivery.
+
+The [product-behaviour worksheet](templates/product-behavior-spec.md) turns selected guidance into a scoped workflow contract with failure cases and acceptance evidence. Use it alongside the existing screen and motion plans, or keep equivalent fields in your own feature spec. The map, detailed topic guides and worksheet install with Codex/Claude references even with --no-docs.
+
+Start a project with:
+
+> Follow BLUEPRINT.md and the installed mature-app-starter skill. Use product-behavior-map to scope the first complete useful workflow, including failure, interruption and repeat use. Apply the relevant navigation, forms, visual and motion guidance. Select optional capabilities from my product brief, record Included/Deferred/N/A decisions and acceptance cases, and preserve the app's own brand and domain rules. Distinguish supplied code, guidance requiring implementation and verified platform behaviour. Load only the guides needed for the current work.
+
+This expands the playbook, not the default feature count. Existing customized installations require a reviewed update.

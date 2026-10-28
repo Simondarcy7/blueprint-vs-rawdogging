@@ -85,3 +85,11 @@ At handoff report what exists, what is stubbed, commands/results, known gaps and
 - Name the shared token/component owner, immediate state changes, cancellation and reduced-motion alternatives.
 - Use the motion-plan worksheet or equivalent feature-spec fields; record deferred owner/trigger and actual screen/platform coverage.
 - Select optional haptics, audio and celebration deliberately; they never imply another product capability.
+
+## Carry mature product behaviour into the first workflow
+
+- Use product-behavior-map to select applicable topic guides without loading the entire library.
+- Record the workflow's failure, interruption and return paths as well as happy-path screens.
+- Use product-behavior-spec or equivalent feature-spec fields for navigation, input, data, feedback, identity and evidence decisions.
+- Classify optional capabilities explicitly; keep domain rules, brand and provider policy app-owned.
+- Name the relevant state/gallery fixtures and actual platform/backend checks. A populated worksheet does not mean acceptance passed.

@@ -147,3 +147,7 @@ For new app implementation or reusable infrastructure, read `references/portable
 ## Product scope and animation
 
 When planning scope, interaction quality or a comprehensive polish pass, read references/product-scope-and-polish.md. When animation is in scope, read references/animation-playbook.md and use references/motion-plan.md or equivalent fields in the existing feature spec. Include the first loop's failure/retry states, define deliberate static alternatives, and keep optional character separate from product capabilities. Reuse existing motion primitives; report implemented code separately from guidance and verify the affected platforms.
+
+## Rich product behaviour without scope bloat
+
+At kickoff or comprehensive scope review, read references/product-behavior-map.md and use references/product-behavior-spec.md or equivalent feature-spec fields for selected workflows. Follow its links progressively: UI/forms and navigation for the core loop; discovery-and-personalization, import-export-and-sharing, identity-and-collaboration, and engagement-and-support only when selected. Keep data trust, accessible states and recovery in the included workflow. Separate guide-only patterns from executable recipes and platform-verified integration. Do not turn the library into a mandatory feature backlog or spawn agents from the breadth of the guide.

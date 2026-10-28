@@ -36,3 +36,11 @@ Verify the selected native and web adapters with these checks:
 - Automatic capture/replay and SDK-added properties match disclosures in the actual release configuration.
 
 Record evidence in the existing integration inventory and selected-capability section of the quality contract. Use sanitized diagnostics for transport failures, not recursive analytics calls. Recheck SDK defaults and payloads when upgrading.
+
+## Measure meaningful outcomes
+
+For each selected event record the user question, trigger, owner, allowed fields/values, consent requirement, identity scope and deduplication rule. Distinguish intent, attempted action, local commit, verified remote success and abandonment. A button click alone cannot measure completion. Avoid emitting a success event from a component mount or an animation callback.
+
+Choose one primary first-loop outcome and a few useful failure/return signals. Define any funnel denominator and session/identity policy before interpreting conversion. Keep test/demo traffic distinguishable without leaking private identifiers. Do not collect free text, raw routes or arbitrary payloads merely because they may be useful later.
+
+Verify disabled-before-hydration, opt-out, sign-out/account-switch and transport failure. Inspect the resulting vendor payload, including automatic SDK fields, not just the wrapper input. Measurement failure must not block saving, navigation or support. Record what was observed and sample limitations; an event specification is not evidence that live collection works.

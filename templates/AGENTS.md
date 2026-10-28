@@ -115,3 +115,7 @@
 ## Scope and animation planning
 
 For a requested scope/design/polish pass, read the installed mature-app-starter references/product-scope-and-polish.md. For motion work also read references/animation-playbook.md. Define included surfaces, meaningful triggers, shared tokens, interruption and reduced-motion behavior before multiplying effects. Use an existing feature spec or the optional motion-plan worksheet. Preserve current capabilities during visual polish; do not treat guidance catalogues as authorization for new features, vendors or dependencies. Verify real rendering and report sampled versus complete coverage.
+
+## Comprehensive product behaviour
+
+At kickoff read the installed mature-app-starter references/product-behavior-map.md, then only the topic guides needed by the brief. Capture applicable decisions in the baseline and references/product-behavior-spec.md or an existing feature spec. Include failure, interruption and returning-user behaviour. Keep optional search, drafts, sharing, accounts, notifications and collaboration conditional; guidance is not implemented functionality. Reuse shared controls, preserve domain boundaries, and report actual state/platform coverage rather than checklist completion.

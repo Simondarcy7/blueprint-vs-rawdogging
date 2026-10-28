@@ -58,3 +58,12 @@ Use `references/feature-recipes.md` as a conditional catalogue. It identifies co
 - Coverage of included screens/themes/platforms and remaining gaps:
 
 Read the installed references/product-scope-and-polish.md and, for motion work, references/animation-playbook.md. Their catalogues do not authorize extra features.
+
+## Product behaviour adoption
+
+- Selected guides from references/product-behavior-map.md:
+- Workflow specs using references/product-behavior-spec.md or equivalent:
+- Optional capabilities explicitly excluded/deferred:
+- State-gallery fixtures and acceptance evidence owner:
+
+The topic library carries behaviour guidance, not automatically installed features. Keep one authoritative specification per workflow.

@@ -49,3 +49,5 @@ Keep business calculations, branded assets/copy, provider catalogues, credential
 For the compact/mobile-first style and purposeful personality defaults, read [UX, UI and motion principles](ux-ui-motion-principles.md). These describe behavior and visual roles, not a compulsory brand.
 
 For a comprehensive scope or polish pass, use [product scope and polish](product-scope-and-polish.md). For animation decisions, use [the animation playbook](animation-playbook.md) and the optional motion-plan worksheet. Keep the first loop complete, effects interruptible, and optional character separate from required product capabilities.
+
+Use the [product behaviour map](product-behavior-map.md) for a comprehensive starting decision pass. It connects navigation, forms, visual design, discovery, import/sharing, identity, engagement, data trust and delivery to their owning guides. Complete the product-behaviour worksheet only for selected workflows; load individual guides as needed.

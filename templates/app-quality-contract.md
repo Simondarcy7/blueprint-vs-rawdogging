@@ -68,3 +68,12 @@ Add rows only for capabilities required by this product brief. Keep detailed cri
 - Fast/slow/failure results; meaningful success rather than timer completion:
 - Observed input/scroll performance on target device/build:
 - Verified surfaces / total included, platform gaps and deliberate static treatments:
+
+## Workflow coverage
+
+- Included workflows/surfaces and relevant product-behaviour specs:
+- Happy, failed, interrupted and return-use evidence:
+- Shared-control gallery and affected-consumer review:
+- Checked surface/state/platform coverage; explicit sampling:
+- Account/backend/device promises requiring integration proof:
+- Existing baseline failures, skipped downstream checks and next action:
