@@ -19,6 +19,8 @@ The next [product workflow capabilities](docs/product-workflow-capabilities.md) 
 
 Existing applications can use the [shared capability sync workflow](docs/shared-capability-adoption.md) to adopt the same source with provenance and drift checks. App-owned schemas, persistence, account fences and presentation stay outside the shared directory.
 
+[Phase 3](proposals/implementation-notes/phase-3-summary.md) wires these capabilities into Golf App and OddsBasket, with actual workflow tests, browser evidence and a shared fix propagated to both. Published draft PRs and exact source hashes are recorded there; production/native acceptance remains separate.
+
 This is a playbook, installable toolkit and collection of copyable app-baseline modules you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 

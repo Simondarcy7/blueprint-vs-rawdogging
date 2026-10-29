@@ -1,5 +1,7 @@
 # Phase 2 execution record — 29 October 2026
 
+Historical phase record. [Phase 3](phase-3-summary.md) now records real Golf App/OddsBasket adoption and GitHub publication; the local-only status below describes the end of phase 2.
+
 ## Outcome
 
 Four additional reusable UX/product capabilities are implemented locally, composed into a runnable non-golf journal example, and integrated with Blueprint's existing-app scaffold. Two targeted Golf App fundamentals were reproduced and corrected. This extends the [full proposal](../2026-10-29-product-capability-foundation.md) and [phase 1 record](execution-summary.md); it does not complete every candidate in the inventory.

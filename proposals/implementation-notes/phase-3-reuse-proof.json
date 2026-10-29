@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "date": "2026-10-29",
+  "producerRepository": "https://github.com/Simondarcy7/blueprint-vs-rawdogging",
+  "canonicalSourceCommit": "65b7ec6a952e28900f2ae806eb71f15a5e084a50",
+  "proofLevel": "Actual application source integration and byte-identical snapshots; consumer runtime tests and browser limits recorded in phase-3-summary.md. No production rollout or native-device claim.",
+  "sharedCorrection": {
+    "behaviour": "Persisted revision counters cannot exhaust current-session editing or discard.",
+    "beforeSha256": "1a6646e81747beb13b8c1ee67704e56bb770e6a28825d31b8cef3c77e9734d82",
+    "afterSha256": "24fa5424808b80fd96dcc808b5f5234c528d1ec1a97897f3239389fdfdc73167",
+    "regressions": "tests/drafts-capability.test.mjs: hydration and explicit recovery with MAX_SAFE_INTEGER; both failed before correction and pass afterward."
+  },
+  "consumers": [
+    {
+      "name": "Golf App",
+      "repository": "https://github.com/Simondarcy7/golf-scoring-app",
+      "integrationBranch": "codex/blueprint-capability-adoption",
+      "reviewBaseRevision": "f36d47ea24d524aff126b30f18e56b96cff76796",
+      "sourceContentDigest": "95a6ffa5f97d96b660abd1db8afe238ac1df13c511a343e0cce3c44505512e65",
+      "files": [
+        {
+          "path": "mobile/src/foundation/blueprint/lib/asyncWork.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts",
+          "sha256": "efede9447ee4d4ded81ab3a8d71285ca3350d016309663da38cc99e3698e2fd3"
+        },
+        {
+          "path": "mobile/src/foundation/blueprint/services/drafts/draftController.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/drafts/src/services/drafts/draftController.ts",
+          "sha256": "24fa5424808b80fd96dcc808b5f5234c528d1ec1a97897f3239389fdfdc73167"
+        },
+        {
+          "path": "mobile/src/foundation/blueprint/services/import-review/importReview.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/import-review/src/services/import-review/importReview.ts",
+          "sha256": "cb2bd18af27363759f6d162c82a61b1af2ee56260573dca76a4214b7741a5f20"
+        },
+        {
+          "path": "mobile/src/foundation/blueprint/services/interactions/overlayFocus.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/interactions/src/services/interactions/overlayFocus.ts",
+          "sha256": "697a19fa69daf613e2bdaa81154f51d83501c853a52fe7e71ce3dc12216f98e1"
+        },
+        {
+          "path": "mobile/src/foundation/blueprint/services/engagement/promptPolicy.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/engagement/src/services/engagement/promptPolicy.ts",
+          "sha256": "0ce227f9ebffcde0d47c929341b7637fb22dba043502135f09ae2188c6c92141"
+        }
+      ],
+      "runtimeUsage": {
+        "drafts": [
+          "mobile/src/modules/feedback/feedbackDraft.ts",
+          "mobile/src/modules/feedback/FeedbackForm.tsx"
+        ],
+        "import-review": [
+          "mobile/src/modules/backup/useBackupImport.tsx"
+        ],
+        "interactions": [
+          "mobile/src/components/overlayReturnFocus.ts"
+        ],
+        "engagement": [
+          "mobile/src/modules/optional-prompts/reviewPolicy.ts"
+        ]
+      },
+      "installedButNotIntegrated": [],
+      "integrationCommit": "dcb19e99fa589fed82afd736c80bc0e5f5595e85",
+      "pullRequest": "https://github.com/Simondarcy7/golf-scoring-app/pull/45"
+    },
+    {
+      "name": "OddsBasket",
+      "repository": "https://github.com/Simondarcy7/oddsbasket-app",
+      "integrationBranch": "task/blueprint-product-workflows",
+      "reviewBaseRevision": "beba14853cfddf830cdac4f9538cb2fd051dc462",
+      "sourceContentDigest": "95a6ffa5f97d96b660abd1db8afe238ac1df13c511a343e0cce3c44505512e65",
+      "files": [
+        {
+          "path": "src/foundation/blueprint/lib/asyncWork.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts",
+          "sha256": "efede9447ee4d4ded81ab3a8d71285ca3350d016309663da38cc99e3698e2fd3"
+        },
+        {
+          "path": "src/foundation/blueprint/services/drafts/draftController.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/drafts/src/services/drafts/draftController.ts",
+          "sha256": "24fa5424808b80fd96dcc808b5f5234c528d1ec1a97897f3239389fdfdc73167"
+        },
+        {
+          "path": "src/foundation/blueprint/services/import-review/importReview.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/import-review/src/services/import-review/importReview.ts",
+          "sha256": "cb2bd18af27363759f6d162c82a61b1af2ee56260573dca76a4214b7741a5f20"
+        },
+        {
+          "path": "src/foundation/blueprint/services/interactions/overlayFocus.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/interactions/src/services/interactions/overlayFocus.ts",
+          "sha256": "697a19fa69daf613e2bdaa81154f51d83501c853a52fe7e71ce3dc12216f98e1"
+        },
+        {
+          "path": "src/foundation/blueprint/services/engagement/promptPolicy.ts",
+          "canonicalPath": "codex/skills/mature-app-starter/assets/app-capabilities/engagement/src/services/engagement/promptPolicy.ts",
+          "sha256": "0ce227f9ebffcde0d47c929341b7637fb22dba043502135f09ae2188c6c92141"
+        }
+      ],
+      "runtimeUsage": {
+        "drafts": [
+          "src/features/builder/manual-builder-draft.ts",
+          "src/features/builder/use-manual-builder-draft.ts",
+          "src/features/builder/manual-builder-screen.tsx"
+        ],
+        "import-review": [
+          "src/features/upload/upload-review.ts",
+          "src/features/upload/use-upload-review.ts",
+          "src/features/upload/upload-flow-screen.tsx"
+        ]
+      },
+      "installedButNotIntegrated": [
+        "interactions",
+        "engagement"
+      ],
+      "integrationCommit": "46b0cb9893adb4c935dc6b0c6dd1b10b3bf2344b",
+      "pullRequest": "https://github.com/Simondarcy7/oddsbasket-app/pull/51"
+    }
+  ]
+}
