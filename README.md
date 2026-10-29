@@ -13,6 +13,12 @@ The [runnable shell](starters/expo/README.md) includes a replaceable notes workf
 A practical startup app foundation toolkit for product thinking, UX/UI, architecture, testing,
 AI-agent setup, and token-efficient software engineering.
 
+The [revised product-capability proposal](proposals/2026-10-29-product-capability-foundation.md) and [Golf App inventory](proposals/golf-capability-inventory.md) describe the broader extraction programme. The first additions—startup updates, consent-aware observability and durable offline delivery—are available as [optional operational capabilities](docs/operational-capabilities.md). Local contract tests and installation evidence are distinct from real product/native/provider adoption.
+
+The next [product workflow capabilities](docs/product-workflow-capabilities.md) add drafts/recovery, staged import review, overlay focus and engagement policy. Run `npm run example:ux` for a local journal workflow that uses these implementations directly, including failure controls and keyboard-accessible confirmation.
+
+Existing applications can use the [shared capability sync workflow](docs/shared-capability-adoption.md) to adopt the same source with provenance and drift checks. App-owned schemas, persistence, account fences and presentation stay outside the shared directory.
+
 This is a playbook, installable toolkit and collection of copyable app-baseline modules you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 

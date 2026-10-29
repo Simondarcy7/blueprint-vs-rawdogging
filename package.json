@@ -7,7 +7,9 @@
     "test": "node scripts/sync-references.mjs --check && node --test tests/*.test.mjs",
     "references:check": "node scripts/sync-references.mjs --check",
     "references:sync": "node scripts/sync-references.mjs --write",
-    "create:app": "node scripts/create-app.mjs"
+    "create:app": "node scripts/create-app.mjs",
+    "example:ux": "node scripts/serve-product-workflows.mjs",
+    "example:ux:check": "node scripts/serve-product-workflows.mjs --check"
   },
   "devDependencies": { "typescript": "~5.9.3", "react": "19.2.3", "react-test-renderer": "19.2.3" }
 }

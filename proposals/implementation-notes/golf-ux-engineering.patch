@@ -1,0 +1,131 @@
+diff --git a/mobile/src/components/overlayReturnFocus.component.test.tsx b/mobile/src/components/overlayReturnFocus.component.test.tsx
+index ae55c4b0..7bf188ff 100644
+--- a/mobile/src/components/overlayReturnFocus.component.test.tsx
++++ b/mobile/src/components/overlayReturnFocus.component.test.tsx
+@@ -78,7 +78,7 @@ test('captures position before a sticky trigger takes focus and scrolls its cont
+   owner.removeEventListener = (name) => {
+     listeners.delete(name);
+   };
+-  Object.assign(target, { closest: () => target });
++  Object.assign(target, { closest: (selector: string) => selector === 'button, [role="button"], [role="tab"]' ? target : null });
+   const release = watchOverlayTriggers();
+   try {
+     listeners.get('pointerdown')!({ type: 'pointerdown', target } as unknown as Event);
+diff --git a/mobile/src/components/overlayReturnFocus.ts b/mobile/src/components/overlayReturnFocus.ts
+index c8305ab3..d0ad972d 100644
+--- a/mobile/src/components/overlayReturnFocus.ts
++++ b/mobile/src/components/overlayReturnFocus.ts
+@@ -23,13 +23,14 @@ function captureTarget(target: HTMLElement | null): () => void {
+       // A menu action may deliberately focus a destination or an inline editor.
+       const active = owner.activeElement;
+       if (
+-        active !== closingFocus &&
++        active &&
+         active !== target &&
+         active !== owner.body &&
+-        active?.matches('input, textarea, select, [role="button"], [role="tab"]')
++        (active !== closingFocus || !active.closest?.('[aria-modal="true"], dialog, [role="dialog"], [role="menu"], [role="listbox"]'))
+       )
+         return;
+-      if (target.hasAttribute('disabled') || target.getAttribute('aria-disabled') === 'true')
++      if (target.hasAttribute('disabled') || target.matches?.(':disabled') ||
++        target.closest?.('[inert], [hidden], [aria-hidden="true"], [aria-disabled="true"]'))
+         return;
+       target.focus({ preventScroll: true });
+       for (const { element, top, left } of containers) {
+diff --git a/mobile/src/modules/optional-prompts/reviewPolicy.test.ts b/mobile/src/modules/optional-prompts/reviewPolicy.test.ts
+index 3f4846e4..6f281cfa 100644
+--- a/mobile/src/modules/optional-prompts/reviewPolicy.test.ts
++++ b/mobile/src/modules/optional-prompts/reviewPolicy.test.ts
+@@ -20,4 +20,10 @@ describe('native review eligibility', () => {
+   it.each([NaN, Infinity, -1, 3.5])('rejects invalid completion count %s', count => {
+     expect(canRequestReview({ lastShown: 0 }, count, now)).toBe(false);
+   });
++  it.each([NaN, Infinity, -1, 1.5])('fails closed for malformed prompt history or clock %s', value => {
++    expect(canRequestReview({ lastShown: 0 }, 3, value)).toBe(false);
++    expect(canRequestReview({ lastShown: value }, 3, now)).toBe(false);
++    expect(canRequestReview({ lastShown: 0, reviewRequestedAt: value }, 3, now)).toBe(false);
++    expect(canRequestReview({ lastShown: 0, reviewRoundCount: value }, 3, now)).toBe(false);
++  });
+ });
+diff --git a/mobile/src/modules/optional-prompts/reviewPolicy.ts b/mobile/src/modules/optional-prompts/reviewPolicy.ts
+index f453bb43..c9d368c8 100644
+--- a/mobile/src/modules/optional-prompts/reviewPolicy.ts
++++ b/mobile/src/modules/optional-prompts/reviewPolicy.ts
+@@ -3,6 +3,11 @@ export type ReviewHistory = { lastShown: number; reviewRequestedAt?: number; rev
+ 
+ /** Eligibility depends on completed activity, never scores or feedback sentiment. */
+ export function canRequestReview(state: ReviewHistory, completedRoundCount: number, now: number) {
++  // Invalid persisted timing/count data must not accidentally bypass prompt cooldowns.
++  const valid = (value: number) => Number.isSafeInteger(value) && value >= 0;
++  if (!valid(now) || !valid(state.lastShown)
++    || (state.reviewRequestedAt !== undefined && !valid(state.reviewRequestedAt))
++    || (state.reviewRoundCount !== undefined && !valid(state.reviewRoundCount))) return false;
+   return Number.isSafeInteger(completedRoundCount) && completedRoundCount >= 3
+     && completedRoundCount >= (state.reviewRoundCount ?? 0) + 3
+     && (!state.lastShown || now - state.lastShown >= 14 * DAY)
+diff --git a/mobile/src/components/overlayReturnFocus.web.test.ts b/mobile/src/components/overlayReturnFocus.web.test.ts
+new file mode 100644
+index 00000000..45e8c3aa
+--- /dev/null
++++ b/mobile/src/components/overlayReturnFocus.web.test.ts
+@@ -0,0 +1,59 @@
++// @vitest-environment jsdom
++import { afterEach, expect, test, vi } from 'vitest';
++import { captureOverlayReturnFocus } from './overlayReturnFocus';
++
++afterEach(() => { vi.restoreAllMocks(); document.body.replaceChildren(); });
++
++function fixture(markup: string) {
++  document.body.innerHTML = markup;
++  let frame: FrameRequestCallback | undefined;
++  vi.spyOn(window, 'requestAnimationFrame').mockImplementation(callback => { frame = callback; return 1; });
++  const trigger = document.querySelector<HTMLButtonElement>('#trigger')!;
++  trigger.focus();
++  return { trigger, finish: () => frame?.(0) };
++}
++
++test.each(['<a href="#next" id="destination">Next</a>', '<h2 tabindex="-1" id="destination">Next</h2>'])(
++  'preserves deliberate focus on %s after closing starts', markup => {
++    const { finish } = fixture(`<button id="trigger">Menu</button>${markup}`);
++    captureOverlayReturnFocus()();
++    const destination = document.querySelector<HTMLElement>('#destination')!;
++    destination.focus();
++    finish();
++    expect(document.activeElement).toBe(destination);
++  },
++);
++test('preserves destination focus set before the close callback runs', () => {
++  const { finish } = fixture('<button id="trigger">Menu</button><h2 tabindex="-1" id="destination">Next</h2>');
++  const restore = captureOverlayReturnFocus();
++  const destination = document.querySelector<HTMLElement>('#destination')!;
++  destination.focus();
++  restore();
++  finish();
++  expect(document.activeElement).toBe(destination);
++});
++test.each(['inert', 'hidden', 'aria-hidden', 'aria-disabled'])('does not restore into an ancestor made %s', attribute => {
++  const { trigger, finish } = fixture('<section id="region"><button id="trigger">Menu</button></section>');
++  const focus = vi.spyOn(trigger, 'focus');
++  captureOverlayReturnFocus()();
++  document.querySelector('#region')!.setAttribute(attribute, attribute.startsWith('aria-') ? 'true' : '');
++  finish();
++  expect(focus).not.toHaveBeenCalled();
++});
++test('does not restore to a button disabled by its enclosing fieldset', () => {
++  const { trigger, finish } = fixture('<fieldset id="region"><button id="trigger">Menu</button></fieldset>');
++  const focus = vi.spyOn(trigger, 'focus');
++  captureOverlayReturnFocus()();
++  document.querySelector('#region')!.setAttribute('disabled', '');
++  finish();
++  expect(focus).not.toHaveBeenCalled();
++});
++test('restores a removed modal to the still-connected trigger', () => {
++  const { trigger, finish } = fixture('<button id="trigger">Menu</button><div role="dialog" aria-modal="true"><button id="close">Close</button></div>');
++  const restore = captureOverlayReturnFocus();
++  document.querySelector<HTMLElement>('#close')!.focus();
++  restore();
++  document.querySelector('[role="dialog"]')!.remove();
++  finish();
++  expect(document.activeElement).toBe(trigger);
++});

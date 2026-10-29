@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "recordedDate": "2026-10-29",
+  "phase": 2,
+  "donorRepository": "https://github.com/Simondarcy7/golf-scoring-app",
+  "donorRevision": "2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df",
+  "blueprintBaseRevision": "0d770675750ab62da417aee0fd230e9b7811415f",
+  "publication": "local and uncommitted; no push, merge, deployment or package publication",
+  "evidenceLimit": "Controller contracts, strict compilation, donor DOM/component tests and browser reference; not native devices or two shipping consumers.",
+  "capabilities": [
+    {
+      "capability": "drafts",
+      "status": "implemented and locally verified; real consumer/native adoption pending",
+      "relationship": "adapted behaviour and contracts, not byte-identical copy",
+      "sources": [
+        {
+          "path": "mobile/src/state/holeDrafts.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/state/holeDrafts.ts",
+          "git_blob": "2bcf4c8dcdfa37bf990c5da5c481cd0a147f66d7",
+          "committed_sha256": "adc8d3646def5be48389d3443a0d128d6ec44430e15175661ae407919552a003",
+          "inspected_worktree_sha256": "adc8d3646def5be48389d3443a0d128d6ec44430e15175661ae407919552a003",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/modules/rounds/holeDrafts.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/rounds/holeDrafts.ts",
+          "git_blob": "e4d0486654d478cf0b3929b1c4ad9e3dd445568c",
+          "committed_sha256": "849ae5b67f1e906dce4d23c2ec3a0aebcd0326c23e0166d478fab294c1052cd5",
+          "inspected_worktree_sha256": "849ae5b67f1e906dce4d23c2ec3a0aebcd0326c23e0166d478fab294c1052cd5",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/modules/rounds/completedDraftStore.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/rounds/completedDraftStore.ts",
+          "git_blob": "9547abb4d98f1d04269d87b0ecac0aacfee8db5a",
+          "committed_sha256": "1a338967f3e651691abaaa297db5383bef485c72948507edd6e64b7a971a97c6",
+          "inspected_worktree_sha256": "1a338967f3e651691abaaa297db5383bef485c72948507edd6e64b7a971a97c6",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/modules/rounds/completedRoundDraft.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/rounds/completedRoundDraft.ts",
+          "git_blob": "cb9e8329305b67e56494ba3dbed1470f61915d27",
+          "committed_sha256": "9a67ce720e35d0779257be5626fca0deb4340e2cf7761fea3df2a612f7943cbc",
+          "inspected_worktree_sha256": "9a67ce720e35d0779257be5626fca0deb4340e2cf7761fea3df2a612f7943cbc",
+          "local_changes": false
+        }
+      ],
+      "destinations": [
+        {
+          "path": "codex/skills/mature-app-starter/assets/app-capabilities/drafts/src/services/drafts/draftController.ts",
+          "sha256": "1a6646e81747beb13b8c1ee67704e56bb770e6a28825d31b8cef3c77e9734d82"
+        }
+      ],
+      "tests": {
+        "path": "tests/drafts-capability.test.mjs",
+        "sha256": "b2384d2372ed909da0bebaee1416fc34870c58718b28042747e02562e45476cc"
+      }
+    },
+    {
+      "capability": "import-review",
+      "status": "implemented and locally verified; real consumer/native adoption pending",
+      "relationship": "adapted behaviour and contracts, not byte-identical copy",
+      "sources": [
+        {
+          "path": "mobile/src/modules/backup/useBackupImport.tsx",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/backup/useBackupImport.tsx",
+          "git_blob": "e663c268ff3a7b25db6eedea246d9ca4db8d8a31",
+          "committed_sha256": "35ea5b4f44cb1a55869f3e4bc5e76ca010b30eea4b9e4bca8442c8d0e0379089",
+          "inspected_worktree_sha256": "35ea5b4f44cb1a55869f3e4bc5e76ca010b30eea4b9e4bca8442c8d0e0379089",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/modules/backup/BackupImportReview.tsx",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/backup/BackupImportReview.tsx",
+          "git_blob": "7e5aefd343f95c6f779ec4761a3b13b30ba5d6f7",
+          "committed_sha256": "b2a22ee2c3ee89fa7b41323c646638537dc7281ebb3bfe421c033f2d65734002",
+          "inspected_worktree_sha256": "b2a22ee2c3ee89fa7b41323c646638537dc7281ebb3bfe421c033f2d65734002",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/services/backup/backupFormat.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/services/backup/backupFormat.ts",
+          "git_blob": "405d7b9a0d474f2d292bf6e944a685f91f963804",
+          "committed_sha256": "49b89a9538a6d512128953375f47008056b3d1a904ca90c463b5164f598fbdae",
+          "inspected_worktree_sha256": "49b89a9538a6d512128953375f47008056b3d1a904ca90c463b5164f598fbdae",
+          "local_changes": false
+        },
+        {
+          "path": "mobile/src/services/backup/backupContract.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/services/backup/backupContract.ts",
+          "git_blob": "ed7be386c99c4579700f2331d7529adfd7793d6d",
+          "committed_sha256": "8af3c169c8695c8ba8c4ced046bb4971bea2cfdb996f23d027dd49610c7265bd",
+          "inspected_worktree_sha256": "8af3c169c8695c8ba8c4ced046bb4971bea2cfdb996f23d027dd49610c7265bd",
+          "local_changes": false
+        }
+      ],
+      "destinations": [
+        {
+          "path": "codex/skills/mature-app-starter/assets/app-capabilities/import-review/src/services/import-review/importReview.ts",
+          "sha256": "cb2bd18af27363759f6d162c82a61b1af2ee56260573dca76a4214b7741a5f20"
+        }
+      ],
+      "tests": {
+        "path": "tests/import-review-capability.test.mjs",
+        "sha256": "086405bc854f0ae60fdbf567dbdce298b1b9239a861a828084eb75462c0c679d"
+      }
+    },
+    {
+      "capability": "interactions",
+      "status": "implemented and locally verified; real consumer/native adoption pending",
+      "relationship": "adapted behaviour and contracts, not byte-identical copy",
+      "sources": [
+        {
+          "path": "mobile/src/components/overlayReturnFocus.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/components/overlayReturnFocus.ts",
+          "git_blob": "c8305ab3f2985335b9d16f2c0fac46cc550b15f5",
+          "committed_sha256": "31b97ec27788ebf8d650e97a31dd2f59c9de3495cfe95a401d95ef1882c60eee",
+          "inspected_worktree_sha256": "2a33c8911273ba7b18cf5c98c07ac00a0386417c431934fbae200698c29b5c91",
+          "local_changes": true
+        }
+      ],
+      "destinations": [
+        {
+          "path": "codex/skills/mature-app-starter/assets/app-capabilities/interactions/src/services/interactions/overlayFocus.ts",
+          "sha256": "697a19fa69daf613e2bdaa81154f51d83501c853a52fe7e71ce3dc12216f98e1"
+        }
+      ],
+      "tests": {
+        "path": "tests/interactions-capability.test.mjs",
+        "sha256": "2abf994d05de0a3c21aa465eb28010829fb87fcf8ee9e65f807e3b57c033ee2b"
+      }
+    },
+    {
+      "capability": "engagement",
+      "status": "implemented and locally verified; real consumer/native adoption pending",
+      "relationship": "adapted behaviour and contracts, not byte-identical copy",
+      "sources": [
+        {
+          "path": "mobile/src/modules/optional-prompts/reviewPolicy.ts",
+          "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/optional-prompts/reviewPolicy.ts",
+          "git_blob": "f453bb436eda17e2a3ef46cf243dd7d9e40a1428",
+          "committed_sha256": "dcc60706e9c78fef3d774d96d7b910c66084e0feea2514a24f2e6bb4b7c8dbde",
+          "inspected_worktree_sha256": "eace797761a87e158f236be9447f67ec1e76de2a4fbfd469a42856dc4f1aa40e",
+          "local_changes": true
+        }
+      ],
+      "destinations": [
+        {
+          "path": "codex/skills/mature-app-starter/assets/app-capabilities/engagement/src/services/engagement/promptPolicy.ts",
+          "sha256": "0ce227f9ebffcde0d47c929341b7637fb22dba043502135f09ae2188c6c92141"
+        }
+      ],
+      "tests": {
+        "path": "tests/engagement-capability.test.mjs",
+        "sha256": "cb301d3cc3f8e843dc40c1a3c65ff22b23c907cef73f34af41150e4168220b78"
+      }
+    }
+  ],
+  "referenceExample": [
+    {
+      "path": "examples/product-workflows/main.ts",
+      "sha256": "41b7cff10f781d3e0c652bb1d15d52361c9b4f8e636faf786ff4bb6ca96698ad"
+    },
+    {
+      "path": "examples/product-workflows/index.html",
+      "sha256": "a8d9ffef3d791fd7aac835da904d684fee166b3c6d6456bffc5eb550707ff59f"
+    },
+    {
+      "path": "examples/product-workflows/style.css",
+      "sha256": "59d98fb46459f2b74083f41ef675e74e7e671613f599dc35eb71de5814c3b226"
+    },
+    {
+      "path": "scripts/serve-product-workflows.mjs",
+      "sha256": "2769875169196b039d34456f8c03143a28838f49c564b1e2eadf15a45fae5780"
+    }
+  ],
+  "donorFixes": [
+    {
+      "path": "mobile/src/components/overlayReturnFocus.ts",
+      "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/components/overlayReturnFocus.ts",
+      "git_blob": "c8305ab3f2985335b9d16f2c0fac46cc550b15f5",
+      "committed_sha256": "31b97ec27788ebf8d650e97a31dd2f59c9de3495cfe95a401d95ef1882c60eee",
+      "inspected_worktree_sha256": "2a33c8911273ba7b18cf5c98c07ac00a0386417c431934fbae200698c29b5c91",
+      "local_changes": true
+    },
+    {
+      "path": "mobile/src/components/overlayReturnFocus.component.test.tsx",
+      "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/components/overlayReturnFocus.component.test.tsx",
+      "git_blob": "ae55c4b0b68f14d2f7df3dd339d26013323c4104",
+      "committed_sha256": "d84a4c2840a6636ed556b280cfc9051cfadca561e4297585f0cb88462078337e",
+      "inspected_worktree_sha256": "3922bdcae03d4259b51476edd5d0e5e2e716e5ee2b07616fe30506b87ee91a3b",
+      "local_changes": true
+    },
+    {
+      "path": "mobile/src/modules/optional-prompts/reviewPolicy.ts",
+      "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/optional-prompts/reviewPolicy.ts",
+      "git_blob": "f453bb436eda17e2a3ef46cf243dd7d9e40a1428",
+      "committed_sha256": "dcc60706e9c78fef3d774d96d7b910c66084e0feea2514a24f2e6bb4b7c8dbde",
+      "inspected_worktree_sha256": "eace797761a87e158f236be9447f67ec1e76de2a4fbfd469a42856dc4f1aa40e",
+      "local_changes": true
+    },
+    {
+      "path": "mobile/src/modules/optional-prompts/reviewPolicy.test.ts",
+      "source_url": "https://github.com/Simondarcy7/golf-scoring-app/blob/2b46b8d9ba4ccb71cf10cd099ed7ff8a686c46df/mobile/src/modules/optional-prompts/reviewPolicy.test.ts",
+      "git_blob": "3f4846e43ee2c3237de2b005285281f8a027f767",
+      "committed_sha256": "6d0f71676c9b6001aa85db5ced6eeb3b8f5af0425c6f25ca6c410f5e5bf95c48",
+      "inspected_worktree_sha256": "91479d95089d1a0c42623963fc87545298f023437eedbd3df688b99211d48ab8",
+      "local_changes": true
+    },
+    {
+      "path": "mobile/src/components/overlayReturnFocus.web.test.ts",
+      "new_local_file": true,
+      "sha256": "07a803220e34a278ce6cb1d60c75a988ccb5be8bd85122bf536050e7674e0ba2"
+    }
+  ],
+  "integrationTests": [
+    {
+      "path": "tests/capability-adoption.test.mjs",
+      "sha256": "2b6c352ac8f543adfbb4504e7fc190f03b442388e8b098dfc8a306750db64e24"
+    }
+  ]
+}

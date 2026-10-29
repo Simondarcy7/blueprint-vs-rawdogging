@@ -2,6 +2,10 @@
 
 Select these only when the app needs the capability. They are TypeScript source with injected adapters; installation creates no accounts, collects no telemetry, requests no permissions and schedules no notifications.
 
+The `updates` and `outbox` packs, plus the diagnostics pack's analytics/Sentry bridges, are described in `references/operational-capabilities.md` (repository source: `docs/operational-capabilities.md`). For an existing runnable starter, select `--with updates,diagnostics,outbox --only-packs` to preserve its baseline. Default scaffolding still includes the baseline. Updates/outbox require its `src/lib/asyncWork.ts`; the preflight does not replace a host typecheck. These are optional source capabilities, not configured services.
+
+The `drafts`, `import-review`, `interactions` and `engagement` packs preserve product workflows: recoverable unfinished work, explicit review before replacement, accessible overlay focus, and activity/cooldown-based prompts. See `references/product-workflow-capabilities.md` (repository: `docs/product-workflow-capabilities.md`). Drafts/import-review require the baseline async helper; the other two are standalone. The repository's `npm run example:ux` runs a browser reference integration against the actual source.
+
 ```sh
 node .agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs --root . --with storage,device,flags,diagnostics --dry-run
 ```

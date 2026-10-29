@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fieldnotes · Blueprint workflow example</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/style.css"></head>
+<body>
+  <header class="masthead"><a class="wordmark" href="#main">Fieldnotes<span> / Blueprint</span></a><span class="badge">LOCAL REFERENCE APP</span></header>
+  <main id="main">
+    <section class="intro"><p class="eyebrow">REUSABLE PRODUCT BEHAVIOUR</p><h1>Good ideas deserve <br>to make it through.</h1><p class="lede">Write, keep your draft, then review what you bring in. These workflows use the extracted capabilities directly.</p></section>
+    <div class="workspace">
+      <section class="panel editor" aria-labelledby="editor-heading"><div class="section-title"><span class="step">01</span><h2 id="editor-heading">Keep your work</h2></div><p class="support">Drafts stay in this browser. A failed save never clears what you wrote.</p>
+        <label for="title">Title</label><input id="title" maxlength="120" placeholder="A thought worth keeping" autocomplete="off">
+        <label for="body">Your note</label><textarea id="body" rows="7" maxlength="5000" placeholder="Start with something small…"></textarea>
+        <p id="draft-status" role="status" class="status">Opening your draft…</p>
+        <div id="draft-recovery" hidden><p>A stored draft arrived after you started editing. Choose which version to keep.</p><button id="recover">Use stored draft</button><button id="keep-current" class="secondary">Keep my edits</button></div>
+        <div class="actions"><button id="save-draft">Save draft</button><button id="retry-draft" class="secondary" hidden>Retry loading draft</button><button id="discard-draft" class="secondary">Discard draft</button></div>
+      </section>
+      <section class="panel importer" aria-labelledby="import-heading"><div class="section-title"><span class="step">02</span><h2 id="import-heading">Review before replacing</h2></div><p class="support">An import replaces the saved collection below. Your editor draft is separate.</p>
+        <label for="import-source">Journal JSON</label><textarea id="import-source" class="code" rows="7" spellcheck="false"></textarea>
+        <div class="actions"><button id="review-import">Review import</button><button id="example-import" class="secondary">Load example</button></div>
+        <p id="import-status" role="status" class="status">Nothing will change until you confirm.</p>
+        <div id="import-review" class="review" hidden><h3>Ready for your review</h3><p id="review-summary"></p><ul id="review-titles"></ul><p class="support">Check the content. Valid structure does not guarantee correct information.</p><div class="actions"><button id="confirm-import">Replace collection</button><button id="cancel-import" class="secondary">Cancel</button></div></div>
+      </section>
+    </div>
+    <section class="collection" aria-labelledby="collection-heading"><div class="section-title"><h2 id="collection-heading">Saved collection</h2><span id="collection-count" class="count"></span></div><ul id="entries"></ul><p id="collection-error" role="alert" hidden></p></section>
+    <details class="lab"><summary>Try the failure states</summary><p>These switches affect only this local example. No analytics, accounts or network services are connected.</p><label class="check"><input type="checkbox" id="fail-draft"> Make draft storage fail</label><label class="check"><input type="checkbox" id="fail-import"> Make the import commit fail</label><p id="engagement-status" class="support"></p><p class="support">This example demonstrates browser integration, not production or native-device acceptance.</p></details>
+  </main>
+  <footer>Built from the capability source · no copied golf UI or business rules</footer>
+  <dialog id="discard-dialog" aria-labelledby="discard-heading"><h2 id="discard-heading">Discard this draft?</h2><p>Your saved collection will stay as it is. This removes only the editor draft.</p><div class="actions"><button id="cancel-discard" class="secondary" autofocus>Keep writing</button><button id="confirm-discard" class="danger">Discard draft</button></div></dialog>
+  <script type="module" src="/main.js"></script>
+</body></html>
