@@ -48,7 +48,6 @@ function freeze<T>(value: T, seen = new WeakSet<object>()): T {
         [key, freeze(field.value, seen)]))) as T;
     } finally { seen.delete(value); }
   } else throw new Error('Draft codec must return plain JSON data');
-  return value;
 }
 
 /** Recoverable local drafts, separate from saving a product record or submitting an outbox item. */
