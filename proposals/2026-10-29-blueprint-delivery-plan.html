@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Blueprint Research and Delivery Plan</title><style>body{margin:0;color:#20252b;background:#f4f6f8;font:17px/1.65 system-ui,-apple-system,Segoe UI,Arial,sans-serif}main{max-width:1080px;margin:32px auto;padding:52px 60px;background:white;box-shadow:0 2px 18px #17233412}h1,h2,h3{color:#000;line-height:1.25;break-after:avoid}h1{font-size:30px;margin:2.1em 0 .8em}h1:first-child{font-size:40px;margin:0 0 28px;max-width:850px}h2{font-size:23px;margin:1.7em 0 .7em}h3{font-size:19px;margin:1.4em 0 .6em}p{margin:.75em 0 1em}a{color:#155c99;text-decoration-thickness:1px;text-underline-offset:2px;overflow-wrap:anywhere}code{font:0.88em Consolas,monospace;background:#f1f4f7;padding:.12em .3em;border-radius:3px;overflow-wrap:anywhere}pre{background:#f1f4f7;padding:18px;border:1px solid #d9e0e7;border-radius:5px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.45}pre code{background:none;padding:0}ul,ol{padding-left:1.5em}li{margin:.45em 0}table{border-collapse:collapse;width:100%;margin:20px 0 30px;font-size:15px;line-height:1.5;table-layout:auto}th,td{border:1px solid #d9dfe5;padding:12px 14px;vertical-align:top;text-align:left;overflow-wrap:anywhere}th{background:#e8f0f7;color:#172334;font-weight:650}td:first-child{min-width:110px}tr{break-inside:avoid}thead{display:table-header-group}figure{margin:24px 0}svg{display:block;max-width:100%;height:auto}@media(max-width:760px){body{font-size:16px}main{margin:0;padding:28px 20px;box-shadow:none}h1:first-child{font-size:32px}table{display:block;overflow-x:auto}th,td{min-width:130px;padding:9px}}@media print{@page{margin:18mm}body{background:white;font-size:10.5pt;line-height:1.45}main{max-width:none;padding:0;margin:0;box-shadow:none}h1{font-size:22pt}h1:first-child{font-size:26pt}h2{font-size:16pt}h3{font-size:12pt}table{font-size:9pt}th,td{padding:7px}a{color:#155c99}figure{break-inside:avoid}}td:first-child code{white-space:nowrap;overflow-wrap:normal}</style></head><body><main><h1>Blueprint: decision memo and delivery plan</h1>
+<p>Revision 3, 29 October 2026. This rewrites revisions 1 and 2 from the same day; Appendix G lists what changed. Evidence about the code refers to <a href="https://github.com/Simondarcy7/blueprint-vs-rawdogging/tree/0d770675750ab62da417aee0fd230e9b7811415f"><code>blueprint-vs-rawdogging</code></a> at <code>0d770675</code> and <a href="https://github.com/Simondarcy7/fullstack-app-foundation/tree/742ca725ff82ba84903c0c711ee0641676b34619"><code>fullstack-app-foundation</code></a> at <code>742ca725</code>. Nothing was built or run for this revision.</p>
+<h2>The question</h2>
+<p>The repository’s name states the thesis: a maintained blueprint produces better apps than “rawdogging”, meaning a coding agent prompted from scratch. This plan answers two questions, in order:</p>
+<ol>
+<li><strong>Is the thesis true?</strong> Does an agent working inside Blueprint deliver more correct, accessible and resilient features than the same agent working from <code>create-expo-app</code>, at an acceptable cost in tokens and time?</li>
+<li><strong>If it is, what is the cheapest structure that keeps that advantage</strong> as several apps diverge and the foundation keeps changing?</li>
+</ol>
+<p>Revisions 1 and 2 assumed the answer to the first question and spent most of their effort on the second. Their design copied everything into each app and then needed a custom upgrader to get fixes back out. This revision tests the thesis first, and replaces copying plus a custom upgrader with standard distribution channels.</p>
+<h2>Recommendation</h2>
+<ol>
+<li><strong>Test the thesis before investing.</strong> Run a small agent evaluation (Appendix B): five fixed tasks, each run five times with Blueprint and five times with a bare agent on <code>create-expo-app</code>. It takes 4–6 days plus a token budget, and decides whether the remaining 15–23 days are worth spending.</li>
+<li><strong>Ship each kind of asset through the channel built for it.</strong> Reliability code, checks and native capabilities become npm packages and Expo config plugins, upgraded through Renovate pull requests. The app shell is a thin template the product owns from day one. Editable UI comes from a copy-on-demand registry. Agent skills install once per machine as a plugin. This removes the hash manifest, ownership tiers and 3-way-merge upgrader that revisions 1 and 2 proposed (Appendix A).</li>
+<li><strong>Make the executable quality contract the product.</strong> Agents respond to failing checks more reliably than to prose. Ship the checks, shell journeys and resilience tests as packages so every app gets updates to them. Every rule in <code>AGENTS.md</code> either has a check behind it or is labelled as a judgment call.</li>
+<li><strong>Keep agents’ best guide: working code.</strong> The notes demo leaves the generated app, but stays in the foundation repository as a reference module agents can read and copy.</li>
+<li><strong>Keep what revisions 1 and 2 got right:</strong> one canonical starter; Fullstack App Foundation folded into Blueprint; lean product repositories; two real consumers before any new shared abstraction; full-cost accounting; explicit stop conditions; and honesty about what the evidence shows.</li>
+</ol>
+<h2>Decisions required before Phase 1</h2>
+<ol>
+<li><strong>Product family and surfaces.</strong> Expo apps with native and web surfaces (the assumption here), or a web-first pilot with native deferred.</li>
+<li><strong>Two pilot consumers.</strong> Named products with real workflows. With only one, the plan stops after the Phase 2 creation fixes.</li>
+<li><strong>Maintainer and backup,</strong> with an agreed support budget.</li>
+<li><strong>Evaluation budget.</strong> Model, effort settings and a spend cap for about 125 agent runs: 50 for the Phase 1 comparison, up to 50 for doc ablation and 25 for the Phase 3 rerun.</li>
+<li><strong>Publishing.</strong> An npm scope (written <code>@scope</code> below) and agreement to publish the foundation packages publicly, which matches the public repository and spares every consumer a private-registry setup.</li>
+<li><strong>Declared OS and platform matrix.</strong> For example Windows and Linux in CI, Android builds on Linux, and iOS on a macOS runner only where iOS is claimed.</li>
+<li><strong>Existing Fullstack App Foundation users,</strong> which decides whether archiving it needs a migration note.</li>
+<li><strong>Repository name.</strong> Rename before the first package release if the name is going to change.</li>
+</ol>
+<h2>Plan and cost</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Outcome</th>
+<th>Engineering days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Test the thesis</td>
+<td>Evaluation harness built; Blueprint as it stands compared with a bare agent; go or stop</td>
+<td>4–6, plus token budget</td>
+</tr>
+<tr>
+<td>2. Fix creation and restructure distribution</td>
+<td>Cross-OS creation; demo isolated; packages, template, registry and plugin published</td>
+<td>8–12</td>
+</tr>
+<tr>
+<td>3. Two consumers and one upgrade cycle</td>
+<td>Two product slices on the packages; a compatible fix and a breaking change delivered through Renovate; evaluation rerun</td>
+<td>5–8</td>
+</tr>
+<tr>
+<td>4. Non-author trial and decision</td>
+<td>Six gates scored; go, narrow or archive</td>
+<td>2–3</td>
+</tr>
+<tr>
+<td>5. Observe</td>
+<td>4–6 weeks of normal maintenance logged; six-month economic check</td>
+<td>Logging only</td>
+</tr>
+</tbody>
+</table>
+<p>Total: <strong>19–29 engineering days</strong>, a planning hypothesis to refine after Phase 1. Revision 2 estimated 20–31. The difference is in shape rather than size: the first 4–6 days can stop the programme, and the custom upgrader, which would have been the largest ongoing maintenance burden, is gone.</p>
+<h2>How the pilot is judged</h2>
+<p>Six gates: five falsifiable tests and one recorded judgment. Thresholds are in Appendix D.</p>
+<ol>
+<li><strong>Thesis:</strong> Blueprint beats the bare agent on hidden acceptance tests by a large margin, without a large cost penalty.</li>
+<li><strong>Creation and capabilities:</strong> a new app is created, stripped of the demo, branded and given two capabilities on every declared OS in 30 minutes or less, with no file collisions and no help from the author.</li>
+<li><strong>Boundary integrity:</strong> two products ship slices with no foundation code copied in or patched, and an adapter swap touches no domain module.</li>
+<li><strong>Upgrade:</strong> a compatible fix and a breaking change reach both products as Renovate pull requests, the breaking one with a codemod, without data loss or lost customization.</li>
+<li><strong>Self-service:</strong> a developer who didn’t write the foundation completes creation, a feature PR and a handoff with no rescues.</li>
+<li><strong>Economics (judgment):</strong> the break-even forecast is positive for committed apps, or the owner records a reason to subsidize quality.</li>
+</ol>
+<h2>Stop rules</h2>
+<ul>
+<li><strong>After Phase 1:</strong> if Blueprint does not clearly beat the bare agent, don’t build the platform. Keep any check or reliability code that measurably helped as a small package, keep <code>AGENTS.md</code> short, and archive the rest.</li>
+<li><strong>If only one real consumer exists:</strong> do the Phase 2 creation fixes and stop. Packages are overhead for a single app.</li>
+<li><strong>If upgrades still need the author’s help, or product-named switches appear in shared code:</strong> narrow the shared scope rather than adding tooling.</li>
+<li><strong>Defer</strong> private registries, developer portals and multi-agent orchestration until four or more active apps, or repeated upgrade bottlenecks, prove the need.</li>
+</ul>
+<hr />
+<h1>Appendix A: Target design</h1>
+<h2>A1. One channel per kind of asset</h2>
+<p>The design rule: never copy into a product anything the foundation intends to keep fixing, and never try to auto-upgrade anything the product owns.</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>Ship it as</th>
+<th>How fixes reach apps</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reliability code</td>
+<td>npm packages with <code>react</code>, <code>react-native</code> and <code>expo</code> as peer dependencies</td>
+<td>Renovate pull requests, semantic versions, changelog</td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td>Native capabilities</td>
+<td>Expo config plugins inside those packages</td>
+<td>Version bump; applied when Expo generates the native projects, so files never collide</td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td>Checks and test fixtures</td>
+<td><code>@scope/check</code>, <code>@scope/eslint-config</code> and <code>@scope/journeys</code> (Playwright fixtures)</td>
+<td>Version bump</td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td>App shell</td>
+<td>Thin template rendered by <code>create-app</code></td>
+<td>Not upgraded; release notes and an occasional codemod</td>
+<td>Product, from day one</td>
+</tr>
+<tr>
+<td>UI primitives and recipes</td>
+<td>Copy-on-demand registry, shadcn-style (<code>add button</code>)</td>
+<td>Never merged automatically; upstream changes are advisory</td>
+<td>Product</td>
+</tr>
+<tr>
+<td>Reference module</td>
+<td>The notes feature, kept in a reference app in the foundation repository</td>
+<td>Read or copied on demand</td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td>Agent skills and playbooks</td>
+<td>A plugin or skill set installed once per machine</td>
+<td>Plugin update</td>
+<td>Foundation</td>
+</tr>
+</tbody>
+</table>
+<p>With this split, several of revision 2’s problems disappear rather than needing machinery. “Zero edits to foundation files” becomes structural, because edits to installed packages don’t survive <code>npm ci</code>. Capability packs stop colliding with baseline files, because a capability is a dependency plus a config plugin entry. And the tripled documentation goes, because skills and guides install once instead of being copied into every repository.</p>
+<h2>A2. Package map from the current code</h2>
+<p>The candidates below already exist, mostly twice: once in <code>starters/expo</code> and once under <code>codex/skills/mature-app-starter/assets</code>. Packaging them is how the duplicate baseline gets resolved.</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Current source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@scope/storage</code></td>
+<td><code>services/storage/*</code> in both trees: <code>adapterContract</code>, <code>ports</code>, <code>chunkedStorage</code>, <code>installBoundStorage</code>, <code>recoveryJournal</code>, <code>saveAcknowledgement</code>, <code>backup</code></td>
+<td>Ships the adapter contract test kit so products can prove their own adapters</td>
+</tr>
+<tr>
+<td><code>@scope/core</code></td>
+<td><code>lib/asyncWork</code>, <code>lib/resourceCache</code>, <code>services/lifecycle</code>, <code>hooks/useReducedMotion</code>, <code>ThemeProvider</code>, preference hydration, <code>RecoveryBoundary</code></td>
+<td>Behaviour only; theme tokens stay in the template, driven by <code>brand.json</code></td>
+</tr>
+<tr>
+<td><code>@scope/navigation</code></td>
+<td><code>RouteAccessibility</code>, <code>scrollMemory</code>, <code>useAndroidBackAction</code>, <code>services/seo/routePolicy</code></td>
+<td>Accessibility and platform behaviour the foundation owns</td>
+</tr>
+<tr>
+<td><code>@scope/device</code></td>
+<td><code>app-capabilities/device/*</code></td>
+<td>Includes a config plugin for permission strings</td>
+</tr>
+<tr>
+<td><code>@scope/notifications</code></td>
+<td><code>app-baseline/src/modules/notifications/*</code></td>
+<td>Controller plus config plugin</td>
+</tr>
+<tr>
+<td><code>@scope/diagnostics</code></td>
+<td><code>services/diagnostics</code>, <code>safeTelemetry</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>@scope/flags</code></td>
+<td><code>featureStore</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>@scope/api-contracts</code></td>
+<td>Fullstack App Foundation’s <code>check-api-contracts.mjs</code>, contract-drift guidance, localhost smoke and recovery patterns, release checklists</td>
+<td>Adapted to <code>src/modules</code> and <code>src/services</code>; replaces the second installer</td>
+</tr>
+<tr>
+<td><code>@scope/check</code></td>
+<td><code>verify-architecture</code>, <code>verify-boundaries</code>, <code>verify-blueprint</code>, <code>verify-accessibility</code>, <code>verify-web</code>, <code>verify-performance</code>, <code>brand-assets</code>, <code>release</code>, <code>native-smoke</code></td>
+<td>One command with one rule set (A5)</td>
+</tr>
+<tr>
+<td><code>@scope/eslint-config</code></td>
+<td>New</td>
+<td>Layer, public-API and <code>process.env</code> rules expressed as ESLint rules</td>
+</tr>
+<tr>
+<td><code>@scope/journeys</code></td>
+<td>The shell assertions in <code>e2e/shell.spec.ts</code> and the axe helpers</td>
+<td>Without the notes steps</td>
+</tr>
+</tbody>
+</table>
+<p>The remaining UI components go to the registry: <code>Button</code>, <code>Card</code>, <code>ChoiceGroup</code>, <code>ConfirmDialog</code>, <code>Field</code>, <code>Gallery</code>, <code>Presence</code>, <code>Screen</code>, <code>States</code> and <code>Text</code> from the starter, plus <code>AppState</code>, <code>ContentTransition</code> and <code>TransientNotice</code> from the baseline tree. The two trees implement these differently, so they need one reconciliation pass first. The settings screen becomes a registry recipe.</p>
+<h2>A3. Package rules</h2>
+<ul>
+<li><strong>Peer dependencies</strong> on <code>react</code>, <code>react-native</code>, <code>expo</code> and any Expo modules used, so a product never installs a second copy. Duplicate-React and Metro <code>watchFolders</code> problems come from linking local packages, not from installing published ones.</li>
+<li><strong>Compiled output</strong> built with <code>react-native-builder-bob</code> or <code>tsc</code>, shipped with TypeScript types.</li>
+<li><strong>A public npm scope,</strong> so consumers need no registry credentials.</li>
+<li><strong>Changesets</strong> for versions and changelogs, with one GitHub Action in the foundation repository that publishes.</li>
+<li><strong>The Expo SDK as the compatibility axis.</strong> Moving to a new SDK is a major version of every package that touches native code, and each package states its supported SDK range in <code>peerDependencies</code>.</li>
+<li><strong>A Renovate preset</strong> hosted in the foundation repository that groups foundation packages, so a product receives each foundation release as one reviewable pull request that runs the product’s own checks.</li>
+<li><strong>Codemods with breaking changes.</strong> When a release changes a config shape or a public API, it ships a <code>migrate</code> step in <code>@scope/check</code>, named in the release notes, following the Nx migration pattern.</li>
+<li><strong>An escape hatch.</strong> A product that must change foundation internals copies the package source into its own tree, where it becomes product-owned and leaves the upgrade path. Count this as a Gate 3 failure, not a silent fork.</li>
+<li><strong>Admission.</strong> New shared code needs two real consumers. Code that already exists in the starter with tests can be packaged now, because packaging changes how it ships, not what it does.</li>
+</ul>
+<h2>A4. The thin template</h2>
+<p><code>create-app</code> produces only what the product owns from the first commit:</p>
+<ul>
+<li>Routes; the home, settings and support screens; and the app-shell layout that composes the foundation providers.</li>
+<li><code>brand.json</code>, <code>app.config.ts</code>, <code>src/config/env.ts</code>, fonts and theme tokens.</li>
+<li>An ESLint config extending <code>@scope/eslint-config</code>, and <code>package.json</code> scripts that call <code>@scope/check</code>.</li>
+<li>One CI workflow running on Windows and Linux, plus Android and iOS jobs where native support is claimed, with the app’s name templated. The foundation’s current <code>native-shell.yml</code> hard-codes <code>Gather.xcworkspace</code> and <code>com.example.gather</code>.</li>
+<li>A short <code>AGENTS.md</code>, a three-line <code>CLAUDE.md</code> pointing to it, and <code>docs/verification.md</code>.</li>
+<li>An initial Git commit.</li>
+</ul>
+<p>The template is rendered in pure Node with no <code>bash</code> call, and the foundation repository commits <code>.gitattributes</code> (<code>* text=auto eol=lf</code>, <code>*.sh text eol=lf</code>). Template changes after creation reach products as release notes and, when worth it, a codemod. The <code>postinstall</code> dependency patch stays in the template only while needed: each patch names its upstream issue and the release that removes it. If template changes turn out to be frequent, adopt Copier-style recorded answers then; they aren’t needed up front.</p>
+<h2>A5. The executable quality contract</h2>
+<p>This is what an agent iterates against, so it is the most valuable thing the foundation owns.</p>
+<ul>
+<li><code>npm run check</code> calls <code>@scope/check</code>. It runs the type check, ESLint with <code>@scope/eslint-config</code>, and dependency-cruiser for <code>tsconfig</code> path resolution, layer rules and import cycles. Custom code covers only what those tools can’t express, such as thin routes. There is one rule set, used identically by the template, the reference app and CI, with file-and-line messages.</li>
+<li><code>@scope/journeys</code> supplies the shell baseline: appearance and reduced-motion preferences persist, corrupt preference storage is survived without being overwritten, axe reports no violations, and unknown routes reach the 404 screen. Products add their own domain journeys beside these.</li>
+<li>Resilience tests ship with the packages: the storage contract kit, failed-save draft preservation, and injected network failure for <code>api-contracts</code>.</li>
+<li><code>npm run export:native</code> runs on every OS without platform SDKs and catches native-only Metro resolution errors that a web build misses. Device proof stays on Android and iOS runners.</li>
+<li>Stable test IDs and accessibility roles are part of the contract, so journeys keep working when products restyle their UI.</li>
+<li>Track check runtime (target under 30 seconds warm) and false blocks. Fix a false positive before adding a new rule.</li>
+<li>Expo inlines <code>EXPO_PUBLIC_*</code> values into the shipped bundle, so the configuration rules treat every client-readable value as public and keep API secrets server-side.</li>
+</ul>
+<h2>A6. The agent layer</h2>
+<ul>
+<li><strong><code>AGENTS.md</code> stays under about 100 lines:</strong> layout, exact commands, module boundaries, where the reference module is, and what “done” means. Each rule names the check that enforces it or is marked as a judgment call. A prose-only rule is a candidate for a check or for deletion.</li>
+<li><strong>The reference app is the main teaching material.</strong> Agents copy patterns from working code more reliably than they follow instructions, so keep one complete, tested feature (the notes module) in the foundation repository and expose it through <code>add recipe notes</code>.</li>
+<li><strong>Skills ship as a plugin.</strong> The 11 skills under <code>codex/skills</code>, the Claude commands and the custom agents install once per machine instead of being copied into every product. That removes most of the roughly 320 toolkit files that revision 1 measured in a generated app.</li>
+<li><strong>Each product gets <code>docs/verification.md</code>,</strong> adapted from pstack’s verification recipe: launch command, readiness, seed data, build identity, stable handles, observable result, evidence location and cleanup.</li>
+<li><strong>Risky changes get one focused proof.</strong> Following pstack’s blast-radius recipe, a change to a storage adapter, dependency patch or schema states the assumption that makes it safe and proves it with one test.</li>
+<li><strong>Planning worksheets are optional.</strong> The doc ablation in Appendix B decides which of the 50 reference guides earn their place.</li>
+</ul>
+<h2>A7. Upgrades in this model</h2>
+<ol>
+<li><strong>Foundation packages.</strong> Renovate opens one grouped pull request per foundation release, and the product’s CI runs its checks and journeys against it. Release notes state whether the release changes the native runtime fingerprint: the starter uses <code>runtimeVersion: { policy: 'fingerprint' }</code>, so a native-changing release needs a store build while a JS-only release can ship over the air. A product several releases behind takes them in order, so each release’s codemod runs.</li>
+<li><strong>Template changes.</strong> Release notes plus an optional codemod. Nothing merges automatically into product-owned files.</li>
+<li><strong>Dependency upgrades</strong> such as a new Expo SDK. Follow Expo’s <a href="https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/">incremental upgrade walkthrough</a> one SDK at a time: the foundation first, then products once the foundation release for that SDK exists. Verify a clean <code>npm ci</code>, Router query decoding, and web and native export. Retire each lockfile override and dependency patch as soon as its upstream fix lands.</li>
+<li><strong>Data migrations.</strong> Specify the supported prior schema versions, write fences on corrupt or unmigrated state, interruption safety and forward-repair rules. Because the starter ships <code>expo-updates</code>, a migration delivered over the air can be rolled back to the embedded bundle, which then meets the newer format. Either make the previous reader tolerant of it, or deliver the migration in a store build.</li>
+</ol>
+<p>Support the current foundation release and the one before it, with a provisional 90-day window. Longer support is an explicit, costed promise.</p>
+<h2>A8. Repository shape</h2>
+<p>One foundation repository, organized as an npm workspaces monorepo. Expo has configured Metro for workspaces automatically since SDK 52, so the reference app can develop against the packages without manual Metro setup.</p>
+<pre><code class="language-text">packages/          storage, core, navigation, device, notifications, diagnostics,
+                   flags, api-contracts, check, eslint-config, journeys
+template/          the thin app template rendered by create-app
+registry/          copy-on-demand UI components and recipes
+apps/reference/    reference app: the notes module, package test bed, agent exemplar
+plugin/            agent skills, commands and playbooks
+evals/             tasks, hidden acceptance tests, runner and results
+</code></pre>
+<p>Product repositories stay separate. Archive <code>fullstack-app-foundation</code> once <code>@scope/api-contracts</code> is published, after checking whether any app was installed from it.</p>
+<h2>A9. Outside the scope</h2>
+<p>Developer portals, private registries, autonomous schedulers, model routing, multi-agent review panels, signed evidence services and recurring AI status reviews. Each would need its own evidence of need.</p>
+<hr />
+<h1>Appendix B: Agent evaluation</h1>
+<h2>B1. Purpose</h2>
+<p>Revisions 1 and 2 designed a human pilot with one or two developers, which is why they couldn’t use percentages. Blueprint’s main user is a coding agent, and agent runs are cheap and repeatable, so the thesis can be tested properly. The same harness later becomes a regression test for the foundation’s guidance and a tool for pruning it.</p>
+<h2>B2. Tasks</h2>
+<p>Each task has a fixed written prompt, acceptance tests that stay hidden from the agent during the run, and failure tests.</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Prompt in brief</th>
+<th>Hidden checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1. Create and brand</td>
+<td>Create an app, remove the demo and apply a supplied brand</td>
+<td>App runs on web; brand applied; no demo code left; type check passes</td>
+</tr>
+<tr>
+<td>T2. Persisted workflow</td>
+<td>Build a small saved-items feature with failed-save recovery</td>
+<td>Data survives reload; a failed save keeps the draft; corrupt storage neither crashes the app nor gets overwritten</td>
+</tr>
+<tr>
+<td>T3. Adapter swap</td>
+<td>Replace the storage adapter with a supplied alternative</td>
+<td>Domain modules unchanged; contract tests pass</td>
+</tr>
+<tr>
+<td>T4. Upgrade</td>
+<td>Apply a supplied upgrade that contains one breaking change</td>
+<td>Behaviour preserved; customizations kept; data intact</td>
+</tr>
+<tr>
+<td>T5. Realistic feature</td>
+<td>A searchable, filterable list that works offline and has an empty state</td>
+<td>Functional tests; no axe violations; offline behaviour; keyboard and reduced-motion support</td>
+</tr>
+</tbody>
+</table>
+<p>In Phase 1 both conditions receive the same third-party breaking upgrade for T4. The foundation-release version of T4 runs in Phase 3, once packages exist.</p>
+<h2>B3. Conditions</h2>
+<ul>
+<li><strong>A, bare agent:</strong> <code>create-expo-app</code> on the same Expo SDK, no Blueprint files.</li>
+<li><strong>B, Blueprint today:</strong> an app created from <code>0d770675</code> with its full toolkit.</li>
+<li><strong>C, restructured Blueprint:</strong> run in Phase 3, once the packages exist.</li>
+</ul>
+<p>Hold constant the model and its version, effort setting, tools, turn and time limits, machine image, and prompt wording apart from the repository the agent starts in. Run each attempt headless (for example <code>claude -p</code> or <code>codex exec</code>) in a fresh container, and mount the hidden tests only after the agent finishes.</p>
+<h2>B4. Runs and scoring</h2>
+<p>Run each task five times per condition: 25 runs each for A and B, 50 in Phase 1. Score every run on:</p>
+<ul>
+<li><strong>Primary:</strong> whether it passed the hidden acceptance tests.</li>
+<li><strong>Quality:</strong> axe violations, resilience failures, and TypeScript and lint errors under a neutral config, so condition B isn’t scored by its own rules.</li>
+<li><strong>Cost:</strong> tokens, wall time and agent turns, plus human review minutes on a sample of five runs per condition.</li>
+</ul>
+<p>Report counts and ranges, for example 19 of 25 against 11 of 25. At 25 runs per condition, only large differences, around 30 percentage points, stand out from noise. Treat smaller ones as inconclusive, not as wins. Record the actual token cost after the first ten runs and confirm the budget before running the rest.</p>
+<h2>B5. Doc ablation</h2>
+<p>If condition B wins, find out which of the 50 reference guides matter. Remove them in groups of about ten and rerun the two tasks most likely to depend on guidance (T2 and T5) five times each, about 50 runs in total. A group whose removal doesn’t lower results is a candidate for deletion. Testing documents one at a time would need several hundred runs and isn’t worth it.</p>
+<h2>B6. Regression use</h2>
+<p>Rerun condition C on each foundation release that changes guidance or checks, and rerun condition A as well whenever the model changes. Treat a drop of three or more passing runs out of 25 on any task as a reason to investigate before releasing, not as an automatic block.</p>
+<h2>B7. Human trial</h2>
+<p>One developer who didn’t write the foundation runs T1, T5 and a PR handoff using only the repository’s docs. This tests whether the docs and error messages are clear. It is not an effect-size measurement.</p>
+<hr />
+<h1>Appendix C: Current state at <code>0d770675</code></h1>
+<p>Rows marked <em>verified</em> were checked through the GitHub API for revisions 2 and 3. Rows marked <em>reported</em> come from revision 1’s inspection and weren’t re-checked.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Evidence</th>
+<th>Status</th>
+<th>Addressed in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows creation</td>
+<td><code>create-app.mjs</code> line 52 spawns a bare <code>bash</code>. Run from PowerShell or cmd, that resolves to the WSL launcher, or to nothing without WSL. Reproduced on Windows 11 with WSL2: the call exits 127 because the backslashes in the <code>C:\…</code> script path are stripped, and WSL would need a <code>/mnt/c/…</code> path even with them intact. It works from Git Bash, where Git’s <code>bash</code> comes first on <code>PATH</code></td>
+<td>Verified (reproduced)</td>
+<td>A4, Phase 2</td>
+</tr>
+<tr>
+<td>Line endings and CI</td>
+<td>No <code>.gitattributes</code>; CI runs on Ubuntu plus one macOS iOS job, never on Windows</td>
+<td>Verified</td>
+<td>A4, Phase 2</td>
+</tr>
+<tr>
+<td>Version drift</td>
+<td>Node engines <code>&gt;=22.18.0</code> at the root and <code>&gt;=22.13.0</code> in the starter, with CI on Node 22 and 24; TypeScript <code>~5.9.3</code> at the root and <code>^6.0.3</code> in the starter</td>
+<td>Verified</td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td><code>blueprint-version.json</code> holds only <code>starterVersion</code> (hard-coded <code>'1.0.0'</code>) and <code>toolkitRevision</code>; no initial Git commit; <code>create-app.mjs</code> rewrites <code>package.json</code>, <code>package-lock.json</code> and <code>brand.json</code></td>
+<td>Verified</td>
+<td>A4; no longer needed for upgrades (A7)</td>
+</tr>
+<tr>
+<td>Duplicate baseline</td>
+<td><code>starters/expo/src</code> and <code>codex/skills/mature-app-starter/assets</code> implement the same areas separately; the storage contract, <code>asyncWork</code>, <code>Presence</code> and <code>useReducedMotion</code> exist in both</td>
+<td>Verified</td>
+<td>A2</td>
+</tr>
+<tr>
+<td>Pack collisions</td>
+<td><code>scaffold-baseline.mjs</code> aborts on a <code>create-app</code> output because destination files already exist</td>
+<td>Reported</td>
+<td>A1, A2</td>
+</tr>
+<tr>
+<td>Overlapping checks</td>
+<td>The starter’s <code>npm run check</code> runs <code>verify-blueprint</code>, <code>verify-boundaries</code> and <code>verify-architecture</code>, which disagree on route length, <code>process.env</code> scope and layer rules</td>
+<td>All three running: verified. Rule conflicts: reported</td>
+<td>A5</td>
+</tr>
+<tr>
+<td>Demo entanglement</td>
+<td><code>RootLayout.tsx</code> mounts <code>NotesProvider</code>; <code>home/screens.tsx</code> imports <code>RecentNotes</code> and links to <code>/note/new</code>; <code>e2e/shell.spec.ts</code> mixes notes steps with shell checks</td>
+<td>Verified</td>
+<td>A5, A6, Phase 2</td>
+</tr>
+<tr>
+<td>Consumer footprint</td>
+<td>A generated app receives about 320 toolkit files on top of 104 app files, including three copies of the 50 reference guides</td>
+<td>50 guides and 104 app files: verified. Totals: reported</td>
+<td>A6</td>
+</tr>
+<tr>
+<td>Dependencies</td>
+<td>Expo 57, React Native 0.86.3, TypeScript 6; <code>xcode</code> and <code>decode-uri-component</code> overrides; a <code>postinstall</code> patch script; 19 advisory entries in <code>dependency-notes.md</code></td>
+<td>Pins, overrides and patch: verified. Advisory count: reported</td>
+<td>A4, A7</td>
+</tr>
+<tr>
+<td>Over-the-air updates</td>
+<td><code>expo-updates</code> with <code>runtimeVersion: { policy: 'fingerprint' }</code></td>
+<td>Verified</td>
+<td>A7</td>
+</tr>
+<tr>
+<td>Native CI</td>
+<td><code>native-shell.yml</code> builds Android on Ubuntu and iOS with Maestro on macOS, hard-coding <code>Gather.xcworkspace</code> and <code>com.example.gather</code></td>
+<td>Verified</td>
+<td>A4</td>
+</tr>
+<tr>
+<td>Fullstack overlap</td>
+<td>48 matching paths (15 identical); installs <code>src/features/</code> guidance that Blueprint’s verifier rejects</td>
+<td>Reported</td>
+<td>A2 (<code>api-contracts</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>Appendix D: Delivery detail</h1>
+<h2>Phase 1. Test the thesis (4–6 days plus token budget)</h2>
+<p><strong>Work:</strong> settle the owner decisions; name the two consumers; write the five task prompts and their hidden tests; build the runner (container image, headless agent invocation, scoring script and results table); run conditions A and B. If B wins, run the doc ablation.</p>
+<p><strong>Deliverable:</strong> a results table with counts, ranges and cost per condition, plus a short findings note.</p>
+<p><strong>Exit:</strong> a go or stop decision against Gate 1. A stop ends platform work, as set out in the stop rules.</p>
+<h2>Phase 2. Fix creation and restructure distribution (8–12 days)</h2>
+<p><strong>Work:</strong></p>
+<ul>
+<li>Replace the <code>bash</code> call with pure-Node rendering; commit <code>.gitattributes</code>; add Windows CI; align Node and TypeScript versions.</li>
+<li>Convert the repository to workspaces with the layout in A8.</li>
+<li>Move the notes module into <code>apps/reference</code>. In the template, remove <code>NotesProvider</code> from the root layout and <code>RecentNotes</code> from the home screen, and split the notes steps out of the shell journeys.</li>
+<li>Reconcile the two baseline trees into packages (A2) and the registry.</li>
+<li>Build <code>@scope/check</code> and <code>@scope/eslint-config</code>, replacing the three overlapping verifiers with one rule set (A5).</li>
+<li>Build <code>@scope/api-contracts</code> from Fullstack App Foundation’s four distinct assets.</li>
+<li>Publish the skills as a plugin and thin the template (A4).</li>
+<li>Set up Changesets, the publish workflow and the Renovate preset, and publish 1.0.0 of every package at the end of the phase, so Phase 3’s breaking change is a real major version.</li>
+</ul>
+<p><strong>Deliverable:</strong> published packages, a template that generates a lean app, a registry, a plugin and a reference app, all green in CI on Windows and Linux.</p>
+<p><strong>Exit:</strong> Gate 2 passes in CI. <code>npm run check</code>, <code>npm run build:web</code>, <code>npm run export:native</code> and <code>npm run test:e2e</code> pass in the reference app and in a freshly generated app.</p>
+<h2>Phase 3. Two consumers and one upgrade cycle (5–8 days)</h2>
+<p><strong>Work:</strong> build thin vertical slices in the two products, for example an offline-capable local workflow on <code>@scope/storage</code> and a remote-API workflow on <code>@scope/api-contracts</code>. Stub authentication behind the adapter: no package supplies it, and real sign-in is product work outside this allowance. Then release one compatible fix and one breaking change with a codemod, and let Renovate deliver both. Rerun the evaluation with condition C.</p>
+<p><strong>Deliverable:</strong> two products on published packages; two foundation releases adopted; recorded upgrade minutes; condition C results.</p>
+<p><strong>Exit:</strong> Gates 3 and 4 pass. Count the slice work as consumer hours, not foundation hours.</p>
+<h2>Phase 4. Non-author trial and decision (2–3 days)</h2>
+<p><strong>Work:</strong> run the human trial in B7 and score the six gates once.</p>
+<p><strong>Deliverable:</strong> a gate scorecard and a go, narrow or archive decision.</p>
+<h2>Phase 5. Observe (4–6 weeks of normal work)</h2>
+<p>Log upgrades, support interventions, false check blocks, regressions and maintainer hours from PRs and CI. Review after the first real post-pilot upgrade and again at six months.</p>
+<h2>Gate thresholds</h2>
+<p>These are proposals. Confirm them in Phase 1, before any results exist.</p>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Test</th>
+<th>Pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Thesis</td>
+<td>Phase 1 evaluation, conditions A and B</td>
+<td>B passes at least 7 more of 25 runs than A on hidden acceptance tests (about 30 percentage points); B is not worse than A by 3 or more runs on any single task; B’s median tokens and wall time are no more than 1.5 times A’s</td>
+</tr>
+<tr>
+<td>2. Creation and capabilities</td>
+<td>Generate an app, remove the demo, brand it, add two capability packages and run every check</td>
+<td>Passes on every OS in the declared matrix in 30 minutes or less per OS; no file collisions; no author help</td>
+</tr>
+<tr>
+<td>3. Boundary integrity</td>
+<td>Two products ship slices</td>
+<td>No foundation source copied into or patched in either product; an adapter swap edits no domain module</td>
+</tr>
+<tr>
+<td>4. Upgrade</td>
+<td>One compatible fix and one breaking change, delivered by Renovate</td>
+<td>Routine upgrade in 2 hours or less, breaking upgrade in 1 day or less; no data loss, overwritten branding or lost customization; fingerprint change reported</td>
+</tr>
+<tr>
+<td>5. Self-service</td>
+<td>A non-author runs creation, a feature PR and a handoff</td>
+<td>No undocumented rescues; an illegal import, a raw <code>process.env</code> read and a failed save are each caught</td>
+</tr>
+<tr>
+<td>6. Economics</td>
+<td>Break-even forecast (Appendix E)</td>
+<td>Positive within 6–12 months for committed apps, or the owner records a reason to subsidize quality; routine support of 1 hour per app per month or less</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>Appendix E: Economics</h1>
+<pre><code class="language-text">Net labour benefit =
+  sum over committed apps (comparator hours - Blueprint hours)
+  - foundation build hours
+  - foundation maintenance, release and support hours
+</code></pre>
+<p>Keep consumer and foundation hours separate. When converting to money, include token spend on agent work and evaluations, and CI and macOS runner time.</p>
+<p>An illustrative check, to be replaced by Phase 3 measurements: Phases 1, 2 and 4 take 14–21 days (112–168 hours), and six months of maintenance takes 48 hours, so shared cost is 160–216 hours. At 48 hours saved per app, break-even needs four or five committed apps; at 80 hours saved, two or three.</p>
+<p>Hours miss two things. The evaluation may show quality gains, such as fewer escaped defects or better accessibility, that never appear as saved hours; Gate 6’s recorded-judgment option exists for that case. And packages cut each product’s cost per upgrade to reviewing one pull request, which Phase 3 measures directly.</p>
+<hr />
+<h1>Appendix F: Research basis</h1>
+<h2>Approaches</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>What the adopter gets</th>
+<th>After customization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starter or template</td>
+<td>An initial app</td>
+<td>The app owns its copy; improvements need deliberate adoption</td>
+</tr>
+<tr>
+<td>Source distribution</td>
+<td>Editable components or recipes</td>
+<td>High local freedom; merging later changes is the adopter’s job</td>
+</tr>
+<tr>
+<td>Shared package</td>
+<td>A versioned dependency with a public interface</td>
+<td>Improvements arrive through upgrades</td>
+</tr>
+<tr>
+<td>Generator and migrations</td>
+<td>Repeatable creation and controlled transformations</td>
+<td>Structure evolves through tested changes</td>
+</tr>
+<tr>
+<td>Software product line</td>
+<td>Managed common assets for a defined product family</td>
+<td>Commonality and variation are designed together</td>
+</tr>
+<tr>
+<td>Internal developer platform</td>
+<td>A supported way to create and run software</td>
+<td>Has users, owners and a lifecycle</td>
+</tr>
+</tbody>
+</table>
+<p>Revisions 1 and 2 leaned mainly on the first and fourth rows. This revision uses each approach for what it does best: packages for what the foundation keeps fixing, a template for what the product owns, and source distribution for what the product restyles.</p>
+<h2>Repositories and documentation worth studying</h2>
+<p>All were checked through GitHub on 29 October 2026 and are active.</p>
+<ul>
+<li><a href="https://github.com/infinitered/ignite">Ignite</a>: starter ergonomics and demo removal. Its navigation differs from Blueprint’s Expo Router, so treat it as a design reference, not a drop-in. Latest push June 2026.</li>
+<li><a href="https://github.com/founded-labs/react-native-reusables">react-native-reusables</a>: shadcn-style copy-on-demand components for React Native, and the closest model for Blueprint’s registry.</li>
+<li><a href="https://github.com/shadcn-ui/ui">shadcn ui</a> and its <a href="https://ui.shadcn.com/docs/registry">registry documentation</a>: publishing your own copy-on-demand registry.</li>
+<li><a href="https://docs.expo.dev/config-plugins/introduction/">Expo config plugins</a> and the <a href="https://docs.expo.dev/guides/monorepos/">monorepo guide</a>: packaging native capabilities, and developing packages beside an app.</li>
+<li><a href="https://github.com/callstack/react-native-builder-bob">react-native-builder-bob</a>: building React Native libraries.</li>
+<li><a href="https://github.com/changesets/changesets">Changesets</a> and <a href="https://github.com/renovatebot/renovate">Renovate</a>: releasing packages and delivering upgrades as pull requests.</li>
+<li><a href="https://github.com/t3-oss/create-t3-turbo">Create T3 Turbo</a>: which responsibilities live in shared packages and which stay in each app.</li>
+<li><a href="https://nx.dev/docs/kb/migration-generators">Nx migration generators</a>: shipping a codemod with the release that needs it.</li>
+<li><a href="https://copier.readthedocs.io/en/stable/updating/">Copier</a>: template updates from recorded answers, if template changes ever become frequent.</li>
+<li><a href="https://www.jhipster.tech/upgrading-an-application/">JHipster upgrades</a>: treating upgrades as a core user journey.</li>
+<li><a href="https://backstage.io/docs/features/software-templates/">Backstage software templates</a>: an option for many teams and many templates later, not a next step.</li>
+<li><a href="https://github.com/cursor/plugins/tree/1ba91fc25c0977741dd0e267849e6234b037ed0a/pstack">pstack</a> (MIT licence): verification, blast-radius and benchmark recipes for agent work. Keep its notice when copying substantial material.</li>
+</ul>
+<h2>Principles</h2>
+<ul>
+<li><strong>Parnas on modular decomposition</strong> (<a href="https://doi.org/10.1145/361598.361623">1972</a>): hide the decisions likely to change behind interfaces, and test a boundary by swapping an implementation.</li>
+<li><strong>SEI on <a href="https://www.sei.cmu.edu/library/variability-in-software-product-lines/">variability in product lines</a>:</strong> support a few explicit variations, such as brand, platform, persistence adapter and selected capabilities. Ten independent switches make 1,024 combinations nobody can test.</li>
+<li><strong>Sandi Metz, <a href="https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction">The Wrong Abstraction</a>:</strong> extract shared code from repeated real needs, and pull it back out when product-named conditions accumulate.</li>
+<li><strong>The CNCF <a href="https://tag-app-delivery.cncf.io/whitepapers/platform-eng-maturity-model/">platform maturity model</a> and <a href="https://dora.dev/capabilities/platform-engineering/">DORA’s platform guidance</a>:</strong> treat developers, and here agents, as users; maturity costs investment and is not a goal in itself.</li>
+<li><strong><a href="https://www.microsoft.com/en-us/research/publication/the-space-of-developer-productivity-theres-more-to-it-than-you-think/">SPACE</a> and <a href="https://www.michaelagreiler.com/wp-content/uploads/2024/06/DevEx-WhatDrivesProductivity.pdf">DevEx</a>:</strong> judge speed alongside quality, cognitive load and maintenance cost, never on one number.</li>
+<li><strong><a href="https://dora.dev/guides/dora-metrics/">DORA metrics</a>:</strong> once products deploy, track lead time, deployment frequency, change failure rate, recovery time and rework per app as context, not as quotas.</li>
+</ul>
+<hr />
+<h1>Appendix G: Revision history</h1>
+<ul>
+<li><strong>Revision 1:</strong> the original research and delivery plan. A single starter, manifest-tracked source with a custom hash-and-merge upgrader, packages deferred until two consumers existed, and a human pilot judged by six gates.</li>
+<li><strong>Revision 2:</strong> corrections verified against the repository (Windows failure cause, footprint arithmetic, first-pass rate, unsourced percentages, Gate 6 wording), plus gaps in the upgrader design and missing native and over-the-air proof.</li>
+<li><strong>Revision 3 (this one):</strong> rewritten as a decision memo with appendices. The main changes:<ul>
+<li>Tests the “blueprint vs rawdogging” thesis first, with an agent evaluation, before any platform work.</li>
+<li>Replaces copying everything plus a custom upgrader with one distribution channel per kind of asset. The hash manifest, ownership tiers and <code>upgrade-app.mjs</code> are dropped.</li>
+<li>Removes revision 1’s reason for deferring packages. Duplicate-React and Metro problems come from linking local packages, and Expo has configured Metro for monorepos automatically since SDK 52.</li>
+<li>Makes the executable quality contract the core product, and ties every <code>AGENTS.md</code> rule to a check or a judgment label.</li>
+<li>Keeps the notes module as a reference for agents instead of only tearing it out.</li>
+<li>Adds a package map drawn from the current code, a doc-ablation method for pruning the 50 guides, and a re-estimate of 19–29 days with a go or stop point after the first 4–6.</li>
+<li>Carries forward revision 2’s verified findings in Appendix C, with verified and reported rows marked.</li>
+</ul>
+</li>
+</ul>
+</main></body></html>
