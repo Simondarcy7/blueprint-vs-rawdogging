@@ -245,3 +245,5 @@ Start a project with:
 This expands the playbook, not the default feature count. Existing customized installations require a reviewed update.
 
 [Phase 4](proposals/implementation-notes/phase-4-summary.md) adds optional account recovery, notification preference transactions and merge-safe undo. Read the [integration boundaries](docs/account-and-notification-workflows.md) before supplying host adapters.
+
+The [product app shell](docs/product-app-shell.md) supplies reusable React Native layouts, responsive navigation, controls and workflow screens. The generated starter uses this source directly, with consumer-specific themes and adapters.

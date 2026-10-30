@@ -10,6 +10,7 @@ import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { NotesProvider } from '@/modules/notes';
 import { RootNavigation } from '@/modules/navigation';
 import { report } from '@/services/diagnostics';
+import { ProductTheme } from './ProductTheme';
 void SplashScreen.preventAutoHideAsync().catch(() => undefined);
 export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
   const [retryFailed, setRetryFailed] = useState(false);
@@ -81,8 +82,10 @@ function ReadyNavigation() {
     if (ready) void SplashScreen.hideAsync().catch(() => undefined);
   }, [ready]);
   return (
-    <NotesProvider>
-      <RootNavigation />
-    </NotesProvider>
+    <ProductTheme>
+      <NotesProvider>
+        <RootNavigation />
+      </NotesProvider>
+    </ProductTheme>
   );
 }

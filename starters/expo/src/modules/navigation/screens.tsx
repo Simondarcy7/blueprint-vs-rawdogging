@@ -1,6 +1,7 @@
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useWindowDimensions } from 'react-native';
-import { Stack, Tabs } from 'expo-router';
+import { Stack, Tabs, router, usePathname } from 'expo-router';
+import { AppShell, ProductText } from '@/foundation/blueprint-shell/components/product-ui';
 import {
   DarkTheme,
   DefaultTheme,
@@ -48,55 +49,46 @@ export function RootNavigation() {
 export function TabNavigation() {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
-  const { fontScale } = useWindowDimensions();
+  const pathname = usePathname();
+  const activeKey =
+    pathname === '/settings' ? 'settings' : pathname === '/notes' ? 'notes' : 'home';
+  const destinations = { home: '/', notes: '/notes', settings: '/settings' } as const;
   return (
-    <Tabs
-      screenOptions={{
-        headerTitle: brand.name,
-        headerTitleAlign: 'left',
-        headerTintColor: colors.text,
-        headerStyle: { backgroundColor: colors.background },
-        headerShadowVisible: false,
-        tabBarActiveTintColor: colors.accent,
-        tabBarInactiveTintColor: colors.muted,
-        tabBarStyle: {
-          height: Math.max(72, 72 * fontScale) + insets.bottom,
-          paddingTop: 8,
-          paddingBottom: Math.max(8, insets.bottom),
-          backgroundColor: colors.surface,
-          borderTopColor: colors.border,
+    <AppShell
+      activeKey={activeKey}
+      insets={insets}
+      header={
+        <View style={{ paddingHorizontal: 24, paddingVertical: 16 }}>
+          <ProductText variant="heading">{brand.name}</ProductText>
+        </View>
+      }
+      navigation={[
+        {
+          key: 'home',
+          label: navigation.home,
+          icon: <Feather accessible={false} name="home" color={colors.accent} size={22} />,
         },
-        tabBarLabelStyle: { fontSize: 12 },
-        sceneStyle: { backgroundColor: colors.background },
+        {
+          key: 'notes',
+          label: navigation.notes,
+          icon: <Feather accessible={false} name="file-text" color={colors.accent} size={22} />,
+        },
+        {
+          key: 'settings',
+          label: navigation.settings,
+          icon: <Feather accessible={false} name="sliders" color={colors.accent} size={22} />,
+        },
+      ]}
+      onNavigate={(key) => {
+        if (key === 'home' || key === 'notes' || key === 'settings')
+          router.navigate(destinations[key]);
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: navigation.home,
-          tabBarIcon: ({ color, size }) => (
-            <Feather aria-hidden={true} name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="notes"
-        options={{
-          title: navigation.notes,
-          tabBarIcon: ({ color, size }) => (
-            <Feather aria-hidden={true} name="file-text" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: navigation.settings,
-          tabBarIcon: ({ color, size }) => (
-            <Feather aria-hidden={true} name="sliders" color={color} size={size} />
-          ),
-        }}
-      />
-    </Tabs>
+      <Tabs tabBar={() => null} screenOptions={{ headerShown: false }}>
+        <Tabs.Screen name="index" options={{ title: navigation.home }} />
+        <Tabs.Screen name="notes" options={{ title: navigation.notes }} />
+        <Tabs.Screen name="settings" options={{ title: navigation.settings }} />
+      </Tabs>
+    </AppShell>
   );
 }

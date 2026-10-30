@@ -69,8 +69,9 @@ export function createNotificationPreferencesController<P extends object>(option
         if (Array.isArray(value)) {
           if (Object.keys(value).length !== value.length) throw new Error('Unexpected array fields');
           return Object.freeze(Array.from({ length: value.length }, (_, index) => {
-            if (!Object.hasOwn(fields, index)) throw new Error('Sparse preferences');
-            return visit(fields[index].value, depth + 1);
+            const field = fields[index];
+            if (!Object.hasOwn(fields, index) || !field) throw new Error('Sparse preferences');
+            return visit(field.value, depth + 1);
           }));
         }
         return Object.freeze(Object.fromEntries(Object.entries(fields).map(([key, field]) => {

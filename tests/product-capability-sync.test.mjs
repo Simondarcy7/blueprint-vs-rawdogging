@@ -124,3 +124,24 @@ test('CLI requires exactly one explicit mode and never writes on malformed argum
   }
   await assert.rejects(readFile(join(s.target, manifestName)), { code: 'ENOENT' });
 });
+
+test('app-shell bundle keeps a separate manifest and protects UI and workflow source from drift', async t => {
+  const s = await setup(t);
+  const packs = ['product-ui', 'product-workflows', 'account-recovery', 'notification-preferences', 'undo'];
+  const destinations = ['components/product-ui/Screen.tsx', 'modules/product-workflows/Settings.tsx', 'services/account-recovery/accountRecovery.ts', 'services/notification-preferences/notificationPreferences.ts', 'services/undo/undoController.ts'];
+  for (let i = 0; i < packs.length; i++) {
+    const path = join(s.sourceRoot, assets, 'app-capabilities', packs[i], 'src', destinations[i]);
+    await mkdir(join(path, '..'), { recursive: true });
+    await writeFile(path, 'export const value = 1;\n');
+  }
+  const run = mode => syncProductCapabilities({ sourceRoot: s.sourceRoot, target: s.target, mode, bundle: 'app-shell' });
+  assert.equal((await run('dry-run')).created.length, 6);
+  await run('write');
+  const manifest = JSON.parse(await readFile(join(s.target, '.blueprint-app-shell.json'), 'utf8'));
+  assert.deepEqual(manifest.packs, packs);
+  assert.equal((await run('check')).status, 'up-to-date');
+  await assert.rejects(readFile(join(s.target, manifestName)), { code: 'ENOENT' });
+  await writeFile(join(s.target, destinations[0]), 'export const local = true;\n');
+  await assert.rejects(run('write'), /Locally modified/);
+  await assert.rejects(syncProductCapabilities({ target: s.target, mode: 'write', bundle: 'unknown' }), /Unknown capability bundle/);
+});

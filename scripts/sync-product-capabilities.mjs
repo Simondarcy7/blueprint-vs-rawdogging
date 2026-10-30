@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
 const assetRoot = 'codex/skills/mature-app-starter/assets';
 export const productPacks = Object.freeze(['drafts', 'import-review', 'interactions', 'engagement']);
+export const appShellPacks = Object.freeze(['product-ui', 'product-workflows', 'account-recovery', 'notification-preferences', 'undo']);
 export const manifestName = '.blueprint-product-capabilities.json';
 const hash = value => createHash('sha256').update(value).digest('hex');
 const safePath = value => typeof value === 'string' && !isAbsolute(value) && !value.includes('\\')
@@ -24,7 +25,7 @@ async function noSymlinks(path) {
 }
 const digest = files => hash(JSON.stringify(Object.entries(files).sort(([a], [b]) => a.localeCompare(b))));
 
-async function canonicalFiles(sourceRoot) {
+async function canonicalFiles(sourceRoot, packs) {
   const files = new Map();
   async function add(source, destination) {
     await noSymlinks(source);
@@ -46,17 +47,17 @@ async function canonicalFiles(sourceRoot) {
     }
   }
   await add(join(sourceRoot, assetRoot, 'app-baseline/src/lib/asyncWork.ts'), 'lib/asyncWork.ts');
-  for (const pack of productPacks) await walk(join(sourceRoot, assetRoot, 'app-capabilities', pack, 'src'));
+  for (const pack of packs) await walk(join(sourceRoot, assetRoot, 'app-capabilities', pack, 'src'));
   return files;
 }
 
-function readManifest(raw) {
+function readManifest(raw, packs) {
   const manifest = JSON.parse(raw);
   if (!manifest || manifest.version !== 1 || !manifest.source || !manifest.files
     || Array.isArray(manifest.files) || typeof manifest.files !== 'object'
-    || JSON.stringify(manifest.packs) !== JSON.stringify(productPacks)) throw new Error('Unsupported capability manifest');
+    || JSON.stringify(manifest.packs) !== JSON.stringify(packs)) throw new Error('Unsupported capability manifest');
   for (const [path, entry] of Object.entries(manifest.files)) {
-    if (!safePath(path) || !/^(lib|services)\//.test(path) || !entry || typeof entry !== 'object'
+    if (!safePath(path) || !/^(lib|services|components|modules)\//.test(path) || !entry || typeof entry !== 'object'
       || !safePath(entry.source) || !/^[a-f0-9]{64}$/.test(entry.sha256)) throw new Error('Invalid capability manifest file');
   }
   if (digest(manifest.files) !== manifest.source.contentDigest) throw new Error('Capability manifest digest mismatch');
@@ -64,21 +65,24 @@ function readManifest(raw) {
 }
 
 /** Vendored, byte-identical source. This is not a merge tool or runtime dependency resolver. */
-export async function syncProductCapabilities({ target, mode, sourceRoot = repositoryRoot }) {
+export async function syncProductCapabilities({ target, mode, sourceRoot = repositoryRoot, bundle = 'product' }) {
+  if (!['product', 'app-shell'].includes(bundle)) throw new Error('Unknown capability bundle');
+  const packs = bundle === 'app-shell' ? appShellPacks : productPacks;
+  const selectedManifestName = bundle === 'app-shell' ? '.blueprint-app-shell.json' : manifestName;
   if (!target || !['check', 'dry-run', 'write'].includes(mode)) throw new Error('A target and explicit mode are required');
   target = resolve(target); sourceRoot = resolve(sourceRoot);
   await noSymlinks(target);
   const targetInfo = await info(target);
   if (targetInfo && !targetInfo.isDirectory()) throw new Error('Capability target must be a directory');
-  const sources = await canonicalFiles(sourceRoot);
+  const sources = await canonicalFiles(sourceRoot, packs);
   const currentFiles = Object.fromEntries([...sources].map(([path, { source, sha256 }]) => [path, { source, sha256 }]));
   const contentDigest = digest(currentFiles);
-  const manifestPath = join(target, manifestName);
+  const manifestPath = join(target, selectedManifestName);
   await noSymlinks(manifestPath);
   const manifestInfo = await info(manifestPath);
   if (manifestInfo && !manifestInfo.isFile()) throw new Error('Capability manifest must be a regular file');
   const previousRaw = manifestInfo ? await readFile(manifestPath, 'utf8') : null;
-  const previous = previousRaw === null ? null : readManifest(previousRaw);
+  const previous = previousRaw === null ? null : readManifest(previousRaw, packs);
   for (const path of Object.keys(previous?.files ?? {})) {
     if (!sources.has(path)) throw new Error(`Canonical file removed; review the consumer manually: ${path}`);
   }
@@ -107,7 +111,7 @@ export async function syncProductCapabilities({ target, mode, sourceRoot = repos
 
   let gitRevision = null;
   try { gitRevision = execFileSync('git', ['-C', sourceRoot, 'rev-parse', 'HEAD'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim(); } catch { /* Source hashes still identify a copied fixture/archive. */ }
-  const manifest = { version: 1, packs: productPacks,
+  const manifest = { version: 1, packs,
     source: { repository: 'https://github.com/Simondarcy7/blueprint-vs-rawdogging', kind: 'working-tree', gitRevision, contentDigest },
     files: currentFiles };
   await mkdir(target, { recursive: true });
@@ -145,14 +149,15 @@ export async function syncProductCapabilities({ target, mode, sourceRoot = repos
 }
 
 async function main(args) {
-  let target; let mode;
+  let target; let mode; let bundle;
   for (let i = 0; i < args.length; i++) {
     const argument = args[i];
     if (argument === '--target' && !target && args[i + 1] && !args[i + 1].startsWith('--')) target = args[++i];
+    else if (argument === '--bundle' && !bundle && args[i + 1] && !args[i + 1].startsWith('--')) bundle = args[++i];
     else if (['--check', '--dry-run', '--write'].includes(argument) && !mode) mode = argument.slice(2);
-    else throw new Error('Usage: sync-product-capabilities.mjs --target PATH --dry-run|--write|--check');
+    else throw new Error('Usage: sync-product-capabilities.mjs --target PATH [--bundle product|app-shell] --dry-run|--write|--check');
   }
-  const result = await syncProductCapabilities({ target, mode });
+  const result = await syncProductCapabilities({ target, mode, bundle });
   console.log(`${result.status}: ${result.created.length} new, ${result.updated.length} updated capability files`);
   for (const path of [...result.created, ...result.updated]) console.log(`  ${path}`);
 }

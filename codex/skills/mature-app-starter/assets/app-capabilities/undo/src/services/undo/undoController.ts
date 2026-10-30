@@ -50,8 +50,9 @@ function detached<T>(value: T, seen = new WeakSet<object>()): T {
     if (array) {
       if (Object.keys(value).length !== value.length) throw new Error('Expected dense array');
       return Object.freeze(Array.from({ length: value.length }, (_, index) => {
-        if (!Object.hasOwn(fields, index)) throw new Error('Expected dense array');
-        return detached(fields[index].value, seen);
+        const field = fields[index];
+            if (!Object.hasOwn(fields, index) || !field) throw new Error('Expected dense array');
+        return detached(field.value, seen);
       })) as T;
     }
     return Object.freeze(Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, detached(field.value, seen)]))) as T;

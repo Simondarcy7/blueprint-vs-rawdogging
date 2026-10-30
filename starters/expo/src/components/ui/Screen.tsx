@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
-import { Animated, KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
+import { Animated, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Head from 'expo-router/head';
+import { useSegments } from 'expo-router';
+import { ScreenScaffold, ScreenHeader } from '@/foundation/blueprint-shell/components/product-ui';
 import { brand } from '@/config/app';
 import { env } from '@/config/env';
 import { useTheme } from '@/theme/ThemeProvider';
-import { tokens } from '@/theme/tokens';
-import { Text } from './Text';
 export function Screen({
   children,
   title,
   description,
   publicPath,
 }: PropsWithChildren<{ title: string; description?: string; publicPath?: string }>) {
-  const { colors, dark, reducedMotion } = useTheme();
+  const { dark, reducedMotion } = useTheme();
   const [opacity] = useState(() => new Animated.Value(1));
   const previousTitle = useRef<string | null>(null);
   useEffect(() => {
@@ -30,12 +30,9 @@ export function Screen({
     return () => opacity.stopAnimation();
   }, [title, reducedMotion, opacity]);
   const insets = useSafeAreaInsets();
+  const hostOwnsInsets = useSegments().some((segment) => String(segment) === '(tabs)');
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={88}
-    >
+    <>
       <Head>
         <title>
           {title} · {brand.name}
@@ -54,28 +51,15 @@ export function Screen({
         ) : null}
         <meta name="theme-color" content={dark ? brand.dark.background : brand.light.background} />
       </Head>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          padding: tokens.space.lg,
-          paddingBottom: Math.max(insets.bottom, tokens.space.lg) + 24,
-          alignItems: 'center',
-          flexGrow: 1,
-        }}
+      <ScreenScaffold
+        header={<ScreenHeader title={title} description={description} />}
+        insets={{ top: 0, bottom: insets.bottom }}
+        bottomInsetHandledByHost={hostOwnsInsets}
       >
-        <Animated.View
-          role="main"
-          style={{ width: '100%', maxWidth: tokens.width.content, gap: tokens.space.lg, opacity }}
-        >
-          <View style={{ gap: 8 }}>
-            <Text variant="title" role="heading" aria-level={1}>
-              {title}
-            </Text>
-            {description ? <Text muted>{description}</Text> : null}
-          </View>
+        <Animated.View role={hostOwnsInsets ? undefined : 'main'} style={{ gap: 24, opacity }}>
           {children}
         </Animated.View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+      </ScreenScaffold>
+    </>
   );
 }

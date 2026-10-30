@@ -3,7 +3,7 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const assets = fileURLToPath(new URL('../assets/', import.meta.url));
-const supported = ['storage', 'device', 'flags', 'diagnostics', 'updates', 'outbox', 'drafts', 'import-review', 'interactions', 'engagement', 'account-recovery', 'notification-preferences', 'undo'];
+const supported = ['storage', 'device', 'flags', 'diagnostics', 'updates', 'outbox', 'drafts', 'import-review', 'interactions', 'engagement', 'account-recovery', 'notification-preferences', 'undo', 'product-ui', 'product-workflows'];
 async function exists(path) { try { return await lstat(path); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }
 async function files(directory) {
   const result = [];
@@ -32,6 +32,7 @@ async function main(args) {
   if (!root) throw new Error('An existing app root is required');
   if (onlyPacks && !packs.length) throw new Error('--only-packs requires --with');
   if (packs.some(pack => !supported.includes(pack)) || new Set(packs).size !== packs.length) throw new Error('Unknown or duplicate capability pack');
+  if (packs.includes('product-workflows')) packs = [...new Set([...packs, 'product-ui', 'account-recovery', 'notification-preferences', 'undo'])];
   root = await realpath(root);
   if (!(await lstat(root)).isDirectory()) throw new Error('App root must be a directory');
   if (onlyPacks && packs.some(pack => ['updates', 'outbox', 'drafts', 'import-review', 'account-recovery', 'notification-preferences'].includes(pack))) {
