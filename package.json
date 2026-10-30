@@ -2,12 +2,22 @@
   "name": "mature-app-foundation-toolkit",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.18.0" },
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
-    "test": "node scripts/sync-references.mjs --check && node --test tests/*.test.mjs",
+    "test": "node scripts/sync-references.mjs --check && npm run shell:check && node --test tests/*.test.mjs",
     "references:check": "node scripts/sync-references.mjs --check",
     "references:sync": "node scripts/sync-references.mjs --write",
-    "create:app": "node scripts/create-app.mjs"
+    "create:app": "node scripts/create-app.mjs",
+    "example:ux": "node scripts/serve-product-workflows.mjs",
+    "example:ux:check": "node scripts/serve-product-workflows.mjs --check",
+    "shell:check": "node scripts/sync-product-capabilities.mjs --bundle app-shell --target starters/expo/src/foundation/blueprint-shell --check",
+    "shell:sync": "node scripts/sync-product-capabilities.mjs --bundle app-shell --target starters/expo/src/foundation/blueprint-shell --write"
   },
-  "devDependencies": { "typescript": "~5.9.3", "react": "19.2.3", "react-test-renderer": "19.2.3" }
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "react": "19.2.3",
+    "react-test-renderer": "19.2.3"
+  }
 }

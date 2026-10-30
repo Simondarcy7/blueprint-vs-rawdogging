@@ -1,16 +1,14 @@
+import { SettingsSection, ChoiceGroup } from '@/foundation/blueprint-shell/components/product-ui';
 import { Link } from 'expo-router';
 import { Pressable } from 'react-native';
-import { ChoiceGroup, Card, Notice, Presence, Screen, Text } from '@/components/ui';
+import { Notice, Presence, Screen, Text } from '@/components/ui';
 import { useTheme } from '@/theme/ThemeProvider';
 import { brand, appVersion } from '@/config/app';
 export function SettingsScreen() {
   const theme = useTheme();
   return (
     <Screen title="Settings" description="Make this space feel like yours.">
-      <Card>
-        <Text variant="heading" accessibilityRole="header">
-          Appearance
-        </Text>
+      <SettingsSection title="Appearance">
         <Text muted>Follow your device, or choose your own look.</Text>
         <ChoiceGroup
           label="Appearance"
@@ -22,7 +20,8 @@ export function SettingsScreen() {
           ]}
           disabled={!theme.writable || theme.pending}
           onChange={(value) => {
-            void theme.setPreference(value);
+            if (value === 'system' || value === 'light' || value === 'dark')
+              void theme.setPreference(value);
           }}
         />
         <Presence visible={!!theme.error} reducedMotion={theme.reducedMotion}>
@@ -36,11 +35,8 @@ export function SettingsScreen() {
             }}
           />
         </Presence>
-      </Card>
-      <Card>
-        <Text variant="heading" accessibilityRole="header">
-          Motion
-        </Text>
+      </SettingsSection>
+      <SettingsSection title="Motion">
         <Text muted>
           Follow your device or reduce motion further. Your device’s reduced-motion setting always
           takes priority.
@@ -54,24 +50,18 @@ export function SettingsScreen() {
           ]}
           disabled={!theme.writable || theme.pending}
           onChange={(value) => {
-            void theme.setMotion(value);
+            if (value === 'system' || value === 'reduced') void theme.setMotion(value);
           }}
         />
-      </Card>
-      <Card>
-        <Text variant="heading" accessibilityRole="header">
-          Your data
-        </Text>
+      </SettingsSection>
+      <SettingsSection title="Your data">
         <Text muted>
           Notes stay on this device or browser. There is no account or cloud backup. Clearing app or
           browser storage removes them.
         </Text>
         <Text muted>This starter sends no product analytics or crash reports.</Text>
-      </Card>
-      <Card>
-        <Text variant="heading" accessibilityRole="header">
-          About {brand.name}
-        </Text>
+      </SettingsSection>
+      <SettingsSection title={`About ${brand.name}`}>
         <Link href="/support" asChild>
           <Pressable accessibilityRole="link" style={{ minHeight: 48, justifyContent: 'center' }}>
             <Text>Help & information →</Text>
@@ -80,7 +70,7 @@ export function SettingsScreen() {
         <Text variant="small" muted>
           Version {appVersion}
         </Text>
-      </Card>
+      </SettingsSection>
     </Screen>
   );
 }

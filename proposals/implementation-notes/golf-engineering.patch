@@ -1,0 +1,273 @@
+diff --git a/mobile/src/modules/app-updates/LaunchUpdateGate.component.test.tsx b/mobile/src/modules/app-updates/LaunchUpdateGate.component.test.tsx
+index ed91fcc9..b8211704 100644
+--- a/mobile/src/modules/app-updates/LaunchUpdateGate.component.test.tsx
++++ b/mobile/src/modules/app-updates/LaunchUpdateGate.component.test.tsx
+@@ -2,16 +2,21 @@ import { act, fireEvent, render, screen } from '@testing-library/react-native';
+ import { afterEach, beforeEach, expect, it, jest } from '@jest/globals';
+ import { AccessibilityInfo, Platform, Text } from 'react-native';
+ import { LaunchUpdateGate } from './LaunchUpdateGate';
+-import { runLaunchUpdate } from './launchUpdate';
++import { createLaunchUpdateSession, launchUpdateSession, runLaunchUpdate } from './launchUpdate';
+ import { golfMoments } from '../personality/momentSession';
+ 
+ jest.mock('expo-updates', () => ({ isEnabled: true, isEmbeddedLaunch: false, updateId: 'new-update', checkForUpdateAsync: jest.fn(), fetchUpdateAsync: jest.fn() }));
+ jest.mock('expo-secure-store', () => ({ getItemAsync: jest.fn(() => Promise.resolve(null)), setItemAsync: jest.fn(() => Promise.resolve()) }));
+-jest.mock('./launchUpdate', () => ({ launchUpdateWindowMs: 6000, runLaunchUpdate: jest.fn(async () => 'ready') }));
++jest.mock('./launchUpdate', () => ({
++  ...jest.requireActual<typeof import('./launchUpdate')>('./launchUpdate'),
++  runLaunchUpdate: jest.fn(async () => 'ready'),
++}));
+ jest.mock('@/modules/personality', () => ({ golfMoments: jest.requireActual<typeof import('../personality/momentSession')>('../personality/momentSession').golfMoments }));
+ 
+ beforeEach(() => {
+   jest.useFakeTimers();
++  Object.assign(launchUpdateSession, createLaunchUpdateSession());
++  jest.mocked(runLaunchUpdate).mockClear();
+   jest.mocked(runLaunchUpdate).mockResolvedValue('ready');
+   jest.replaceProperty(Platform, 'OS', 'ios');
+   jest.spyOn(AccessibilityInfo, 'isScreenReaderEnabled').mockResolvedValue(false);
+@@ -80,3 +85,35 @@ it('keeps the app non-interactive after reload is requested', async () => {
+   expect(screen.queryByText('App content')).toBeNull();
+   expect(screen.getByText('Opening Par Pocket…')).toBeTruthy();
+ });
++it('does not restart update work when remounted after the app has already opened', async () => {
++  const first = await render(<LaunchUpdateGate><Text>First app</Text></LaunchUpdateGate>);
++  await act(async () => {});
++  expect(screen.getByText('First app')).toBeTruthy();
++  expect(jest.mocked(runLaunchUpdate)).toHaveBeenCalledTimes(1);
++  await first.unmount();
++  await mount();
++  expect(screen.getByText('App content')).toBeTruthy();
++  expect(jest.mocked(runLaunchUpdate)).toHaveBeenCalledTimes(1);
++});
++it('opens the current gate if a reload requested by an earlier mount fails', async () => {
++  let finish!: (result: 'ready') => void;
++  jest.mocked(runLaunchUpdate).mockImplementationOnce(request => {
++    request.beforeReload();
++    return new Promise(resolve => { finish = resolve; });
++  });
++  const first = await render(<LaunchUpdateGate><Text>First app</Text></LaunchUpdateGate>);
++  await act(async () => {});
++  await first.unmount();
++  await mount();
++  await act(async () => { jest.advanceTimersByTime(20_000); });
++  expect(screen.queryByText('App content')).toBeNull();
++  expect(jest.mocked(runLaunchUpdate)).toHaveBeenCalledTimes(1);
++  await act(async () => { finish('ready'); });
++  expect(screen.getByText('App content')).toBeTruthy();
++});
++it('does not check again when first mounted after the startup deadline', async () => {
++  jest.advanceTimersByTime(6000);
++  await mount();
++  expect(screen.getByText('App content')).toBeTruthy();
++  expect(jest.mocked(runLaunchUpdate)).not.toHaveBeenCalled();
++});
+diff --git a/mobile/src/modules/app-updates/LaunchUpdateGate.tsx b/mobile/src/modules/app-updates/LaunchUpdateGate.tsx
+index e713f8e4..7354e888 100644
+--- a/mobile/src/modules/app-updates/LaunchUpdateGate.tsx
++++ b/mobile/src/modules/app-updates/LaunchUpdateGate.tsx
+@@ -5,31 +5,41 @@ import * as Updates from 'expo-updates';
+ import * as SecureStore from 'expo-secure-store';
+ import { useSafeAreaInsets } from 'react-native-safe-area-context';
+ import { colors } from '@/theme/tokens';
+-import { launchUpdateWindowMs, runLaunchUpdate } from './launchUpdate';
++import { launchUpdateSession, runLaunchUpdate } from './launchUpdate';
+ import { useTransientNotice } from '@/hooks/useTransientNotice';
+ import { golfMoments } from '@/modules/personality';
+ 
+-// One window per JavaScript launch, including provider remounts after sign-in.
+-const launchDeadline = Date.now() + launchUpdateWindowMs;
+-
+ export function LaunchUpdateGate({ children }: PropsWithChildren) {
+   const insets = useSafeAreaInsets();
+   const enabled = Platform.OS !== 'web' && Updates.isEnabled;
+-  const [ready, setReady] = useState(() => !enabled || Date.now() >= launchDeadline);
++  const launchState = useSyncExternalStore(launchUpdateSession.subscribe, launchUpdateSession.getSnapshot, launchUpdateSession.getSnapshot);
++  const ready = !enabled || launchState === 'interactive' || launchUpdateSession.isReady();
+   const [notice, setNotice] = useState(false);
+   useEffect(() => {
+     if (!enabled) return;
++    if (launchUpdateSession.isReady()) { launchUpdateSession.open(); return; }
++    if (launchUpdateSession.isReloading()) return;
+     let alive = true;
+-    const timer = setTimeout(() => { if (alive) setReady(true); }, Math.max(0, launchDeadline - Date.now()));
++    let requestedReload = false;
++    const open = () => {
++      if (!alive) return;
++      launchUpdateSession.open();
++    };
++    const timer = setTimeout(open, launchUpdateSession.remainingMs());
+     void runLaunchUpdate({
+       check: Updates.checkForUpdateAsync,
+       fetch: Updates.fetchUpdateAsync,
+       canDownload: () => alive,
+-      canApply: () => alive && Date.now() < launchDeadline && AppState.currentState === 'active',
+-      beforeReload: () => clearTimeout(timer),
++      canApply: () => alive && launchUpdateSession.canApply() && AppState.currentState === 'active',
++      beforeReload: () => {
++        requestedReload = true;
++        launchUpdateSession.beginReload();
++        clearTimeout(timer);
++      },
+       reload: Updates.reloadAsync,
+     }).then(result => {
+-      if (alive && result !== 'reloading') { clearTimeout(timer); setReady(true); }
++      if (result === 'ready' && requestedReload) launchUpdateSession.reloadFailed();
++      if (alive && result !== 'reloading') { clearTimeout(timer); open(); }
+     });
+     return () => { alive = false; clearTimeout(timer); };
+   }, [enabled]);
+diff --git a/mobile/src/modules/app-updates/launchUpdate.test.ts b/mobile/src/modules/app-updates/launchUpdate.test.ts
+index f951281b..b685bbbf 100644
+--- a/mobile/src/modules/app-updates/launchUpdate.test.ts
++++ b/mobile/src/modules/app-updates/launchUpdate.test.ts
+@@ -1,6 +1,35 @@
+ import { describe, expect, it, vi } from 'vitest';
+-import { runLaunchUpdate } from './launchUpdate';
++import { createLaunchUpdateSession, runLaunchUpdate } from './launchUpdate';
+ const actions = () => ({ check: vi.fn().mockResolvedValue({ isAvailable: true }), fetch: vi.fn().mockResolvedValue({ isNew: true }), canDownload: () => true, canApply: () => true, beforeReload: vi.fn(), reload: vi.fn().mockResolvedValue(undefined) });
++describe('launch update session', () => {
++  it('permanently closes reload eligibility when the app opens before the deadline', () => {
++    const session = createLaunchUpdateSession(() => 100);
++    expect(session.canApply()).toBe(true);
++    session.open();
++    expect(session.isReady()).toBe(true);
++    expect(session.canApply()).toBe(false);
++  });
++  it('opens after the startup budget without allowing a late update', () => {
++    let now = 100;
++    const session = createLaunchUpdateSession(() => now);
++    now += 6000;
++    expect(session.remainingMs()).toBe(0);
++    expect(session.isReady()).toBe(true);
++    expect(session.canApply()).toBe(false);
++  });
++  it('does not open interactive work after requesting a non-cancellable native reload', () => {
++    let now = 100;
++    const session = createLaunchUpdateSession(() => now);
++    session.beginReload();
++    now += 60000;
++    session.open();
++    expect(session.isReady()).toBe(false);
++    expect(session.isReloading()).toBe(true);
++    session.reloadFailed();
++    expect(session.isReady()).toBe(true);
++    expect(session.canApply()).toBe(false);
++  });
++});
+ describe('automatic launch updates', () => {
+   it('downloads and reloads before opening the app', async () => {
+     const a = actions(); await runLaunchUpdate(a);
+diff --git a/mobile/src/modules/app-updates/launchUpdate.ts b/mobile/src/modules/app-updates/launchUpdate.ts
+index 08337015..1a6f3a74 100644
+--- a/mobile/src/modules/app-updates/launchUpdate.ts
++++ b/mobile/src/modules/app-updates/launchUpdate.ts
+@@ -1,6 +1,35 @@
+ import { withDeadline } from '@/foundation/async/asyncDeadline';
+ 
+ export const launchUpdateWindowMs = 6000;
++
++/** Once any gate opens the app, remounts must never re-enable automatic reload. */
++export function createLaunchUpdateSession(now: () => number = Date.now) {
++  const deadline = now() + launchUpdateWindowMs;
++  let state: 'opening' | 'interactive' | 'reloading' = 'opening';
++  const listeners = new Set<() => void>();
++  const change = (next: typeof state) => {
++    if (next === state) return;
++    state = next;
++    for (const listener of listeners) listener();
++  };
++  return {
++    getSnapshot: () => state,
++    subscribe(listener: () => void) {
++      listeners.add(listener);
++      return () => { listeners.delete(listener); };
++    },
++    remainingMs: () => Math.max(0, deadline - now()),
++    isReady: () => state === 'interactive' || (state === 'opening' && now() >= deadline),
++    isReloading: () => state === 'reloading',
++    canApply: () => state === 'opening' && now() < deadline,
++    open() { if (state !== 'reloading') change('interactive'); },
++    beginReload() { change('reloading'); },
++    reloadFailed() { change('interactive'); },
++  };
++}
++
++export const launchUpdateSession = createLaunchUpdateSession();
++
+ /** Apply only before the app becomes interactive; late downloads wait for next launch. */
+ export async function runLaunchUpdate({
+   check,
+diff --git a/mobile/src/services/account/accountLeaseGuard.ts b/mobile/src/services/account/accountLeaseGuard.ts
+index 1dcf09cd..57887b06 100644
+--- a/mobile/src/services/account/accountLeaseGuard.ts
++++ b/mobile/src/services/account/accountLeaseGuard.ts
+@@ -10,10 +10,11 @@ export function grantAccountLease(name: string) {
+ }
+ /** Capture a grant so old repositories stay fenced even after this tab reacquires. */
+ export function accountLeaseWriteGuard(name: string) {
+-  const managed = leases.has(name);
+   const token = leases.get(name);
+   return () => {
+-    if (managed && (!token || leases.get(name) !== token)) {
++    // Registration can follow construction during a lifecycle transition. An
++    // older unmanaged writer must not bypass the newly established lease.
++    if (leases.has(name) && (!token || leases.get(name) !== token)) {
+       throw new Error('This tab is paused. Continue here before changing saved data.');
+     }
+   };
+diff --git a/mobile/src/services/account/accountLeaseGuard.test.ts b/mobile/src/services/account/accountLeaseGuard.test.ts
+new file mode 100644
+index 00000000..b1424ae1
+--- /dev/null
++++ b/mobile/src/services/account/accountLeaseGuard.test.ts
+@@ -0,0 +1,49 @@
++import { describe, expect, it } from 'vitest';
++import { accountLeaseWriteGuard, grantAccountLease, registerAccountLease } from './accountLeaseGuard';
++
++describe('account lease write fencing', () => {
++  it('keeps unregistered native namespaces writable', () => {
++    const guard = accountLeaseWriteGuard('lease-test-unmanaged');
++    expect(guard).not.toThrow();
++    expect(guard).not.toThrow();
++  });
++
++  it('fences a writer created before its namespace becomes managed', () => {
++    const name = 'lease-test-late-registration';
++    const oldWriter = accountLeaseWriteGuard(name);
++    expect(oldWriter).not.toThrow();
++    registerAccountLease(name);
++    expect(oldWriter).toThrow('paused');
++    const revoke = grantAccountLease(name);
++    expect(oldWriter).toThrow('paused');
++    expect(accountLeaseWriteGuard(name)).not.toThrow();
++    revoke();
++  });
++
++  it('does not promote a waiting writer when a lease is granted', () => {
++    const name = 'lease-test-waiting';
++    registerAccountLease(name);
++    const waitingWriter = accountLeaseWriteGuard(name);
++    const revoke = grantAccountLease(name);
++    expect(waitingWriter).toThrow('paused');
++    expect(accountLeaseWriteGuard(name)).not.toThrow();
++    revoke();
++  });
++
++  it('keeps revoked writers fenced after reacquisition and ignores stale revocation', () => {
++    const name = 'lease-test-reacquired';
++    registerAccountLease(name);
++    const revokeFirst = grantAccountLease(name);
++    const firstWriter = accountLeaseWriteGuard(name);
++    expect(firstWriter).not.toThrow();
++    revokeFirst();
++    expect(firstWriter).toThrow('paused');
++    const revokeSecond = grantAccountLease(name);
++    const secondWriter = accountLeaseWriteGuard(name);
++    revokeFirst();
++    expect(firstWriter).toThrow('paused');
++    expect(secondWriter).not.toThrow();
++    revokeSecond();
++    expect(secondWriter).toThrow('paused');
++  });
++});

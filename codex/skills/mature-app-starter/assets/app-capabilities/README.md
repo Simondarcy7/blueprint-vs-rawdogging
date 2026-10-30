@@ -2,6 +2,10 @@
 
 Select these only when the app needs the capability. They are TypeScript source with injected adapters; installation creates no accounts, collects no telemetry, requests no permissions and schedules no notifications.
 
+The `updates` and `outbox` packs, plus the diagnostics pack's analytics/Sentry bridges, are described in `references/operational-capabilities.md` (repository source: `docs/operational-capabilities.md`). For an existing runnable starter, select `--with updates,diagnostics,outbox --only-packs` to preserve its baseline. Default scaffolding still includes the baseline. Updates/outbox require its `src/lib/asyncWork.ts`; the preflight does not replace a host typecheck. These are optional source capabilities, not configured services.
+
+The `drafts`, `import-review`, `interactions` and `engagement` packs preserve product workflows: recoverable unfinished work, explicit review before replacement, accessible overlay focus, and activity/cooldown-based prompts. See `references/product-workflow-capabilities.md` (repository: `docs/product-workflow-capabilities.md`). Drafts/import-review require the baseline async helper; the other two are standalone. The repository's `npm run example:ux` runs a browser reference integration against the actual source.
+
 ```sh
 node .agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs --root . --with storage,device,flags,diagnostics --dry-run
 ```
@@ -44,3 +48,7 @@ The adapter must disable vendor auto-capture/replay and SDK-added identity, or s
 - `storage/.../saveAcknowledgement.ts` tracks whether the latest local revision has a verified save receipt. Call `changed()` for every committed local mutation, capture a ticket beside the immutable outgoing snapshot, and acknowledge only after confirmed persistence. Reset on identity/data replacement or lost writer ownership. A failed write leaves the state pending. Serialize remote writes or use server compare-and-swap: this helper cannot prevent an older request overwriting a newer server snapshot.
 
 See the reliability recipes guide for integration and failure cases. Both helpers are optional and require no vendor SDK.
+
+## Account and notification workflows
+
+Select `account-recovery`, `notification-preferences` and `undo` for identity recovery coordination, durable preference/device reconciliation and merge-safe session undo. Read `references/account-and-notification-workflows.md` and each implementation contract before supplying host adapters. These packs do not configure providers or grant authorization.

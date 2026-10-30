@@ -13,6 +13,14 @@ The [runnable shell](starters/expo/README.md) includes a replaceable notes workf
 A practical startup app foundation toolkit for product thinking, UX/UI, architecture, testing,
 AI-agent setup, and token-efficient software engineering.
 
+The [revised product-capability proposal](proposals/2026-10-29-product-capability-foundation.md) and [Golf App inventory](proposals/golf-capability-inventory.md) describe the broader extraction programme. The first additions—startup updates, consent-aware observability and durable offline delivery—are available as [optional operational capabilities](docs/operational-capabilities.md). Local contract tests and installation evidence are distinct from real product/native/provider adoption.
+
+The next [product workflow capabilities](docs/product-workflow-capabilities.md) add drafts/recovery, staged import review, overlay focus and engagement policy. Run `npm run example:ux` for a local journal workflow that uses these implementations directly, including failure controls and keyboard-accessible confirmation.
+
+Existing applications can use the [shared capability sync workflow](docs/shared-capability-adoption.md) to adopt the same source with provenance and drift checks. App-owned schemas, persistence, account fences and presentation stay outside the shared directory.
+
+[Phase 3](proposals/implementation-notes/phase-3-summary.md) wires these capabilities into Golf App and OddsBasket, with actual workflow tests, browser evidence and a shared fix propagated to both. Published draft PRs and exact source hashes are recorded there; production/native acceptance remains separate.
+
 This is a playbook, installable toolkit and collection of copyable app-baseline modules you can use before building
 any serious app, whether you are a founder, designer, product operator, or developer.
 
@@ -235,3 +243,7 @@ Start a project with:
 > Follow BLUEPRINT.md and the installed mature-app-starter skill. Use product-behavior-map to scope the first complete useful workflow, including failure, interruption and repeat use. Apply the relevant navigation, forms, visual and motion guidance. Select optional capabilities from my product brief, record Included/Deferred/N/A decisions and acceptance cases, and preserve the app's own brand and domain rules. Distinguish supplied code, guidance requiring implementation and verified platform behaviour. Load only the guides needed for the current work.
 
 This expands the playbook, not the default feature count. Existing customized installations require a reviewed update.
+
+[Phase 4](proposals/implementation-notes/phase-4-summary.md) adds optional account recovery, notification preference transactions and merge-safe undo. Read the [integration boundaries](docs/account-and-notification-workflows.md) before supplying host adapters.
+
+The [product app shell](docs/product-app-shell.md) supplies reusable React Native layouts, responsive navigation, controls and workflow screens. The generated starter uses this source directly, with consumer-specific themes and adapters.

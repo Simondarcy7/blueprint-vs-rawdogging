@@ -24,7 +24,7 @@ async function fixture(root) {
 
 test('scaffold dry run is inert; selected packs copy without dependencies or routes', async t => {
   const root = await temp(t);
-  const args = ['--with', 'storage,device,flags,diagnostics'];
+  const args = ['--with', 'storage,device,flags,diagnostics,updates,outbox,drafts,import-review,interactions,engagement,account-recovery,notification-preferences,undo,product-ui,product-workflows'];
   assert.equal(run(root, ...args, '--dry-run').status, 0); assert.deepEqual(await readdir(root), []);
   const result = run(root, ...args); assert.equal(result.status, 0, result.stderr);
   for (const path of ['src/services/storage/backup.ts', 'src/services/device/actions.ts', 'src/services/features/featureStore.ts', 'src/services/observability/safeTelemetry.ts', 'src/components/ui/primitives.tsx', 'src/modules/settings/index.ts']) assert.ok((await readFile(join(root, path), 'utf8')).length);
@@ -75,7 +75,7 @@ test('performance checks reject missing output, unset budgets and oversized asse
 });
 test('all scaffolded modules satisfy the architecture and static accessibility recipes', async t => {
   const root = await temp(t); await fixture(root);
-  const result = run(root, '--with', 'storage,device,flags,diagnostics'); assert.equal(result.status, 0, result.stderr);
+  const result = run(root, '--with', 'storage,device,flags,diagnostics,updates,outbox,drafts,import-review,interactions,engagement,account-recovery,notification-preferences,undo,product-ui,product-workflows'); assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(await verifyArchitecture(root, ts), []);
   assert.deepEqual(await verifyAccessibility(root, ts), []);
 });

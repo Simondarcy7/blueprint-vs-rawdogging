@@ -1,1 +1,4 @@
 scripts/verify-blueprint.mjs
+
+# Canonical shared source is kept byte-identical to Blueprint packs.
+src/foundation/blueprint-shell/

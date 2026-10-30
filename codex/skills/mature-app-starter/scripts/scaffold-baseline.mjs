@@ -3,7 +3,7 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const assets = fileURLToPath(new URL('../assets/', import.meta.url));
-const supported = ['storage', 'device', 'flags', 'diagnostics'];
+const supported = ['storage', 'device', 'flags', 'diagnostics', 'updates', 'outbox', 'drafts', 'import-review', 'interactions', 'engagement', 'account-recovery', 'notification-preferences', 'undo', 'product-ui', 'product-workflows'];
 async function exists(path) { try { return await lstat(path); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }
 async function files(directory) {
   const result = [];
@@ -16,23 +16,34 @@ async function files(directory) {
   return result;
 }
 async function main(args) {
-  let root; let dryRun = false; let packs = [];
+  let root; let dryRun = false; let onlyPacks = false; let packs = [];
   const seen = new Set();
   for (let i = 0; i < args.length; i++) {
     const flag = args[i];
     if (seen.has(flag)) throw new Error(`Duplicate argument: ${flag}`);
     seen.add(flag);
     if (flag === '--dry-run') dryRun = true;
+    else if (flag === '--only-packs') onlyPacks = true;
     else if (['--root', '--with'].includes(flag) && args[i + 1] && !args[i + 1].startsWith('--')) {
       const value = args[++i];
       if (flag === '--root') root = value; else packs = value.split(',');
-    } else throw new Error('Usage: scaffold-baseline.mjs --root EXISTING_APP [--with storage,device,flags,diagnostics] [--dry-run]');
+    } else throw new Error(`Usage: scaffold-baseline.mjs --root EXISTING_APP [--with ${supported.join(',')}] [--only-packs] [--dry-run]`);
   }
   if (!root) throw new Error('An existing app root is required');
+  if (onlyPacks && !packs.length) throw new Error('--only-packs requires --with');
   if (packs.some(pack => !supported.includes(pack)) || new Set(packs).size !== packs.length) throw new Error('Unknown or duplicate capability pack');
+  if (packs.includes('product-workflows')) packs = [...new Set([...packs, 'product-ui', 'account-recovery', 'notification-preferences', 'undo'])];
   root = await realpath(root);
   if (!(await lstat(root)).isDirectory()) throw new Error('App root must be a directory');
-  const roots = [join(assets, 'app-baseline'), ...packs.map(pack => join(assets, 'app-capabilities', pack))];
+  if (onlyPacks && packs.some(pack => ['updates', 'outbox', 'drafts', 'import-review', 'account-recovery', 'notification-preferences'].includes(pack))) {
+    for (const part of ['src', 'src/lib', 'src/lib/asyncWork.ts']) {
+      const info = await exists(join(root, part));
+      if (!info || info.isSymbolicLink() || (part.endsWith('.ts') ? !info.isFile() : !info.isDirectory())) {
+        throw new Error('Selected packs require the existing baseline src/lib/asyncWork.ts (no symlinks). Integrate the baseline first.');
+      }
+    }
+  }
+  const roots = [...(onlyPacks ? [] : [join(assets, 'app-baseline')]), ...packs.map(pack => join(assets, 'app-capabilities', pack))];
   const planned = [];
   for (const sourceRoot of roots) {
     for (const source of await files(join(sourceRoot, 'src'))) planned.push({ source, dest: join(root, relative(sourceRoot, source)) });

@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "packs": [
+    "product-ui",
+    "product-workflows",
+    "account-recovery",
+    "notification-preferences",
+    "undo"
+  ],
+  "source": {
+    "repository": "https://github.com/Simondarcy7/blueprint-vs-rawdogging",
+    "kind": "working-tree",
+    "gitRevision": "1e3165632ee35fb7b8941603bdc30fa83010ef04",
+    "contentDigest": "1160ba4a4d04b5ae6e2f2dca91d697166bd0a6478099357e7eca55703334e80d"
+  },
+  "files": {
+    "lib/asyncWork.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts",
+      "sha256": "efede9447ee4d4ded81ab3a8d71285ca3350d016309663da38cc99e3698e2fd3"
+    },
+    "components/product-ui/content.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/content.tsx",
+      "sha256": "caaea10aac81572d4d775defa8752b59519dc10ea1b836a7b4e8ca43d1031d07"
+    },
+    "components/product-ui/controls.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/controls.tsx",
+      "sha256": "503c791d1ee8ea4d9942ee4a1891ea7cf8c97a5723375bac512ce12f6f334a9d"
+    },
+    "components/product-ui/index.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/index.ts",
+      "sha256": "668f19d1c29f0a4051e8f3b78467fef67b823d52b73b9be5363c6f9b51adc24b"
+    },
+    "components/product-ui/layout.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/layout.tsx",
+      "sha256": "a7e46603897e93f7e26f3f7b10c1c66f0dbc0a75e6f210af312eec278d90d91f"
+    },
+    "components/product-ui/settings.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/settings.tsx",
+      "sha256": "485d2bbe7f69c963077308f0386d7cb955714335007510c00a0a145fcc596142"
+    },
+    "components/product-ui/theme.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/theme.tsx",
+      "sha256": "ff6d0404ab100eec63a1dd692ccbb21e284100bbc095ea967288616f484a2a96"
+    },
+    "modules/product-workflows/AccountRecoveryPanel.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/AccountRecoveryPanel.tsx",
+      "sha256": "81453bf00d2e09b9f565e27ee188f9e5f7b5dbe9962a8571b398b981f12f3e4f"
+    },
+    "modules/product-workflows/index.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/index.ts",
+      "sha256": "a166d1124d63237d1b07952e4c6fc4a4c7c8053eaa3e06998d1470339bc5ca52"
+    },
+    "modules/product-workflows/notificationInbox.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationInbox.tsx",
+      "sha256": "54acaa3858228c68ee1e3fba5e976064382bd134e35c677b86068cab651a7551"
+    },
+    "modules/product-workflows/notificationPreferencesPanel.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationPreferencesPanel.tsx",
+      "sha256": "46b3ef3a4d8deb53dd785ed5e00ac2cacaef8fc6a6fad785356a010658d546c4"
+    },
+    "modules/product-workflows/SettingsWorkflow.tsx": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/SettingsWorkflow.tsx",
+      "sha256": "79c51c0b627b58a4158eb6719c28e22199e847b4bfa8a9bc32ab857ab5784644"
+    },
+    "modules/product-workflows/settingsWorkflowController.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/settingsWorkflowController.ts",
+      "sha256": "9e6044cc6369ee888393fe0ba4c72994995bca2a865ead7e114a523227d910db"
+    },
+    "services/account-recovery/accountRecovery.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/accountRecovery.ts",
+      "sha256": "0ec7d6f576b5157c750ffeb2e1b12785fe74e0f2f0b25c22d9f0e280eea0e4c8"
+    },
+    "services/account-recovery/localAccountCleanup.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/localAccountCleanup.ts",
+      "sha256": "726196313d141b6abe71d7313b59565e1a79c07d573a276c8a3266e3c27769ee"
+    },
+    "services/notification-preferences/notificationPreferences.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/notification-preferences/src/services/notification-preferences/notificationPreferences.ts",
+      "sha256": "97e72bfa8a3e15ee631f2b6fc3bf252bbd8889d19cff48a964d13df9e3f08b70"
+    },
+    "services/undo/undoController.ts": {
+      "source": "codex/skills/mature-app-starter/assets/app-capabilities/undo/src/services/undo/undoController.ts",
+      "sha256": "f6caa4454fe0f6f9d57a54abcc979f80d46f03f8f6d6ebd6c3343b87ebc6575d"
+    }
+  }
+}

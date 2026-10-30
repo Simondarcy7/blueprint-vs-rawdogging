@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-10-30T11:36:12.563Z",
+  "repository": "https://github.com/Simondarcy7/blueprint-vs-rawdogging",
+  "sourceState": {
+    "kind": "working-tree",
+    "headRevision": "1e3165632ee35fb7b8941603bdc30fa83010ef04"
+  },
+  "method": {
+    "canonicalRoot": "codex/skills/mature-app-starter/assets/app-capabilities",
+    "inclusion": "Production .ts and .tsx files under each capability src directory, including type declarations and public export entry points.",
+    "exclusion": "Tests/specs/stories, test fixtures/mocks, documentation, generated starters, mirrored references, installed consumer copies and all files outside canonical capability src trees. The one baseline dependency is counted only in the app-shell bundle subtotal.",
+    "physicalLineDefinition": "LF-delimited physical lines, including blank lines, comments and exports; a non-empty last line without LF counts once. A terminal LF does not create an extra line.",
+    "hash": "SHA-256 of exact file bytes; no normalization."
+  },
+  "caveats": [
+    "These are current authored/generalized production sources grounded in donor behaviour, not a claim that this many lines were literally moved unchanged out of Golf. New adapter contracts, error handling, portable components and workflow composition contribute to the totals.",
+    "Physical lines depend on formatting and include comments and whitespace. They are not a measure of reusable value, engineering quality or original intellectual property.",
+    "Canonical capability files are counted exactly once in the all-capabilities total. Vendored copies in Golf, OddsBasket, generated starters and mirrors are excluded, so reuse does not inflate that total.",
+    "The app-shell bundle subtotal overlaps newProductUiAndWorkflows and selected prior capabilities, and adds baseline asyncWork.ts. Subtotals must not be added together as independent totals.",
+    "The report identifies working-tree bytes at measurement time. HEAD identifies the checkout base, not a claim that every measured file is already committed."
+  ],
+  "groups": {
+    "allCanonicalCapabilities": {
+      "fileCount": 41,
+      "physicalLines": 5048,
+      "bytes": 205563
+    },
+    "newProductUiAndWorkflows": {
+      "fileCount": 12,
+      "physicalLines": 2551,
+      "bytes": 76628
+    },
+    "allPriorCapabilities": {
+      "fileCount": 29,
+      "physicalLines": 2497,
+      "bytes": 128935
+    },
+    "phase5AppShellBundle": {
+      "fileCount": 17,
+      "physicalLines": 3464,
+      "bytes": 127247,
+      "packs": [
+        "product-ui",
+        "product-workflows",
+        "account-recovery",
+        "notification-preferences",
+        "undo"
+      ],
+      "baselineDependencies": [
+        "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts"
+      ],
+      "sourcePaths": [
+        "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/accountRecovery.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/localAccountCleanup.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/notification-preferences/src/services/notification-preferences/notificationPreferences.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/content.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/controls.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/index.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/layout.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/settings.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/theme.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/AccountRecoveryPanel.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/SettingsWorkflow.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/index.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationInbox.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationPreferencesPanel.tsx",
+        "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/settingsWorkflowController.ts",
+        "codex/skills/mature-app-starter/assets/app-capabilities/undo/src/services/undo/undoController.ts"
+      ]
+    },
+    "byPack": {
+      "account-recovery": {
+        "fileCount": 2,
+        "physicalLines": 387,
+        "bytes": 22976
+      },
+      "device": {
+        "fileCount": 5,
+        "physicalLines": 94,
+        "bytes": 5402
+      },
+      "diagnostics": {
+        "fileCount": 5,
+        "physicalLines": 362,
+        "bytes": 16116
+      },
+      "drafts": {
+        "fileCount": 1,
+        "physicalLines": 223,
+        "bytes": 10818
+      },
+      "engagement": {
+        "fileCount": 1,
+        "physicalLines": 36,
+        "bytes": 2177
+      },
+      "flags": {
+        "fileCount": 1,
+        "physicalLines": 42,
+        "bytes": 2564
+      },
+      "import-review": {
+        "fileCount": 1,
+        "physicalLines": 217,
+        "bytes": 11813
+      },
+      "interactions": {
+        "fileCount": 1,
+        "physicalLines": 144,
+        "bytes": 5969
+      },
+      "notification-preferences": {
+        "fileCount": 1,
+        "physicalLines": 272,
+        "bytes": 15308
+      },
+      "outbox": {
+        "fileCount": 1,
+        "physicalLines": 119,
+        "bytes": 6128
+      },
+      "product-ui": {
+        "fileCount": 6,
+        "physicalLines": 1484,
+        "bytes": 43005
+      },
+      "product-workflows": {
+        "fileCount": 6,
+        "physicalLines": 1067,
+        "bytes": 33623
+      },
+      "storage": {
+        "fileCount": 7,
+        "physicalLines": 264,
+        "bytes": 13191
+      },
+      "undo": {
+        "fileCount": 1,
+        "physicalLines": 194,
+        "bytes": 10571
+      },
+      "updates": {
+        "fileCount": 2,
+        "physicalLines": 143,
+        "bytes": 5902
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/accountRecovery.ts",
+      "pack": "account-recovery",
+      "physicalLines": 203,
+      "bytes": 12101,
+      "sha256": "0ec7d6f576b5157c750ffeb2e1b12785fe74e0f2f0b25c22d9f0e280eea0e4c8"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/localAccountCleanup.ts",
+      "pack": "account-recovery",
+      "physicalLines": 184,
+      "bytes": 10875,
+      "sha256": "726196313d141b6abe71d7313b59565e1a79c07d573a276c8a3266e3c27769ee"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/device/src/services/device/actions.ts",
+      "pack": "device",
+      "physicalLines": 35,
+      "bytes": 2079,
+      "sha256": "6ca8effe783cdca278021d5a604486ac0e9df7dda20c8b845be7f2c5a374870d"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/device/src/services/device/browserAdapters.ts",
+      "pack": "device",
+      "physicalLines": 14,
+      "bytes": 776,
+      "sha256": "a09b7ca949448c0123e00501937f1d0f2f2f4b81017f482726224df0b8812b71"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/device/src/services/device/imageBudget.ts",
+      "pack": "device",
+      "physicalLines": 8,
+      "bytes": 818,
+      "sha256": "9bc821af57d35c604c74f8d3f00f781043db5507e6b2f4a76f2945f87c49517d"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/device/src/services/device/permissions.ts",
+      "pack": "device",
+      "physicalLines": 16,
+      "bytes": 891,
+      "sha256": "2cdf708d58bcfb124ab663f4cf08e656677c722b5fa59910fda1344698894ef3"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/device/src/services/device/temporaryFileLease.ts",
+      "pack": "device",
+      "physicalLines": 21,
+      "bytes": 838,
+      "sha256": "b2580fbf5ca35ef22eee4fcabb5af4844500481abc64f504ed7e9c89b827a275"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/diagnostics/src/services/analytics/analyticsClient.ts",
+      "pack": "diagnostics",
+      "physicalLines": 61,
+      "bytes": 2567,
+      "sha256": "e5333c537f867c0a64846d61665cb9af7b163f98c2e4d41b799b330bebdba3a1"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/diagnostics/src/services/analytics/analyticsFanout.ts",
+      "pack": "diagnostics",
+      "physicalLines": 77,
+      "bytes": 3428,
+      "sha256": "c9363e2faa1e1957283dfeceacaa9a8818804138cd2b26ca24db1c749a15d56f"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/diagnostics/src/services/observability/safeTelemetry.ts",
+      "pack": "diagnostics",
+      "physicalLines": 74,
+      "bytes": 3596,
+      "sha256": "c20057bd260b1a9dbb0c23490eb0e376ebc407d35da681f39a437515489243f8"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/diagnostics/src/services/observability/sentryReporter.ts",
+      "pack": "diagnostics",
+      "physicalLines": 128,
+      "bytes": 5605,
+      "sha256": "8dcfd10c3a04a6eaf7108c41256f287a5a8f35941793d5749f80b05e0611b329"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/diagnostics/src/services/observability/settleWithin.ts",
+      "pack": "diagnostics",
+      "physicalLines": 22,
+      "bytes": 920,
+      "sha256": "19466cb0da0c1f87f2269f73af7b3fed602198d418e62313e93a171bdb3a34a9"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/drafts/src/services/drafts/draftController.ts",
+      "pack": "drafts",
+      "physicalLines": 223,
+      "bytes": 10818,
+      "sha256": "24fa5424808b80fd96dcc808b5f5234c528d1ec1a97897f3239389fdfdc73167"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/engagement/src/services/engagement/promptPolicy.ts",
+      "pack": "engagement",
+      "physicalLines": 36,
+      "bytes": 2177,
+      "sha256": "0ce227f9ebffcde0d47c929341b7637fb22dba043502135f09ae2188c6c92141"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/flags/src/services/features/featureStore.ts",
+      "pack": "flags",
+      "physicalLines": 42,
+      "bytes": 2564,
+      "sha256": "46a6887c2107b735a5bada1170593bea543309bb06fff2d92c7ea5b2af6b5d2c"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/import-review/src/services/import-review/importReview.ts",
+      "pack": "import-review",
+      "physicalLines": 217,
+      "bytes": 11813,
+      "sha256": "cb2bd18af27363759f6d162c82a61b1af2ee56260573dca76a4214b7741a5f20"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/interactions/src/services/interactions/overlayFocus.ts",
+      "pack": "interactions",
+      "physicalLines": 144,
+      "bytes": 5969,
+      "sha256": "697a19fa69daf613e2bdaa81154f51d83501c853a52fe7e71ce3dc12216f98e1"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/notification-preferences/src/services/notification-preferences/notificationPreferences.ts",
+      "pack": "notification-preferences",
+      "physicalLines": 272,
+      "bytes": 15308,
+      "sha256": "97e72bfa8a3e15ee631f2b6fc3bf252bbd8889d19cff48a964d13df9e3f08b70"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/outbox/src/services/outbox/durableOutbox.ts",
+      "pack": "outbox",
+      "physicalLines": 119,
+      "bytes": 6128,
+      "sha256": "d383bf8550297c06a50a432cf59d70a92216e1633b4ca015956481109af4b107"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/content.tsx",
+      "pack": "product-ui",
+      "physicalLines": 191,
+      "bytes": 5380,
+      "sha256": "caaea10aac81572d4d775defa8752b59519dc10ea1b836a7b4e8ca43d1031d07"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/controls.tsx",
+      "pack": "product-ui",
+      "physicalLines": 456,
+      "bytes": 13820,
+      "sha256": "503c791d1ee8ea4d9942ee4a1891ea7cf8c97a5723375bac512ce12f6f334a9d"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/index.ts",
+      "pack": "product-ui",
+      "physicalLines": 31,
+      "bytes": 611,
+      "sha256": "668f19d1c29f0a4051e8f3b78467fef67b823d52b73b9be5363c6f9b51adc24b"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/layout.tsx",
+      "pack": "product-ui",
+      "physicalLines": 526,
+      "bytes": 15850,
+      "sha256": "a7e46603897e93f7e26f3f7b10c1c66f0dbc0a75e6f210af312eec278d90d91f"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/settings.tsx",
+      "pack": "product-ui",
+      "physicalLines": 192,
+      "bytes": 5075,
+      "sha256": "485d2bbe7f69c963077308f0386d7cb955714335007510c00a0a145fcc596142"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-ui/src/components/product-ui/theme.tsx",
+      "pack": "product-ui",
+      "physicalLines": 88,
+      "bytes": 2269,
+      "sha256": "ff6d0404ab100eec63a1dd692ccbb21e284100bbc095ea967288616f484a2a96"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/AccountRecoveryPanel.tsx",
+      "pack": "product-workflows",
+      "physicalLines": 211,
+      "bytes": 7146,
+      "sha256": "81453bf00d2e09b9f565e27ee188f9e5f7b5dbe9962a8571b398b981f12f3e4f"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/SettingsWorkflow.tsx",
+      "pack": "product-workflows",
+      "physicalLines": 138,
+      "bytes": 4512,
+      "sha256": "79c51c0b627b58a4158eb6719c28e22199e847b4bfa8a9bc32ab857ab5784644"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/index.ts",
+      "pack": "product-workflows",
+      "physicalLines": 29,
+      "bytes": 746,
+      "sha256": "a166d1124d63237d1b07952e4c6fc4a4c7c8053eaa3e06998d1470339bc5ca52"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationInbox.tsx",
+      "pack": "product-workflows",
+      "physicalLines": 222,
+      "bytes": 6658,
+      "sha256": "54acaa3858228c68ee1e3fba5e976064382bd134e35c677b86068cab651a7551"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/notificationPreferencesPanel.tsx",
+      "pack": "product-workflows",
+      "physicalLines": 192,
+      "bytes": 6847,
+      "sha256": "46b3ef3a4d8deb53dd785ed5e00ac2cacaef8fc6a6fad785356a010658d546c4"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/product-workflows/src/modules/product-workflows/settingsWorkflowController.ts",
+      "pack": "product-workflows",
+      "physicalLines": 275,
+      "bytes": 7714,
+      "sha256": "9e6044cc6369ee888393fe0ba4c72994995bca2a865ead7e114a523227d910db"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/adapterContract.ts",
+      "pack": "storage",
+      "physicalLines": 35,
+      "bytes": 1459,
+      "sha256": "6826357fe6a923d4f1b889db257e6c7002977556438db004451873bf323cba1f"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/backup.ts",
+      "pack": "storage",
+      "physicalLines": 32,
+      "bytes": 1649,
+      "sha256": "c8f826b7fa42193bd6730d41d23fc223f3da645b1a6a635c7d22320f6c502891"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/chunkedStorage.ts",
+      "pack": "storage",
+      "physicalLines": 67,
+      "bytes": 4017,
+      "sha256": "b2c8f57932417bdcb861dff4a61ae16b9002e9035a744f10b9f3e4d8b5cb04ee"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/installBoundStorage.ts",
+      "pack": "storage",
+      "physicalLines": 36,
+      "bytes": 1934,
+      "sha256": "3caab443a3caf6cea402d344f2bf2ba3b788bde4fd1b2e17c5ab23b8b6b244d0"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/ports.ts",
+      "pack": "storage",
+      "physicalLines": 29,
+      "bytes": 1263,
+      "sha256": "b0a35751b3304d45c5b53da8bcb3634cc4020576df5d36abb1829a4f88bf7f1b"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/recoveryJournal.ts",
+      "pack": "storage",
+      "physicalLines": 35,
+      "bytes": 1606,
+      "sha256": "9cf62cb071fcb4a4f187e4f15735de019ee2c8eafb68f29de9571c3b1dc1015d"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/storage/src/services/storage/saveAcknowledgement.ts",
+      "pack": "storage",
+      "physicalLines": 30,
+      "bytes": 1263,
+      "sha256": "1f7a77b4f3f8022c4480dfa45d5e4ae660175d4cc86cf3a2bac9ab8d005a6a5e"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/undo/src/services/undo/undoController.ts",
+      "pack": "undo",
+      "physicalLines": 194,
+      "bytes": 10571,
+      "sha256": "f6caa4454fe0f6f9d57a54abcc979f80d46f03f8f6d6ebd6c3343b87ebc6575d"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/updates/src/services/updates/expoAdapter.ts",
+      "pack": "updates",
+      "physicalLines": 21,
+      "bytes": 795,
+      "sha256": "2919269541ec062cff53762dd9282010d7f85d0061aaf009e9b4a83f20ed1d06"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/updates/src/services/updates/launchUpdate.ts",
+      "pack": "updates",
+      "physicalLines": 122,
+      "bytes": 5107,
+      "sha256": "20ac74f46507c76075f5822a75f4b7dcae4be219ecf632614e44dc5807fc9f29"
+    }
+  ],
+  "bundleOnlyDependencies": [
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-baseline/src/lib/asyncWork.ts",
+      "pack": "baseline",
+      "physicalLines": 60,
+      "bytes": 1764,
+      "sha256": "efede9447ee4d4ded81ab3a8d71285ca3350d016309663da38cc99e3698e2fd3"
+    }
+  ]
+}
