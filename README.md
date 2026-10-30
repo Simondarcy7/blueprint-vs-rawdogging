@@ -243,3 +243,5 @@ Start a project with:
 > Follow BLUEPRINT.md and the installed mature-app-starter skill. Use product-behavior-map to scope the first complete useful workflow, including failure, interruption and repeat use. Apply the relevant navigation, forms, visual and motion guidance. Select optional capabilities from my product brief, record Included/Deferred/N/A decisions and acceptance cases, and preserve the app's own brand and domain rules. Distinguish supplied code, guidance requiring implementation and verified platform behaviour. Load only the guides needed for the current work.
 
 This expands the playbook, not the default feature count. Existing customized installations require a reviewed update.
+
+[Phase 4](proposals/implementation-notes/phase-4-summary.md) adds optional account recovery, notification preference transactions and merge-safe undo. Read the [integration boundaries](docs/account-and-notification-workflows.md) before supplying host adapters.

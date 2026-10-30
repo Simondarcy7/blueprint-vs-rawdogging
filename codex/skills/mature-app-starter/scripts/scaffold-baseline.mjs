@@ -3,7 +3,7 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const assets = fileURLToPath(new URL('../assets/', import.meta.url));
-const supported = ['storage', 'device', 'flags', 'diagnostics', 'updates', 'outbox', 'drafts', 'import-review', 'interactions', 'engagement'];
+const supported = ['storage', 'device', 'flags', 'diagnostics', 'updates', 'outbox', 'drafts', 'import-review', 'interactions', 'engagement', 'account-recovery', 'notification-preferences', 'undo'];
 async function exists(path) { try { return await lstat(path); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }
 async function files(directory) {
   const result = [];
@@ -34,7 +34,7 @@ async function main(args) {
   if (packs.some(pack => !supported.includes(pack)) || new Set(packs).size !== packs.length) throw new Error('Unknown or duplicate capability pack');
   root = await realpath(root);
   if (!(await lstat(root)).isDirectory()) throw new Error('App root must be a directory');
-  if (onlyPacks && packs.some(pack => ['updates', 'outbox', 'drafts', 'import-review'].includes(pack))) {
+  if (onlyPacks && packs.some(pack => ['updates', 'outbox', 'drafts', 'import-review', 'account-recovery', 'notification-preferences'].includes(pack))) {
     for (const part of ['src', 'src/lib', 'src/lib/asyncWork.ts']) {
       const info = await exists(join(root, part));
       if (!info || info.isSymbolicLink() || (part.endsWith('.ts') ? !info.isFile() : !info.isDirectory())) {

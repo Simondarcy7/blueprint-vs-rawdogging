@@ -19,7 +19,7 @@ test('new packs install into a generated app without replacing its baseline and 
   const original = await readFile(join(app, 'src/lib/asyncWork.ts'), 'utf8');
   const brand = await readFile(join(app, 'brand.json'), 'utf8');
   const script = '.agents/skills/mature-app-starter/scripts/scaffold-baseline.mjs';
-  const args = [script, '--root', '.', '--with', 'updates,diagnostics,outbox,drafts,import-review,interactions,engagement', '--only-packs'];
+  const args = [script, '--root', '.', '--with', 'updates,diagnostics,outbox,drafts,import-review,interactions,engagement,account-recovery,notification-preferences,undo', '--only-packs'];
   const preview = run([...args, '--dry-run'], app); assert.equal(preview.status, 0, preview.stderr);
   assert.ok(!(await readdir(join(app, 'src/services'))).includes('outbox'));
   const installed = run(args, app); assert.equal(installed.status, 0, installed.stderr);
@@ -30,7 +30,10 @@ test('new packs install into a generated app without replacing its baseline and 
     'src/services/outbox/durableOutbox.ts', 'src/services/analytics/analyticsClient.ts',
     'src/services/observability/sentryReporter.ts', 'src/services/drafts/draftController.ts',
     'src/services/import-review/importReview.ts', 'src/services/interactions/overlayFocus.ts',
-    'src/services/engagement/promptPolicy.ts'], app);
+    'src/services/engagement/promptPolicy.ts',
+    ...(await readdir(join(app, 'src/services/account-recovery'))).filter(name => name.endsWith('.ts')).map(name => `src/services/account-recovery/${name}`),
+    ...(await readdir(join(app, 'src/services/notification-preferences'))).filter(name => name.endsWith('.ts')).map(name => `src/services/notification-preferences/${name}`),
+    ...(await readdir(join(app, 'src/services/undo'))).filter(name => name.endsWith('.ts')).map(name => `src/services/undo/${name}`)], app);
   assert.equal(types.status, 0, types.stdout + types.stderr);
   const second = run(args, app); assert.notEqual(second.status, 0); assert.match(second.stderr, /Existing file preserved/);
 });
@@ -39,7 +42,7 @@ test('pack-only mode rejects absent baseline dependencies and missing pack selec
   const root = await mkdtemp(join(tmpdir(), 'blueprint-missing-baseline-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const script = 'codex/skills/mature-app-starter/scripts/scaffold-baseline.mjs';
-  for (const args of [['--only-packs'], ...['outbox', 'updates', 'drafts', 'import-review'].map(pack => ['--with', pack, '--only-packs'])]) {
+  for (const args of [['--only-packs'], ...['outbox', 'updates', 'drafts', 'import-review', 'account-recovery', 'notification-preferences'].map(pack => ['--with', pack, '--only-packs'])]) {
     const result = run([script, '--root', root, ...args]); assert.notEqual(result.status, 0);
     assert.deepEqual(await readdir(root), []);
   }

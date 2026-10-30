@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-30",
+  "scope": "Physical production TypeScript lines, including comments and blank lines; excludes tests, documentation and donor app adapters. Not a quality or time-saved metric.",
+  "previousExtractionLines": 1170,
+  "phase4ProductionLines": 851,
+  "files": [
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/accountRecovery.ts",
+      "lines": 203,
+      "sha256": "0ec7d6f576b5157c750ffeb2e1b12785fe74e0f2f0b25c22d9f0e280eea0e4c8"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/account-recovery/src/services/account-recovery/localAccountCleanup.ts",
+      "lines": 184,
+      "sha256": "726196313d141b6abe71d7313b59565e1a79c07d573a276c8a3266e3c27769ee"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/notification-preferences/src/services/notification-preferences/notificationPreferences.ts",
+      "lines": 271,
+      "sha256": "d83476797238d07cdb3528c3c2fc0768a0d79b6897d1f2a3f5be40bdecfd7e71"
+    },
+    {
+      "path": "codex/skills/mature-app-starter/assets/app-capabilities/undo/src/services/undo/undoController.ts",
+      "lines": 193,
+      "sha256": "f7c4fc92d31fcfee34ace7d313eaa44ffa4d004146503ab253836abf4cab3db5"
+    }
+  ]
+}
