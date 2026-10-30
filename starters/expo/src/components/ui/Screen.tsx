@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
-import { Animated, Platform } from 'react-native';
+import { Animated, Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Head from 'expo-router/head';
 import { useSegments } from 'expo-router';
@@ -51,15 +51,15 @@ export function Screen({
         ) : null}
         <meta name="theme-color" content={dark ? brand.dark.background : brand.light.background} />
       </Head>
-      <ScreenScaffold
-        header={<ScreenHeader title={title} description={description} />}
-        insets={{ top: 0, bottom: insets.bottom }}
-        bottomInsetHandledByHost={hostOwnsInsets}
-      >
-        <Animated.View role={hostOwnsInsets ? undefined : 'main'} style={{ gap: 24, opacity }}>
-          {children}
-        </Animated.View>
-      </ScreenScaffold>
+      <View role={hostOwnsInsets ? undefined : 'main'} style={{ flex: 1 }}>
+        <ScreenScaffold
+          header={<ScreenHeader title={title} description={description} />}
+          insets={{ top: 0, bottom: insets.bottom }}
+          bottomInsetHandledByHost={hostOwnsInsets}
+        >
+          <Animated.View style={{ gap: 24, opacity }}>{children}</Animated.View>
+        </ScreenScaffold>
+      </View>
     </>
   );
 }
